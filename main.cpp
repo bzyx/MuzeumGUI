@@ -12,6 +12,7 @@
 
 int main(int argc, char *argv[])
 {
+    //Bardzo droba zmiana
     QApplication a(argc, argv);
 
     MuzeumKontener az = MuzeumKontener();
