@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     EksponatMuzealny* b = t->at(0);
     ui->lineEdit->setText(b->a.c_str());
-            //= (b->a).c_str();
 }
 
 MainWindow::~MainWindow()
