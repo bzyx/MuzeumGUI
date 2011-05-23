@@ -13,12 +13,26 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     src/file.cpp \
+    src/muzeumkontener.cpp \
+    src/eksponatmuzealnymodel.cpp \
     src/eksponatmuzealny.cpp \
-    src/muzeumkontener.cpp
+    src/eobraz.cpp \
+    src/eprzemiotuzytkowy.cpp \
+    src/erzezba.cpp \
+    src/emebel.cpp \
+    src/erekopis.cpp \
+    src/estarodruk.cpp
 
 HEADERS  += mainwindow.h \
     src/file.h \
+    src/muzeumkontener.h \
+    src/eksponatmuzealnymodel.h \
     src/eksponatmuzealny.h \
-    src/muzeumkontener.h
+    src/eobraz.h \
+    src/eprzemiotuzytkowy.h \
+    src/erzezba.h \
+    src/emebel.h \
+    src/erekopis.h \
+    src/estarodruk.h
 
 FORMS    += mainwindow.ui

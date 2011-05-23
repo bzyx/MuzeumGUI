@@ -5,17 +5,17 @@
 
 #include <deque>
 
-#include <src/eksponatmuzealny.h>
+#include <src/eksponatmuzealnymodel.h>
 
-typedef std::deque<EksponatMuzealny *> MKontener;
+typedef std::deque<EksponatMuzealnyModel *> MKontener;
 //TODO: Przerobiæ t¹ klasê na SINGLETON
 
-class MuzeumKontener : public EksponatMuzealny
+class MuzeumKontener : public EksponatMuzealnyModel
 {
 public:
     MuzeumKontener();
     MKontener* GetInstance();
-    void addItm(EksponatMuzealny *e);
+    void addItm(EksponatMuzealnyModel *e);
 private:
    static MKontener m_kontener;
 };

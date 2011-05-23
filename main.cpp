@@ -7,7 +7,7 @@
 
 #include <QDebug>
 
-#include <src/eksponatmuzealny.h>
+#include <src/eksponatmuzealnymodel.h>
 #include <src/muzeumkontener.h>
 
 int main(int argc, char *argv[])
@@ -17,16 +17,16 @@ int main(int argc, char *argv[])
 
     MuzeumKontener az = MuzeumKontener();
     MKontener* t = az.GetInstance();
-    az.addItm(new EksponatMuzealny(1));
-    az.addItm(new EksponatMuzealny(2));
-    az.addItm(new EksponatMuzealny(3));
-    az.addItm(new EksponatMuzealny(4));
+    az.addItm(new EksponatMuzealnyModel(1));
+    az.addItm(new EksponatMuzealnyModel(2));
+    az.addItm(new EksponatMuzealnyModel(3));
+    az.addItm(new EksponatMuzealnyModel(4));
 
     //MKontener::iterator bz;
     //bz = t->begin();
     //std::cout << (*bz).a;
     for (int i=0; i<4; ++i){
-    EksponatMuzealny* b = t->at(i);
+    EksponatMuzealnyModel* b = t->at(i);
     qDebug() << QString(b->a.c_str());
     qDebug() << b->b;
     qDebug() << b->c;

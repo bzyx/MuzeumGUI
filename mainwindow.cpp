@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <src/eksponatmuzealny.h>
+#include <src/eksponatmuzealnymodel.h>
 #include <src/muzeumkontener.h>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     MuzeumKontener az = MuzeumKontener();
     MKontener* t = az.GetInstance();
 
-    EksponatMuzealny* b = t->at(0);
+    EksponatMuzealnyModel* b = t->at(0);
     ui->lineEdit->setText(b->a.c_str());
 }
 
