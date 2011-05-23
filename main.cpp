@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-    //Bardzo droba zmiana
+    //Simple change
     QApplication a(argc, argv);
 
     MuzeumKontener az = MuzeumKontener();
