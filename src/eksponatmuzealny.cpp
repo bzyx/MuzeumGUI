@@ -2,26 +2,38 @@
 
 #include "eksponatmuzealny.h"
 
+int EksponatMuzealny::m_lastid = 0;
+
 EksponatMuzealny::EksponatMuzealny()
 {
-    m_id = EksponatMuzealny::m_lastid++;
+    //m_id = EksponatMuzealny::m_lastid;
+    // m_lastid++;
     m_typ = EksponatMuzealny::NieOkreslono;
     m_nazwa = "";
     m_opis = "";
     m_rok = 0;
 }
 
-int id()
+EksponatMuzealny::EksponatMuzealny(Typ typ, std::string nazwa, std::string opis, int rok)
+{
+    m_id = EksponatMuzealny::m_lastid++;
+    m_typ = typ;
+    m_nazwa = std::string(nazwa);
+    m_opis = std::string(opis);
+    m_rok = rok;
+}
+
+int EksponatMuzealny::id()
 {
     return m_id;
 }
 
-int nazwa()
+std::string EksponatMuzealny::nazwa()
 {
     return m_nazwa;
 }
 
-EksponatMuzealny::Typ typ()
+EksponatMuzealny::Typ EksponatMuzealny::typ()
 {
     return m_typ;
 }

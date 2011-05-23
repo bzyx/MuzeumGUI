@@ -1,4 +1,4 @@
-#include <string>;
+#include <string>
 
 #ifndef EKSPONATMUZEALNY_H
 #define EKSPONATMUZEALNY_H
@@ -8,10 +8,12 @@
 class EksponatMuzealny
 {
 public:
-    typedef enum {NieOkreslono=-1, Obraz=0, PrzedmiotUzytkowy, Rzezba, Mebel, Rekopis, Starodruk } Typ;
+    typedef enum {NieOkreslono=-1, Obraz=5, PrzedmiotUzytkowy, Rzezba, Mebel, Rekopis, Starodruk } Typ;
     EksponatMuzealny();
-    int id();
-    int nazwa();
+    EksponatMuzealny(Typ typ, std::string nazwa, std::string opis, int rok);
+    virtual int id();
+    Typ typ();
+    std::string nazwa();
 
 protected:
     static int m_lastid;
@@ -26,7 +28,5 @@ private:
 
 
 };
-
-int m_lastid = 0;
 
 #endif // EKSPONATMUZEALNY_H
