@@ -8,16 +8,20 @@
 #include <src/eksponatmuzealnymodel.h>
 
 typedef std::deque<EksponatMuzealnyModel *> MKontener;
-//TODO: Przerobiæ t¹ klasê na SINGLETON
+
 
 class MuzeumKontener : public EksponatMuzealnyModel
 {
 public:
-    MuzeumKontener();
     MKontener* GetInstance();
     void addItm(EksponatMuzealnyModel *e);
+    void deleteAll();
 private:
+   /* Konstruktor jest prywatny, klasa jest widoczna jako
+     singleton */
+   MuzeumKontener();
    static MKontener m_kontener;
+
 };
 
 #endif // MUZEUMKONTENER_H

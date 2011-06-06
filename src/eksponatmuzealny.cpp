@@ -8,10 +8,9 @@ EksponatMuzealny::EksponatMuzealny()
 {
     //m_id = EksponatMuzealny::m_lastid;
     // m_lastid++;
-    m_typ = EksponatMuzealny::NieOkreslono;
+    m_typ = EksponatMuzealny::NieOkreslonoTypu;
     m_nazwa = "";
     m_opis = "";
-    m_rok = 0;
 }
 
 EksponatMuzealny::EksponatMuzealny(Typ typ, std::string nazwa, std::string opis, int rok)
