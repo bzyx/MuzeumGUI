@@ -32,6 +32,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //EksponatMuzealnyModel* b = t->at(0);
     //ui->lineEdit->setText(b->a.c_str());
+    EksponatMuzealny t("EMtest",
+                                               1,"Bardzo krótki opis"
+                                               ,"Magazyn1", 100,
+                                               EksponatMuzealny::Obraz,
+                                               EksponatMuzealny::w,
+                                               "XX");
+    ui->listWidget->addItems(t.getPodstawoweAtrybuty());
+    //pewnie coœ zmieni
 }
 
 MainWindow::~MainWindow()

@@ -10,6 +10,7 @@
 
 #include <src/eksponatmuzealnymodel.h>
 #include <src/muzeumkontener.h>
+#include <src/eksponatmuzealny.h>
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +34,17 @@ int main(int argc, char *argv[])
 //    qDebug() << b->c;
 
 //    }
+    EksponatMuzealny t("EMtest",
+                                               1,"Bardzo krótki opis"
+                                               ,"Magazyn1", 100,
+                                               EksponatMuzealny::Obraz,
+                                               EksponatMuzealny::w,
+                                               "XX");
+    qDebug() << t.getData().c_str();
+    foreach(QString elem, t.getPodstawoweAtrybuty())
+        qDebug() << elem;
+    foreach(QString el2, t.getPodstawoweHeaders())
+        qDebug() << el2;
 
 
     MainWindow w;

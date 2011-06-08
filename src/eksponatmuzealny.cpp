@@ -205,6 +205,7 @@ EksponatMuzealny::EksponatMuzealny(std::string nazwa, bool wystawiony,
     m_lastid++;
     m_nazwa = nazwa;
     m_wystawiony = wystawiony;
+    m_opis = opis;
     m_polozenie = polozenie;
     m_wartosc = wartosc;
     m_typ = typ;
