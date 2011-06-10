@@ -1,4 +1,5 @@
 #include <src/eksponatmuzealny.h>
+#include <string>
 
 #ifndef ERZEZBA_H
 #define ERZEZBA_H
