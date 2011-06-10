@@ -166,14 +166,14 @@ public:
      */
     void data(std::string data);
 
-/**
+    /**
  * @brief
  * Konsturktor domyœlny. Przydziela obiektowi unikalny
  * identyfikator
  */
 
     EksponatMuzealny();
-/**
+    /**
  * @brief
  * Konstruktor z wszyskimi parametrami, id jest przydzielane
  * automatycznie.

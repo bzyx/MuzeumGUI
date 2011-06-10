@@ -297,17 +297,17 @@ string EksponatMuzealny::nazwaFormatDaty(
     EksponatMuzealny::FormatDaty formatDaty){
     switch(formatDaty)
     {
-case 5:
+    case 5:
         return "w";
-case 6:
+    case 6:
         return "r";
-case 7:
+    case 7:
         return "mr";
-case 8:
+    case 8:
         return "dmr";
-default:
+    default:
         return "NieznayFormat";
-   }
+    }
 }
 
 /**
