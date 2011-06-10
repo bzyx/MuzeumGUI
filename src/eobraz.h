@@ -6,7 +6,7 @@
 
 /**
  * @brief
- *
+ * Klasa zarz¹dzaj¹ca eksponatami typu Obraz
  */
 class EObraz : public EksponatMuzealny
 {
