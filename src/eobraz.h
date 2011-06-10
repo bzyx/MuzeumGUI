@@ -48,7 +48,7 @@ public:
      * @param autor
      */
     void autor(std::string autor);
-/**
+    /**
  * @brief
  * Konstruktor pe³ny =
  * w,s,autor + EksponatMuzealny
@@ -68,7 +68,7 @@ public:
            std::string nazwa, bool wystawiony, std::string opis,
            std::string polozenie, int wartosc,
            Typ typ, FormatDaty formatDaty, std::string data);
-/**
+    /**
  * @brief
  * Konstruktor romyœlny
  */

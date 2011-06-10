@@ -2,13 +2,16 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QTextCodec>
+#include <QDebug>
 #include "src/eobraz.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP-1250"));
+
     ui->setupUi(this);
 
     //std::vector<EksponatMuzealny* > EMV;
@@ -32,14 +35,31 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //EksponatMuzealnyModel* b = t->at(0);
     //ui->lineEdit->setText(b->a.c_str());
-    EksponatMuzealny t("EMtest",
-                                               1,"Bardzo krótki opis"
-                                               ,"Magazyn1", 100,
-                                               EksponatMuzealny::Obraz,
-                                               EksponatMuzealny::w,
-                                               "XX");
-    ui->listWidget->addItems(t.getPodstawoweAtrybuty());
-    //pewnie coœ zmieni
+    EObraz t(17.0,18.5,"Van Gogh","EMtest",
+             1,"Bardzo ³³‚ krótki opis"
+             ,"Magazyn1", 100,
+             EksponatMuzealny::Obraz,
+             EksponatMuzealny::w,
+             "XX");
+    EObraz t2(19.0,18.5,"Van Gogh1","EMtest",
+              1,"Bardzo ³³‚ krótki opis"
+              ,"Magazyn1", 100,
+              EksponatMuzealny::Obraz,
+              EksponatMuzealny::w,
+              "XX");
+    ui->listWidget->addItems(t.getAtrybuty());
+    //pewnie coï¿½ zmieni
+    typedef QPair<QString,QString> tst;
+    EksponatMuzealny::r2f test = t.saveElement();
+    foreach(tst tmp, test){
+        //        qDebug()<< tmp.first << tmp.second;
+        ui->textEdit->append(tmp.first +" "+ tmp.second+" \n");
+    }
+    //    test = t2.saveElement();
+    //    foreach(tst tmp, test){
+    //        qDebug()<< tmp.first << tmp.second;
+    //        ui->textEdit->append(tmp.first +" "+ tmp.second+" \n");
+    //    }
 }
 
 MainWindow::~MainWindow()
