@@ -5,6 +5,7 @@
 #include <QTextCodec>
 #include <QDebug>
 #include "src/eobraz.h"
+#include "src/eprzemiotuzytkowy.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,13 +28,19 @@ MainWindow::MainWindow(QWidget *parent) :
              EksponatMuzealny::Obraz,
              EksponatMuzealny::w,
              "XX");
+    EPrzemiotUzytkowy z("ttttt",1,"EMtest",
+                      1,"Bardzo ³³‚ krótki opis"
+                      ,"Magazyn1", 100,
+                      EksponatMuzealny::PrzedmiotUzytkowy,
+                      EksponatMuzealny::w,
+                      "XXI");
     //    EObraz t2(19.0,18.5,"Van Gogh1","EMtest",
     //              1,"Bardzo ³³‚ krótki opis"
     //              ,"Magazyn1", 100,
     //              EksponatMuzealny::Obraz,
     //              EksponatMuzealny::w,
     //              "XX");
-    ui->listWidget->addItems(t.getAtrybuty());
+    ui->listWidget->addItems(z.getAtrybuty());
     typedef QPair<QString,QString> tst;
     EksponatMuzealny::r2f test = t.saveElement();
     foreach(tst tmp, test){
