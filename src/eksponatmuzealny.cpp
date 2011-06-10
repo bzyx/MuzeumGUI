@@ -330,3 +330,33 @@ string EksponatMuzealny::b2s(bool b){
 EksponatMuzealny::~EksponatMuzealny(){
 
 }
+
+string EksponatMuzealny::Material2s(Material m){
+    switch(formatDaty)
+    {
+    case 5:
+        return "Braz";
+    case 6:
+        return "Drewno";
+    case 7:
+        return "Gips";
+    case 8:
+        return "Glina";
+    case 9:
+        return "Granit";
+    case 10:
+        return "Marmur";
+    case 11:
+        return "Metal";
+    case 12:
+        return "Mosi¹dz";
+    case 13:
+        return "Piaskowiec";
+    case 14:
+        return "Srebro";
+    case 14:
+        return "Z³oto";
+    default:
+        return "NieOkreslonoMaterialu";
+    }
+}

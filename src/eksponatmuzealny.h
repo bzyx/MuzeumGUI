@@ -248,6 +248,13 @@ public:
      * Wirtualny deskturuktor
      */
     virtual ~EksponatMuzealny();
+
+    /**
+     * @brief
+     * Przetwarza typ Material na string
+     * @param m
+     */
+    std::string Material2s(Material m);
 };
 
 #endif // EKSPONATMUZEALNY_H
