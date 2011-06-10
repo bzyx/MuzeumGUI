@@ -332,7 +332,7 @@ EksponatMuzealny::~EksponatMuzealny(){
 }
 
 string EksponatMuzealny::Material2s(Material m){
-    switch(formatDaty)
+    switch(m)
     {
     case 5:
         return "Braz";
@@ -354,9 +354,9 @@ string EksponatMuzealny::Material2s(Material m){
         return "Piaskowiec";
     case 14:
         return "Srebro";
-    case 14:
+    case 15:
         return "Z³oto";
     default:
-        return "NieOkreslonoMaterialu";
+        return "Nie Okreslono Materialu";
     }
 }
