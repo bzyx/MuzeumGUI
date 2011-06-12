@@ -52,4 +52,3 @@ EksponatMuzealny::r2f EMebel::saveElement(){
 EMebel::~EMebel(){
 
 }
-};
