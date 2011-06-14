@@ -14,7 +14,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     src/file.cpp \
     src/muzeumkontener.cpp \
-    src/eksponatmuzealnymodel.cpp \
     src/eksponatmuzealny.cpp \
     src/eobraz.cpp \
     src/eprzemiotuzytkowy.cpp \
@@ -26,7 +25,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     src/file.h \
     src/muzeumkontener.h \
-    src/eksponatmuzealnymodel.h \
     src/eksponatmuzealny.h \
     src/eobraz.h \
     src/eprzemiotuzytkowy.h \
