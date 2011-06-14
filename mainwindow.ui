@@ -38,7 +38,15 @@
         <height>0</height>
        </size>
       </property>
-      <widget class="QWidget" name="toolBoxPage1" native="true">
+      <widget class="QWidget" name="toolBoxPage1">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>250</width>
+         <height>378</height>
+        </rect>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -135,10 +143,16 @@
          </layout>
         </item>
        </layout>
-       <zorder>verticalLayoutWidget</zorder>
-       <zorder>verticalSpacer</zorder>
       </widget>
-      <widget class="QWidget" name="toolBoxPage2" native="true">
+      <widget class="QWidget" name="toolBoxPage2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>184</width>
+         <height>164</height>
+        </rect>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -246,6 +260,33 @@
      <height>18</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPlik">
+    <property name="title">
+     <string>Plik</string>
+    </property>
+    <addaction name="actionOtw_rz"/>
+    <addaction name="actionZapis"/>
+    <addaction name="actionZapisz_jako"/>
+    <addaction name="separator"/>
+    <addaction name="actionZamknij"/>
+   </widget>
+   <widget class="QMenu" name="menuEdycja">
+    <property name="title">
+     <string>Edycja</string>
+    </property>
+    <addaction name="actionDodaj"/>
+    <addaction name="actionEdytuj"/>
+    <addaction name="actionUsu"/>
+   </widget>
+   <widget class="QMenu" name="menuPomoc">
+    <property name="title">
+     <string>Pomoc</string>
+    </property>
+    <addaction name="actionO_programie"/>
+   </widget>
+   <addaction name="menuPlik"/>
+   <addaction name="menuEdycja"/>
+   <addaction name="menuPomoc"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -256,6 +297,46 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOtw_rz">
+   <property name="text">
+    <string>Otwórz</string>
+   </property>
+  </action>
+  <action name="actionZapis">
+   <property name="text">
+    <string>Zapis</string>
+   </property>
+  </action>
+  <action name="actionZapisz_jako">
+   <property name="text">
+    <string>Zapisz jako</string>
+   </property>
+  </action>
+  <action name="actionZamknij">
+   <property name="text">
+    <string>Wyjdź</string>
+   </property>
+  </action>
+  <action name="actionDodaj">
+   <property name="text">
+    <string>Dodaj</string>
+   </property>
+  </action>
+  <action name="actionEdytuj">
+   <property name="text">
+    <string>Edytuj</string>
+   </property>
+  </action>
+  <action name="actionUsu">
+   <property name="text">
+    <string>Usuń</string>
+   </property>
+  </action>
+  <action name="actionO_programie">
+   <property name="text">
+    <string>O programie</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

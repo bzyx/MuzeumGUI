@@ -34,3 +34,6 @@ HEADERS  += mainwindow.h \
     src/estarodruk.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    zasoby.qrc
