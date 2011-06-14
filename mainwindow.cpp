@@ -26,19 +26,19 @@ MainWindow::MainWindow(QWidget *parent) :
     //EksponatMuzealnyModel* b = t->at(0);
     //ui->lineEdit->setText(b->a.c_str());
 //    EObraz t(17.0,18.5,"Van Gogh","EMtest",
-//             1,"Bardzo ³³‚ krótki opis"
+//             1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
 //             ,"Magazyn1", 100,
 //             EksponatMuzealny::Obraz,
 //             EksponatMuzealny::w,
 //             "XX");
 //    EPrzemiotUzytkowy z("ttttt",1,"EMtest",
-//                      1,"Bardzo ³³‚ krótki opis"
+//                      1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
 //                      ,"Magazyn1", 100,
 //                      EksponatMuzealny::PrzedmiotUzytkowy,
 //                      EksponatMuzealny::w,
 //                      "XXI");
     //    EObraz t2(19.0,18.5,"Van Gogh1","EMtest",
-    //              1,"Bardzo ³³‚ krótki opis"
+    //              1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
     //              ,"Magazyn1", 100,
     //              EksponatMuzealny::Obraz,
     //              EksponatMuzealny::w,
@@ -49,19 +49,19 @@ MainWindow::MainWindow(QWidget *parent) :
     MKontener* lista = MK::getInstance().getList();
 //    MuzeumKontener mk = MuzeumKontener::getInstance();
     MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
-                                             1,"Bardzo ³³‚ krótki opis"
+                                             1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
                                              ,"Magazyn1", 100,
                                              EksponatMuzealny::PrzedmiotUzytkowy,
                                              EksponatMuzealny::w,
                                              "XXI") );
     MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
-                              1,"Bardzo ³³‚ krótki opis"
+                              1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
                               ,"Magazyn1", 100,
                               EksponatMuzealny::Obraz,
                               EksponatMuzealny::w,
                               "XX"));
-    EPrzemiotUzytkowy* test1 = (EPrzemiotUzytkowy*)lista->at(0);
-//    ui->lineEdit->setText(QString::number(test1->getId()));
+    EObraz* test1 = (EObraz*)lista->at(1);
+    ui->lineEdit->setText(test1->getAutor().c_str());
 //    ui->lineEdit_2->setText(MK::getInstance()[1]->getOpis().c_str());
 //    ui->listWidget->addItems(MK::getInstance()[1]->getAtrybuty());
 //    typedef QPair<QString,QString> tst;
