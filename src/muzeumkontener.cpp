@@ -1,24 +1,59 @@
 
 
 #include "muzeumkontener.h"
+MKontener MK::m_kontener;
 
-MuzeumKontener::MuzeumKontener()
+
+MK& MK::getInstance()
 {
+    MK static kontener;
+    return kontener;
 }
 
-MKontener* MuzeumKontener::GetInstance()
-{
-    return &m_kontener;
-}
-
-void MuzeumKontener::addItm(EksponatMuzealnyModel* e)
+void MK::addItem(EksponatMuzealny* e)
 {
     m_kontener.push_back(e);
 }
 
-void MuzeumKontener::deleteAll()
+bool MK::deleteItem(int id){
+    bool ret = false;
+    MKontener::iterator it;
+    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
+    {
+        if ((*it)->getId() == id){
+            m_kontener.erase(it);
+            ret = true;
+        }
+    }
+    return ret;
+}
+
+void MK::MK::deleteAll()
 {
     m_kontener.clear();
 }
 
-MKontener MuzeumKontener::m_kontener;
+EksponatMuzealny* MK::operator[](int id ){
+    MKontener::iterator it;
+    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
+    {
+        if ((*it)->getId() == id){
+            return (*it);
+        }
+    }
+    return NULL;
+}
+MKontener* MK::getList(){
+    return &m_kontener;
+}
+
+void MK::saveToFile(std::string filename){
+    //TODO: PUSTE
+}
+void MK::readFromFile(std::string filename){
+    //TODO: PUSTE
+}
+
+MK::MK()
+{
+}
