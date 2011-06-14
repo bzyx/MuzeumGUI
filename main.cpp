@@ -8,7 +8,6 @@
 
 #include <QDebug>
 
-#include <src/eksponatmuzealnymodel.h>
 #include <src/muzeumkontener.h>
 #include <src/eksponatmuzealny.h>
 

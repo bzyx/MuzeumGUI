@@ -61,15 +61,15 @@ MainWindow::MainWindow(QWidget *parent) :
                               EksponatMuzealny::w,
                               "XX"));
     EPrzemiotUzytkowy* test1 = (EPrzemiotUzytkowy*)lista->at(0);
-    ui->lineEdit->setText(QString::number(test1->getId()));
-    ui->lineEdit_2->setText(MK::getInstance()[1]->getOpis().c_str());
-    ui->listWidget->addItems(MK::getInstance()[1]->getAtrybuty());
-    typedef QPair<QString,QString> tst;
-    EksponatMuzealny::r2f test = MK::getInstance()[0]->saveElement();
-    foreach(tst tmp, test){
-        //        qDebug()<< tmp.first << tmp.second;
-        ui->textEdit->append(tmp.first +" "+ tmp.second+" \n");
-    }
+//    ui->lineEdit->setText(QString::number(test1->getId()));
+//    ui->lineEdit_2->setText(MK::getInstance()[1]->getOpis().c_str());
+//    ui->listWidget->addItems(MK::getInstance()[1]->getAtrybuty());
+//    typedef QPair<QString,QString> tst;
+//    EksponatMuzealny::r2f test = MK::getInstance()[0]->saveElement();
+//    foreach(tst tmp, test){
+//        //        qDebug()<< tmp.first << tmp.second;
+//        ui->textEdit->append(tmp.first +" "+ tmp.second+" \n");
+//    }
     MK::getInstance().deleteAll();
 
     //    test = t2.saveElement();
