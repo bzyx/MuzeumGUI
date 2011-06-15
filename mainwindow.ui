@@ -110,9 +110,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-112</y>
-           <width>370</width>
-           <height>296</height>
+           <y>-158</y>
+           <width>371</width>
+           <height>374</height>
           </rect>
          </property>
          <attribute name="label">
@@ -249,6 +249,36 @@
             <item row="7" column="1">
              <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
             </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="label_29">
+              <property name="text">
+               <string>Dp1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QLineEdit" name="lineEdit_20"/>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="label_30">
+              <property name="text">
+               <string>Dp2</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <widget class="QLineEdit" name="lineEdit_21"/>
+            </item>
+            <item row="10" column="0">
+             <widget class="QLabel" name="label_31">
+              <property name="text">
+               <string>Dp3</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="1">
+             <widget class="QLineEdit" name="lineEdit_22"/>
+            </item>
            </layout>
           </item>
           <item>
@@ -295,9 +325,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>0</y>
-           <width>370</width>
-           <height>302</height>
+           <y>-191</y>
+           <width>371</width>
+           <height>374</height>
           </rect>
          </property>
          <attribute name="label">
@@ -438,6 +468,36 @@
             <item row="7" column="1">
              <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
             </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="label_32">
+              <property name="text">
+               <string>Dp1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QLineEdit" name="lineEdit_23"/>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="label_33">
+              <property name="text">
+               <string>Dp2</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <widget class="QLineEdit" name="lineEdit_24"/>
+            </item>
+            <item row="10" column="0">
+             <widget class="QLabel" name="label_34">
+              <property name="text">
+               <string>Dp3</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="1">
+             <widget class="QLineEdit" name="lineEdit_25"/>
+            </item>
            </layout>
           </item>
           <item>
@@ -521,8 +581,6 @@
            <widget class="QColumnView" name="columnView"/>
           </item>
          </layout>
-         <zorder>frame</zorder>
-         <zorder>columnView</zorder>
         </widget>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -802,16 +860,6 @@
                 <item row="2" column="5">
                  <widget class="QLineEdit" name="lineEdit_19"/>
                 </item>
-                <item row="2" column="6">
-                 <widget class="QLabel" name="label_29">
-                  <property name="text">
-                   <string>Dp4</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="7">
-                 <widget class="QLineEdit" name="lineEdit_20"/>
-                </item>
                </layout>
               </item>
              </layout>
@@ -832,7 +880,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlik">
@@ -950,8 +998,8 @@
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>136</x>
-     <y>49</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>65</x>
