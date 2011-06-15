@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
                               EksponatMuzealny::w,
                               "XX"));
     EObraz* test1 = (EObraz*)lista->at(1);
-    ui->lineEdit->setText(test1->getAutor().c_str());
+    //ui->lineEdit->setText(test1->getAutor().c_str());
 //    ui->lineEdit_2->setText(MK::getInstance()[1]->getOpis().c_str());
 //    ui->listWidget->addItems(MK::getInstance()[1]->getAtrybuty());
 //    typedef QPair<QString,QString> tst;
@@ -82,4 +82,9 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_actionOtw_rz_triggered()
+{
+
 }

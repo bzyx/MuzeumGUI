@@ -1,1 +1,6 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/images/gui">
+        <file>res/ikonka.JPG</file>
+        <file>res/ikonka.png</file>
+    </qresource>
+</RCC>
