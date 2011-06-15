@@ -7,6 +7,8 @@
 #include "src/eobraz.h"
 #include "src/eprzemiotuzytkowy.h"
 #include "src/muzeumkontener.h"
+#include "eksponatmodel.h"
+#include "model.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP-1250"));
 
     ui->setupUi(this);
+
+    ui->toolBox->hide();
+    ui->frame->hide();
     //MuzeumKontener* kontener = MuzeumKontener::getInstance();
 
 
@@ -70,13 +75,20 @@ MainWindow::MainWindow(QWidget *parent) :
 //        //        qDebug()<< tmp.first << tmp.second;
 //        ui->textEdit->append(tmp.first +" "+ tmp.second+" \n");
 //    }
-    MK::getInstance().deleteAll();
+    //MK::getInstance().deleteAll();
 
     //    test = t2.saveElement();
     //    foreach(tst tmp, test){
     //        qDebug()<< tmp.first << tmp.second;
     //        ui->textEdit->append(tmp.first +" "+ tmp.second+" \n");
     //    }
+    //EksponatModel eksponatmodel(8, 4, parent);
+    //eksponatmodel.metodaReset();
+
+    //ui->tableView->setModel(&eksponatmodel);
+     TableModel *model = new TableModel(8, 4, parent);
+     ui->tableView->setModel(model);
+
 }
 
 MainWindow::~MainWindow()
@@ -84,7 +96,3 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionOtw_rz_triggered()
-{
-
-}

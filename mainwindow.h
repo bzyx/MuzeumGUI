@@ -18,7 +18,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionOtw_rz_triggered();
 
 private:
     Ui::MainWindow *ui;

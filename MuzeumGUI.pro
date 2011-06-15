@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     src/erzezba.cpp \
     src/emebel.cpp \
     src/erekopis.cpp \
-    src/estarodruk.cpp
+    src/estarodruk.cpp \
+    eksponatmodel.cpp \
+    model.cpp
 
 HEADERS  += mainwindow.h \
     src/file.h \
@@ -31,7 +33,9 @@ HEADERS  += mainwindow.h \
     src/erzezba.h \
     src/emebel.h \
     src/erekopis.h \
-    src/estarodruk.h
+    src/estarodruk.h \
+    eksponatmodel.h \
+    model.h
 
 FORMS    += mainwindow.ui
 
