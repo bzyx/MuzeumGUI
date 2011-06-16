@@ -54,13 +54,13 @@ MainWindow::MainWindow(QWidget *parent) :
     MKontener* lista = MK::getInstance().getList();
 //    MuzeumKontener mk = MuzeumKontener::getInstance();
     MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
-                                             1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
+                                             1,"Bardzo krótki opis"
                                              ,"Magazyn1", 100,
                                              EksponatMuzealny::PrzedmiotUzytkowy,
                                              EksponatMuzealny::w,
                                              "XXI") );
     MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
-                              1,"Bardzo ï¿½ï¿½ï¿½ krï¿½tki opis"
+                              1,"Bardzo inny opis opis"
                               ,"Magazyn1", 100,
                               EksponatMuzealny::Obraz,
                               EksponatMuzealny::w,
@@ -86,7 +86,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //eksponatmodel.metodaReset();
 
     //ui->tableView->setModel(&eksponatmodel);
-     TableModel *model = new TableModel(8, 4, parent);
+     //TableModel *model = new TableModel(8, 4, parent);
+    EksponatModel *model = new EksponatModel(1,1,parent);
      ui->tableView->setModel(model);
 
 }

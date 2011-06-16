@@ -24,10 +24,10 @@ EksponatModel::EksponatModel(int rows, int columns, QObject *parent)
 //}
 
 int EksponatModel::rowCount(const QModelIndex &parent) const{
-    //return MK::getInstance().getList()->size();
-    qDebug() << "rowCount";
+        qDebug() << "rowCount";
+    return MK::getInstance().getList()->size();
     //return 5;
-    return rowList.size();
+   // return rowList.size();
     //QStringList
 }
 int EksponatModel::columnCount(const QModelIndex &parent) const{
@@ -35,27 +35,33 @@ int EksponatModel::columnCount(const QModelIndex &parent) const{
     QStringList podstAttr = t.getPodstawoweHeaders();
     //return podstAttr.count();
     qDebug() << "columntCount";
-    return rowList[0].size();
+    //return rowList[0].size();
    // return 5;
+    return podstAttr.count();
 }
 QVariant EksponatModel::data(const QModelIndex &index, int role) const{
     if (!index.isValid())
         return QVariant();
 
     if (role == Qt::DisplayRole){
-        return rowList[index.row()][index.column()];
-        qDebug() << "Dispaly";
+        EksponatMuzealny* m =MK::getInstance()[index.row()];
+        QStringList z = m->getPodstawoweAtrybuty();
+                qDebug() << "Dispaly";
+        //return rowList[index.row()][index.column()];
+                return z[index.column()];//QString("TTTTT");
     }
     else
         return QVariant();
 }
 QVariant EksponatModel::headerData(int section, Qt::Orientation orientation, int role) const{
         qDebug() << "hader";
+        EObraz t;
+        QStringList z =t.getPodstawoweHeaders();
     if (role != Qt::DisplayRole)
         return QVariant();
 
     if (orientation == Qt::Horizontal)
-        return QString("Column %1").arg(section);
+        return z[section];//QString("Column %1").arg(section);
     else
         return QString("Row %1").arg(section);
     //return QString("test");
