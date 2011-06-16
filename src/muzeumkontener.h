@@ -6,6 +6,8 @@
 #include <deque>
 #include <string>
 #include <src/eksponatmuzealny.h>
+//DO usuniêcia jak bêdzie w eksponacie
+#include <src/meta.h>
 
 /**
  * @brief
@@ -68,6 +70,9 @@ public:
      * Wywo³uje zewnêtrzn¹ funkcjê.
      * @param filename
      */
+    int countByTyp(Meta::Typ typ);
+    EksponatMuzealny* getObjectOfTyp(Meta::Typ typ);
+    EksponatMuzealny* next(Meta::Typ typ);
     void saveToFile(std::string filename);
     /**
      * @brief
@@ -76,25 +81,26 @@ public:
      */
     void readFromFile(std::string filename);
 private:
-/**
+    /**
  * @brief
  * SINGLETON - Prywatny konstruktor.
  */
-   MK();
-/**
+    MK();
+    /**
  * @brief
  * SINGLETON - Prywatny konstruktor kopiuj¹cy.
  * @param
  */
-   MK(const MK&);
-   /**
+    MK(const MK&);
+    /**
     * @brief
     * SINGLETON - prywatny opertator przypisania/
     * @param
     */
-   MK& operator=(const MK&);
-   static MKontener m_kontener; /** Lista przechowuj¹ca dane */
-
+    MK& operator=(const MK&);
+    static MKontener m_kontener; /** Lista przechowuj¹ca dane */
+private:
+    MKontener::iterator itForTyp;
 };
 
 #endif // MK_H

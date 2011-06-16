@@ -34,17 +34,47 @@ void MK::MK::deleteAll()
 }
 
 EksponatMuzealny* MK::operator[](int id ){
-    MKontener::iterator it;
-    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
-    {
-        if ((*it)->getId() == id){
-            return (*it);
-        }
-    }
-    return NULL;
+    //    MKontener::iterator it;
+    //    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
+    //    {
+    //        if ((*it)->getId() == id){
+    //            return (*it);
+    //        }
+    //    }
+    //    return NULL;
+    return m_kontener.at(id);
 }
 MKontener* MK::getList(){
     return &m_kontener;
+}
+
+int MK::countByTyp(Meta::Typ typ){
+    int licznik = 0;
+    MKontener::iterator it;
+    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
+    {
+        if ((*it)->getTyp() == typ){
+            ++licznik;
+        }
+    }
+    return licznik;
+}
+EksponatMuzealny* MK::getObjectOfTyp(Meta::Typ typ){
+    for( itForTyp=m_kontener.begin(); itForTyp!=m_kontener.end(); ++itForTyp )
+    {
+        if ((*itForTyp)->getTyp() == typ){
+            return (*itForTyp);
+        }
+    }
+}
+
+EksponatMuzealny* MK::next(Meta::Typ typ){
+    for(; itForTyp!=m_kontener.end(); ++itForTyp )
+    {
+        if ((*itForTyp)->getTyp() == typ){
+            return (*itForTyp);
+        }
+    }
 }
 
 void MK::saveToFile(std::string filename){
