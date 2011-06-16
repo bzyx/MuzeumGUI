@@ -10,7 +10,8 @@ public:
     static MKTyp& getInstance();
     void setTyp(Meta::Typ);
     EksponatMuzealny* operator[] (int id);
-     EksponatMuzealny* getObjectFor(Meta::Typ,int id);
+    EksponatMuzealny* getObjectFor(Meta::Typ,int id);
+    int count(Meta::Typ typ);
 
     void updateMKTyp();
 private:
