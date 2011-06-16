@@ -1,6 +1,7 @@
 #include <QStringList>
 #include "eksponatmodel.h"
 #include <src/muzeumkontener.h>
+#include <src/mktyp.h>
 #include "src/eobraz.h"
 #include <QDebug>
 
@@ -13,15 +14,15 @@ EksponatModel::EksponatModel(Meta::Typ typ, QObject *parent)
 }
 
 int EksponatModel::rowCount(const QModelIndex &parent) const{
-    //qDebug() << "rowCount";
+    //qDebug() << "RowC";
     if(m_typ == Meta::NieOkreslonoTypu){
-        return MK::getInstance().getList()->size();
+        return MK::getInstance().count();
     } else {
-        qDebug()<< "RowC";
-        return MK::getInstance().countByTyp(m_typ);
+        return MKTyp::getInstance().count(m_typ);
     }
 }
 int EksponatModel::columnCount(const QModelIndex &parent) const{
+   // qDebug()<< "ColC";
     QStringList attr;
     if(m_typ == Meta::NieOkreslonoTypu){
         //Nie ma wymagañ co do typu. Wystarczy ¿e w headerze bêd¹ tylko podstawowe
@@ -30,9 +31,9 @@ int EksponatModel::columnCount(const QModelIndex &parent) const{
         EObraz t;
         attr = t.getPodstawoweHeaders();
     } else {
-        qDebug()<< "ColC";
         EObraz t;
-        attr = t.getPodstawoweHeaders();
+        //attr = t.getPodstawoweHeaders();
+        attr = t.getHeaders();
         //attr = MK::getInstance().getObjectOfTyp(m_typ)->getAtrybuty();
     }
     return attr.count();
@@ -49,13 +50,14 @@ QVariant EksponatModel::data(const QModelIndex &index, int role) const{
             // z = m->getPodstawoweAtrybuty();
             //} else{
                // if(m->getTyp() == m_typ){
-        qDebug()<<index.row();
-                    if(index.row()<=1)
-                        m = MK::getInstance().getObjectOfTyp(m_typ);
-                    else
-                        m = MK::getInstance().next(m_typ);
-                    qDebug()<< "Data";
-                    z = m->getPodstawoweAtrybuty();
+        //qDebug()<<index.row();
+                    //if(index.row()<=1)
+                        m = MKTyp::getInstance().getObjectFor(m_typ,index.row());
+                    //else
+                    //    m = MK::getInstance().next(m_typ);
+                    //qDebug()<< "Data";
+                    //z = m->getPodstawoweAtrybuty();
+                    z = m->getAtrybuty();
                 //}
             //}
             return z[index.column()];
@@ -70,10 +72,11 @@ QVariant EksponatModel::headerData(int section, Qt::Orientation orientation, int
         EObraz t;
         z =t.getPodstawoweHeaders();
     } else {
-        qDebug()<< "Hdata";
+       // qDebug()<< "Hdata";
         //z = MK::getInstance().getObjectOfTyp(m_typ)->getPodstawoweHeaders();
         EObraz t;
-        z =t.getPodstawoweHeaders();
+        //z =t.getPodstawoweHeaders();
+        z = t.getHeaders();
     }
     if (role != Qt::DisplayRole)
         return QVariant();
