@@ -71,6 +71,7 @@ public:
      * @param filename
      */
     int countByTyp(Meta::Typ typ);
+    int count();
     EksponatMuzealny* getObjectOfTyp(Meta::Typ typ);
     EksponatMuzealny* next(Meta::Typ typ);
     void saveToFile(std::string filename);

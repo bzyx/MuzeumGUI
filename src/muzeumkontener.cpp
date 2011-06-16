@@ -59,6 +59,9 @@ int MK::countByTyp(Meta::Typ typ){
     }
     return licznik;
 }
+int MK::count(){
+    return m_kontener.size();
+}
 EksponatMuzealny* MK::getObjectOfTyp(Meta::Typ typ){
     for( itForTyp=m_kontener.begin(); itForTyp!=m_kontener.end(); ++itForTyp )
     {
