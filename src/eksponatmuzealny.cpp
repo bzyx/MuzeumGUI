@@ -120,9 +120,9 @@ void EksponatMuzealny::wartosc(int wartosc){
 /**
  * @brief
  *
- * @return EksponatMuzealny::Typ
+ * @return Meta::Typ
  */
-EksponatMuzealny::Typ EksponatMuzealny::getTyp(){
+Meta::Typ EksponatMuzealny::getTyp(){
     return m_typ;
 }
 
@@ -131,7 +131,7 @@ EksponatMuzealny::Typ EksponatMuzealny::getTyp(){
  *
  * @param typ
  */
-void EksponatMuzealny::typ(EksponatMuzealny::Typ typ){
+void EksponatMuzealny::typ(Meta::Typ typ){
     m_typ = typ;
 }
 
@@ -180,7 +180,7 @@ EksponatMuzealny::EksponatMuzealny()
 {
     m_id = EksponatMuzealny::m_lastid;
     m_lastid++;
-    m_typ = EksponatMuzealny::NieOkreslonoTypu;
+    m_typ = Meta::NieOkreslonoTypu;
     m_nazwa = "Bez Nazwy";
 }
 
@@ -198,7 +198,7 @@ EksponatMuzealny::EksponatMuzealny()
  */
 EksponatMuzealny::EksponatMuzealny(std::string nazwa, bool wystawiony,
                                    std::string opis, std::string polozenie,
-                                   int wartosc, Typ typ, FormatDaty formatDaty,
+                                   int wartosc, Meta::Typ typ, FormatDaty formatDaty,
                                    std::string data)
 {
     m_id = EksponatMuzealny::m_lastid;
@@ -267,7 +267,7 @@ QStringList EksponatMuzealny::getPodstawoweHeaders(){
  * @param typ
  * @return string
  */
-string EksponatMuzealny::nazwaTypu(EksponatMuzealny::Typ typ){
+string EksponatMuzealny::nazwaTypu(Meta::Typ typ){
     switch (typ)
     {
     case 5:

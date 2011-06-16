@@ -19,7 +19,7 @@ void ERekopis::czyZeskanowany(bool czyZeskanowany){
 ERekopis::ERekopis(std::string autor, bool czyZeskanowany,
          std::string nazwa, bool wystawiony, std::string opis,
          std::string polozenie, int wartosc,
-         Typ typ, FormatDaty formatDaty, std::string data):EksponatMuzealny(nazwa,wystawiony,opis,polozenie,
+         Meta::Typ typ, FormatDaty formatDaty, std::string data):EksponatMuzealny(nazwa,wystawiony,opis,polozenie,
         wartosc,typ,formatDaty,data){
     m_autor = autor;
     m_czyZeskanowany = czyZeskanowany;

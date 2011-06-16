@@ -3,6 +3,7 @@
 #include <string>
 #include <QPair>
 #include <QList>
+#include "src/meta.h"
 
 class QStringList;
 class QString;
@@ -61,7 +62,7 @@ private:
     std::string m_opis;
     std::string m_polozenie;
     int m_wartosc;
-    Typ m_typ;
+    Meta::Typ m_typ;
     FormatDaty m_FormatDaty;
     std::string m_data;
 public:
@@ -135,13 +136,13 @@ public:
      * @brief
      * Zwraca typ obiektu (jako element enumeratora Typ)
      */
-    Typ getTyp();
+    Meta::Typ getTyp();
     /**
      * @brief
      * Ustawia typ obiektu jako argument przyjmuje typ enumetatora
      * @param typ
      */
-    void typ(Typ typ);
+    void typ(Meta::Typ typ);
     /**
      * @brief
      * Zwraca w jakim formacie jest zapisana data
@@ -189,7 +190,7 @@ public:
  */
     EksponatMuzealny(std::string nazwa, bool wystawiony, std::string opis,
                      std::string polozenie, int wartosc,
-                     Typ typ, FormatDaty formatDaty, std::string data);
+                     Meta::Typ typ, FormatDaty formatDaty, std::string data);
     /**
      * @brief
      * Ustawia wewnêtrzy licznik identyfikatora.
@@ -231,7 +232,7 @@ public:
      * @brief
      * Zwraca nazwê typu jako string
      */
-    std::string nazwaTypu(Typ typ);
+    std::string nazwaTypu(Meta::Typ typ);
     /**
      * @brief
      * Zwraca nazwê formatu daty jako string
