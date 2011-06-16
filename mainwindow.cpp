@@ -52,26 +52,124 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //kontener.addItem(t);
     //kontener.addItem(z);
-    MKontener* lista = MK::getInstance().getList();
+    //MKontener* lista = MK::getInstance().getList();
 //    MuzeumKontener mk = MuzeumKontener::getInstance();
     MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
                                              1,"Bardzo krótki opis"
                                              ,"Magazyn1", 100,
-                                             EksponatMuzealny::PrzedmiotUzytkowy,
+                                             Meta::PrzedmiotUzytkowy,
                                              EksponatMuzealny::w,
                                              "XXI") );
     MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
                               1,"Bardzo inny opis opis"
                               ,"Magazyn1", 100,
-                              EksponatMuzealny::Obraz,
+                              Meta::Obraz,
                               EksponatMuzealny::w,
                               "XX"));
-    MK::getInstance().addItem(new EObraz(4,12.5,"Picasso","abubat",
+    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
                               1,"Bardaaa"
                               ,"Magazyn2", 100,
-                              EksponatMuzealny::Obraz,
+                               Meta::Obraz,
                               EksponatMuzealny::w,
                               "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
+                              1,"Bardzo inny opis opis"
+                              ,"Magazyn1", 100,
+                              Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XX"));
+    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
+                              1,"Bardzo inny opis opis"
+                              ,"Magazyn1", 100,
+                              Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XX"));
+    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    for(int i=0; i< 10000; ++i){
+    MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                               Meta::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    }
     //EObraz* test1 = (EObraz*)lista->at(1);
     //ui->lineEdit->setText(test1->getAutor().c_str());
 //    ui->lineEdit_2->setText(MK::getInstance()[1]->getOpis().c_str());
@@ -95,12 +193,12 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->tableView->setModel(&eksponatmodel);
      //TableModel *model = new TableModel(8, 4, parent);
     //EksponatModel *model = new EksponatModel(Meta::NieOkreslonoTypu,parent);
-    //EksponatModel *model = new EksponatModel(Meta::Obraz,parent);
-   //  ui->tableView->setModel(model);
      MKTyp::getInstance().updateMKTyp();
+     EksponatModel *model = new EksponatModel(Meta::Obraz,parent);
+     ui->tableView->setModel(model);
      EksponatMuzealny* tmp = MKTyp::getInstance().getObjectFor(Meta::Obraz,0);
      EksponatMuzealny* tmp1 = MKTyp::getInstance().getObjectFor(Meta::Obraz,1);
-     qDebug() << tmp->getData().c_str();
+     qDebug() << tmp->getAtrybuty();
      qDebug() << tmp1->getAtrybuty();
 
 }
