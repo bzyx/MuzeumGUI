@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     src/erekopis.cpp \
     src/estarodruk.cpp \
     eksponatmodel.cpp \
-    model.cpp
+    model.cpp \
+    src/meta.cpp \
+    src/mktyp.cpp
 
 HEADERS  += mainwindow.h \
     src/file.h \
@@ -35,7 +37,9 @@ HEADERS  += mainwindow.h \
     src/erekopis.h \
     src/estarodruk.h \
     eksponatmodel.h \
-    model.h
+    model.h \
+    src/meta.h \
+    src/mktyp.h
 
 FORMS    += mainwindow.ui
 
