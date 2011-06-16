@@ -9,6 +9,7 @@
 #include "src/muzeumkontener.h"
 #include "eksponatmodel.h"
 #include "model.h"
+#include "src/mktyp.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -65,7 +66,13 @@ MainWindow::MainWindow(QWidget *parent) :
                               EksponatMuzealny::Obraz,
                               EksponatMuzealny::w,
                               "XX"));
-    EObraz* test1 = (EObraz*)lista->at(1);
+    MK::getInstance().addItem(new EObraz(4,12.5,"Picasso","abubat",
+                              1,"Bardaaa"
+                              ,"Magazyn2", 100,
+                              EksponatMuzealny::Obraz,
+                              EksponatMuzealny::w,
+                              "XXI"));
+    //EObraz* test1 = (EObraz*)lista->at(1);
     //ui->lineEdit->setText(test1->getAutor().c_str());
 //    ui->lineEdit_2->setText(MK::getInstance()[1]->getOpis().c_str());
 //    ui->listWidget->addItems(MK::getInstance()[1]->getAtrybuty());
@@ -87,8 +94,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //ui->tableView->setModel(&eksponatmodel);
      //TableModel *model = new TableModel(8, 4, parent);
-    EksponatModel *model = new EksponatModel(1,1,parent);
-     ui->tableView->setModel(model);
+    //EksponatModel *model = new EksponatModel(Meta::NieOkreslonoTypu,parent);
+    //EksponatModel *model = new EksponatModel(Meta::Obraz,parent);
+   //  ui->tableView->setModel(model);
+     MKTyp::getInstance().updateMKTyp();
+     EksponatMuzealny* tmp = MKTyp::getInstance().getObjectFor(Meta::Obraz,0);
+     EksponatMuzealny* tmp1 = MKTyp::getInstance().getObjectFor(Meta::Obraz,1);
+     qDebug() << tmp->getData().c_str();
+     qDebug() << tmp1->getAtrybuty();
 
 }
 
