@@ -10,11 +10,10 @@ EksponatModel::EksponatModel(Meta::Typ typ, QObject *parent)
     : QAbstractTableModel(parent)
 {
     m_typ = typ;
-
+    moznaZmieniac = false;
 }
 
 int EksponatModel::rowCount(const QModelIndex &parent) const{
-    //qDebug() << "RowC";
     if(m_typ == Meta::NieOkreslonoTypu){
         return MK::getInstance().count();
     } else {
@@ -22,61 +21,51 @@ int EksponatModel::rowCount(const QModelIndex &parent) const{
     }
 }
 int EksponatModel::columnCount(const QModelIndex &parent) const{
-   // qDebug()<< "ColC";
     QStringList attr;
+    EksponatMuzealny *m;
     if(m_typ == Meta::NieOkreslonoTypu){
-        //Nie ma wymagañ co do typu. Wystarczy ¿e w headerze bêd¹ tylko podstawowe
-        //atrybuty. Mo¿na je pobraæ z obiektu dowolnego typu.
-        //Nie mo¿na braæ z listy bo mo¿e byæ pusta
-        EObraz t;
-        attr = t.getPodstawoweHeaders();
+        attr = m->getPodstawoweHeaders();
     } else {
-        EObraz t;
-        //attr = t.getPodstawoweHeaders();
-        attr = t.getHeaders();
-        //attr = MK::getInstance().getObjectOfTyp(m_typ)->getAtrybuty();
+        m = MKTyp::getInstance().getObjectFor(m_typ,0);
+        if (m != NULL){
+            attr = m->getHeaders();
+
+        } else {
+            return 0;
+        }
     }
     return attr.count();
 }
 QVariant EksponatModel::data(const QModelIndex &index, int role) const{
     if (!index.isValid())
         return QVariant();
-//POPRAWIÆ!
     if (role == Qt::DisplayRole){
         QStringList z;
         EksponatMuzealny* m;
-            //EksponatMuzealny* m =MK::getInstance()[index.row()];
-            //if(m_typ == Meta::NieOkreslonoTypu){
-            // z = m->getPodstawoweAtrybuty();
-            //} else{
-               // if(m->getTyp() == m_typ){
-        //qDebug()<<index.row();
-                    //if(index.row()<=1)
-                        m = MKTyp::getInstance().getObjectFor(m_typ,index.row());
-                    //else
-                    //    m = MK::getInstance().next(m_typ);
-                    //qDebug()<< "Data";
-                    //z = m->getPodstawoweAtrybuty();
-                    z = m->getAtrybuty();
-                //}
-            //}
-            return z[index.column()];
-
+        if (m_typ == Meta::NieOkreslonoTypu){
+            m = MK::getInstance()[index.row()];
+            z = m->getPodstawoweAtrybuty();
+        } else {
+            m = MKTyp::getInstance().getObjectFor(m_typ,index.row());
+            z = m->getAtrybuty();
+        }
+        return z[index.column()];
     }
     else
         return QVariant();
 }
 QVariant EksponatModel::headerData(int section, Qt::Orientation orientation, int role) const{
     QStringList z;
+    EksponatMuzealny *m;
     if(m_typ == Meta::NieOkreslonoTypu){
-        EObraz t;
-        z =t.getPodstawoweHeaders();
+        z = m->getPodstawoweHeaders();
     } else {
-       // qDebug()<< "Hdata";
-        //z = MK::getInstance().getObjectOfTyp(m_typ)->getPodstawoweHeaders();
-        EObraz t;
-        //z =t.getPodstawoweHeaders();
-        z = t.getHeaders();
+        m = MKTyp::getInstance().getObjectFor(m_typ,0);
+        if (m != NULL){
+            z = m->getHeaders();
+        } else {
+            return QVariant();
+        }
     }
     if (role != Qt::DisplayRole)
         return QVariant();
@@ -86,10 +75,33 @@ QVariant EksponatModel::headerData(int section, Qt::Orientation orientation, int
     else
         return QString("%1").arg(section);
 }
+
+void EksponatModel::czyMoznaZmieniac(bool mz = false){
+    EksponatModel::moznaZmieniac = mz;
+}
 EksponatModel::~EksponatModel(){
 }
 
 void EksponatModel::setNewTyp(Meta::Typ typ){
     m_typ = typ;
-    reset();
+    if(moznaZmieniac)
+        reset();
 }
+
+bool EksponatModel::isEmpty(){
+    if (moznaZmieniac){
+        if (m_typ == Meta::NieOkreslonoTypu){
+            if(MK::getInstance().count() == 0)
+                return true;
+        } else {
+            EksponatMuzealny *m = MKTyp::getInstance().getObjectFor(m_typ,0);
+            if (m == NULL)
+                return true;
+        }
+    }
+    return false;
+    //}
+    //return true;
+}
+
+bool EksponatModel::moznaZmieniac;

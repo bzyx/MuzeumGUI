@@ -19,10 +19,14 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const;
     void setNewTyp(Meta::Typ typ);
+    void czyMoznaZmieniac(bool mz);
+    bool isEmpty();
     ~EksponatModel();
+
 private:
-        QList<QStringList> rowList;
+        static bool moznaZmieniac;
         Meta::Typ m_typ;
+
 };
 
 #endif // EKSPONATMODEL_H
