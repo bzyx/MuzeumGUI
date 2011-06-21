@@ -4,7 +4,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QComboBox>
+#include <QValidator>
 #include "eksponatmodel.h"
 
 namespace Ui {
@@ -24,15 +25,15 @@ private slots:
     void on_comboBox_wyborTypu_currentIndexChanged(int index);
     void setVisiblePanelDodawania();
     void setVisiblePanelSzczegoly();
-    //void setDodawanieEnabled(bool b);
+    void setDodawanieEnabled(bool b);
 
-//    void on_dod_cb_typ_currentIndexChanged(int index);
+    void on_dod_cb_typ_currentIndexChanged(int index);
 
 private:
-    void setCzyMoznaDodawac(bool b);
+    void setMetaToComboBox(QComboBox* cb, bool wszyskie=false);
     Ui::MainWindow *ui;
     EksponatModel* model;
-   // bool czyMoznaDodawac;
+    QValidator *v_dp1, *v_dp2, *v_dp3,*v_dp3a;
 };
 
 #endif // MAINWINDOW_H
