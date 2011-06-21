@@ -69,6 +69,7 @@ EksponatMuzealny* MK::getObjectOfTyp(Meta::Typ typ){
             return (*itForTyp);
         }
     }
+    return NULL;
 }
 
 EksponatMuzealny* MK::next(Meta::Typ typ){
@@ -77,7 +78,9 @@ EksponatMuzealny* MK::next(Meta::Typ typ){
         if ((*itForTyp)->getTyp() == typ){
             return (*itForTyp);
         }
+
     }
+    return NULL;
 }
 
 void MK::saveToFile(std::string filename){
