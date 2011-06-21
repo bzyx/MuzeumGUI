@@ -123,7 +123,7 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-190</y>
+           <y>-71</y>
            <width>371</width>
            <height>382</height>
           </rect>
@@ -242,13 +242,7 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <widget class="QComboBox" name="dod_fDat">
-                <item>
-                 <property name="text">
-                  <string>Format daty</string>
-                 </property>
-                </item>
-               </widget>
+               <widget class="QComboBox" name="dod_fDat"/>
               </item>
               <item>
                <widget class="QLineEdit" name="dod_dat"/>
