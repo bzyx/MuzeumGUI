@@ -145,7 +145,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_10">
+             <widget class="QLineEdit" name="dod_id">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -159,7 +159,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QComboBox" name="comboBox_3"/>
+             <widget class="QComboBox" name="dod_cb_typ"/>
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_13">
@@ -169,7 +169,7 @@
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_11"/>
+             <widget class="QLineEdit" name="dod_nazwa"/>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_14">
@@ -181,14 +181,17 @@
             <item row="3" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
-               <widget class="QRadioButton" name="radioButton">
+               <widget class="QRadioButton" name="dod_wysT">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="text">
                  <string>Tak</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QRadioButton" name="radioButton_2">
+               <widget class="QRadioButton" name="dod_wysN">
                 <property name="text">
                  <string>Nie</string>
                 </property>
@@ -204,7 +207,7 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEdit_12"/>
+             <widget class="QLineEdit" name="dod_pol"/>
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_16">
@@ -214,7 +217,7 @@
              </widget>
             </item>
             <item row="5" column="1">
-             <widget class="QSpinBox" name="spinBox">
+             <widget class="QSpinBox" name="dod_wart">
               <property name="suffix">
                <string> zł</string>
               </property>
@@ -239,7 +242,7 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <widget class="QComboBox" name="comboBox_4">
+               <widget class="QComboBox" name="dod_fDat">
                 <item>
                  <property name="text">
                   <string>Format daty</string>
@@ -248,7 +251,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_13"/>
+               <widget class="QLineEdit" name="dod_dat"/>
               </item>
              </layout>
             </item>
@@ -260,37 +263,37 @@
              </widget>
             </item>
             <item row="7" column="1">
-             <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+             <widget class="QPlainTextEdit" name="dod_opis"/>
             </item>
             <item row="8" column="0">
-             <widget class="QLabel" name="label_29">
+             <widget class="QLabel" name="dod_l_dp1">
               <property name="text">
                <string>Dp1</string>
               </property>
              </widget>
             </item>
             <item row="8" column="1">
-             <widget class="QLineEdit" name="lineEdit_20"/>
+             <widget class="QLineEdit" name="dod_dp1"/>
             </item>
             <item row="9" column="0">
-             <widget class="QLabel" name="label_30">
+             <widget class="QLabel" name="dod_l_dp2">
               <property name="text">
                <string>Dp2</string>
               </property>
              </widget>
             </item>
             <item row="9" column="1">
-             <widget class="QLineEdit" name="lineEdit_21"/>
+             <widget class="QLineEdit" name="dod_dp2"/>
             </item>
             <item row="10" column="0">
-             <widget class="QLabel" name="label_31">
+             <widget class="QLabel" name="dod_l_dp3">
               <property name="text">
                <string>Dp3</string>
               </property>
              </widget>
             </item>
             <item row="10" column="1">
-             <widget class="QLineEdit" name="lineEdit_22"/>
+             <widget class="QLineEdit" name="dod_dp3"/>
             </item>
            </layout>
           </item>
@@ -310,21 +313,21 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="dod_b_wycz">
               <property name="text">
                <string>Wyczyść</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="dod_b_dod">
               <property name="text">
                <string>Dodaj</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="dod_b_anu">
               <property name="text">
                <string>Anuluj</string>
               </property>
@@ -870,8 +873,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionPoka_szczeg_y"/>
    <addaction name="actionPoka_panel_dodawania"/>
+   <addaction name="actionPoka_szczeg_y"/>
    <addaction name="separator"/>
    <addaction name="actionOtw_rz"/>
    <addaction name="actionZapis"/>
@@ -920,17 +923,11 @@
    </property>
   </action>
   <action name="actionPoka_panel_dodawania">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
     <string>Pokaż panel dodawania</string>
    </property>
   </action>
   <action name="actionPoka_szczeg_y">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
     <string>Pokaż szczegóły</string>
    </property>
