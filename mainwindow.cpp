@@ -8,7 +8,6 @@
 #include "src/eprzemiotuzytkowy.h"
 #include "src/muzeumkontener.h"
 #include "eksponatmodel.h"
-#include "model.h"
 #include "src/mktyp.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -18,13 +17,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP-1250"));
 
     ui->setupUi(this);
-    connect(ui->actionPoka_panel_dodawania,SIGNAL(toggled(bool)),this,SLOT(setVisiblePanelDodawania(bool)));
-    connect(ui->actionPoka_szczeg_y,SIGNAL(toggled(bool)),this,SLOT(setVisiblePanelSzczegoly(bool)));
-    //ui->panelDodawania->hide();
-    //ui->panelSzczegolow->hide();
+    connect(ui->actionPoka_panel_dodawania,SIGNAL(triggered()),this,SLOT(setVisiblePanelDodawania()));
+    connect(ui->actionPoka_szczeg_y,SIGNAL(triggered()),this,SLOT(setVisiblePanelSzczegoly()));
 
-    ui->actionPoka_panel_dodawania->toggle();
-    ui->actionPoka_szczeg_y->toggle();
+    ui->actionPoka_panel_dodawania->trigger();
+    ui->actionPoka_szczeg_y->trigger();
+    //setDodawanieEnabled(false);
+
     ui->comboBox_wyborTypu->addItem("Wszyskie typy",Meta::NieOkreslonoTypu);
     ui->comboBox_wyborTypu->addItem("Mebel",Meta::Mebel);
     ui->comboBox_wyborTypu->addItem("Obraz",Meta::Obraz);
@@ -85,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
      model = new EksponatModel(Meta::NieOkreslonoTypu,parent);
      ui->tableView->setModel(model);
      model->czyMoznaZmieniac(true);
+
 }
 
  void MainWindow::seDisabledIfEmpty(){
@@ -112,8 +112,8 @@ void MainWindow::on_comboBox_wyborTypu_currentIndexChanged(int index)
     seDisabledIfEmpty();
 }
 
-void  MainWindow::setVisiblePanelDodawania(bool b){
-    if(!b){
+void  MainWindow::setVisiblePanelDodawania(){
+    if(ui->panelDodawania->isHidden()){
     ui->actionPoka_panel_dodawania->setText("Ukryj panel dodawania");
     ui->panelDodawania->show();
     } else {
@@ -122,8 +122,8 @@ void  MainWindow::setVisiblePanelDodawania(bool b){
     }
 }
 
-void  MainWindow::setVisiblePanelSzczegoly(bool b){
-    if(!b){
+void  MainWindow::setVisiblePanelSzczegoly(){
+    if(ui->panelSzczegolow->isHidden()){
     ui->actionPoka_szczeg_y->setText("Ukryj panel szczegó³ów");
     ui->panelSzczegolow->show();
     } else {
@@ -131,3 +131,47 @@ void  MainWindow::setVisiblePanelSzczegoly(bool b){
         ui->panelSzczegolow->hide();
     }
 }
+
+//void MainWindow::setDodawanieEnabled(bool b){
+//    ui->dod_b_anu->setEnabled(b);
+//    ui->dod_b_dod->setEnabled(b);
+//    ui->dod_dat->setEnabled(b);
+//    ui->dod_fDat->setEnabled(b);
+//    ui->dod_nazwa->setEnabled(b);
+//    ui->dod_opis->setEnabled(b);
+//    ui->dod_wart->setEnabled(b);
+//    ui->dod_wysN->setEnabled(b);
+//    ui->dod_wysT->setEnabled(b);
+//    ui->dod_pol->setEnabled(b);
+
+//    if(!b){
+//        ui->dod_l_dp1->setHidden(true);
+//        ui->dod_l_dp2->setHidden(true);
+//        ui->dod_l_dp3->setHidden(true);
+
+//        ui->dod_dp1->setHidden(true);
+//        ui->dod_dp2->setHidden(true);
+//        ui->dod_dp3->setHidden(true);
+//    }
+//}
+
+//void MainWindow::setCzyMoznaDodawac(bool b){
+//    czyMoznaDodawac=b;
+//}
+
+//void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
+//{
+//    if(czyMoznaDodawac){
+//        Meta::Typ nowyTyp = static_cast<Meta::Typ> (ui->dod_cb_typ->itemData(index).toInt());
+//        setDodawanieEnabled(true);
+//        switch (nowyTyp){
+//        case Meta::Mebel: {
+//            ui->dod_l_dp1->setText("Rodzaj"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+//            ui->dod_l_dp2->setText("Material");   ui->dod_l_dp2->show();  ui->dod_dp2->show();
+//            break;}
+//        }
+
+
+//    }
+
+//}

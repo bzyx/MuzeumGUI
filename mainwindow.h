@@ -4,6 +4,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
 #include "eksponatmodel.h"
 
 namespace Ui {
@@ -21,12 +22,17 @@ public:
 
 private slots:
     void on_comboBox_wyborTypu_currentIndexChanged(int index);
-    void setVisiblePanelDodawania(bool b);
-    void setVisiblePanelSzczegoly(bool);
+    void setVisiblePanelDodawania();
+    void setVisiblePanelSzczegoly();
+    //void setDodawanieEnabled(bool b);
+
+//    void on_dod_cb_typ_currentIndexChanged(int index);
 
 private:
+    void setCzyMoznaDodawac(bool b);
     Ui::MainWindow *ui;
     EksponatModel* model;
+   // bool czyMoznaDodawac;
 };
 
 #endif // MAINWINDOW_H
