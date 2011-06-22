@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void seDisabledIfEmpty();
+    void setDisabledIfEmpty();
 
 private slots:
     void on_comboBox_wyborTypu_currentIndexChanged(int index);
@@ -32,6 +32,8 @@ private slots:
     void on_dod_fDat_currentIndexChanged(int index);
 
     void on_dod_b_anu_clicked();
+
+    void on_dod_b_dod_clicked();
 
 private:
     void setMetaToComboBox(QComboBox* cb, bool wszyskie=false);

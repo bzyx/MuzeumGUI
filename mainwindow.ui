@@ -123,9 +123,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>0</y>
+           <y>-199</y>
            <width>371</width>
-           <height>382</height>
+           <height>398</height>
           </rect>
          </property>
          <attribute name="label">
@@ -292,20 +292,35 @@
                <widget class="QLineEdit" name="dod_dp2"/>
               </item>
               <item>
-               <widget class="QRadioButton" name="dod_dp2_T">
-                <property name="text">
-                 <string>Tak</string>
+               <widget class="QGroupBox" name="dod_dp2gb">
+                <property name="title">
+                 <string/>
                 </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="dod_dp2_N">
-                <property name="text">
-                 <string>Nie</string>
-                </property>
-                <property name="checked">
+                <property name="flat">
                  <bool>true</bool>
                 </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QRadioButton" name="dod_dp2_N">
+                   <property name="text">
+                    <string>Nie</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="dod_dp2_T">
+                   <property name="text">
+                    <string>Tak</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -337,7 +352,7 @@
             <item>
              <widget class="QPushButton" name="dod_b_anu">
               <property name="text">
-               <string>Anuluj</string>
+               <string>Anuluj/ Wyczyść</string>
               </property>
              </widget>
             </item>

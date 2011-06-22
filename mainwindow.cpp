@@ -6,11 +6,18 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QRegExpValidator>
-#include "src/eobraz.h"
 #include "src/eprzemiotuzytkowy.h"
 #include "src/muzeumkontener.h"
 #include "eksponatmodel.h"
 #include "src/mktyp.h"
+
+#include "src/emebel.h"
+#include "src/eobraz.h"
+#include "src/eprzemiotuzytkowy.h"
+#include "src/erekopis.h"
+#include "src/erzezba.h"
+#include "src/estarodruk.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,45 +52,45 @@ MainWindow::MainWindow(QWidget *parent) :
                                                     1,"Bardzo krótki opis"
                                                     ,"Magazyn1", 100,
                                                     Meta::PrzedmiotUzytkowy,
-                                                    EksponatMuzealny::w,
+                                                    Meta::w,
                                                     "XXI") );
     MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
                                          1,"Bardzo inny opis opis"
                                          ,"Magazyn1", 100,
                                          Meta::Obraz,
-                                         EksponatMuzealny::w,
+                                         Meta::w,
                                          "XX"));
     MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
                                          1,"Bardaaa"
                                          ,"Magazyn2", 100,
                                          Meta::Obraz,
-                                         EksponatMuzealny::w,
+                                         Meta::w,
                                          "XXI"));
 
     MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
                                          1,"Bardaaa"
                                          ,"Magazyn2", 100,
                                          Meta::Obraz,
-                                         EksponatMuzealny::w,
+                                         Meta::w,
                                          "XXI"));
     MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
                                          1,"Bardaaa"
                                          ,"Magazyn2", 100,
                                          Meta::Obraz,
-                                         EksponatMuzealny::w,
+                                         Meta::w,
                                          "XXI"));
     MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
                                          1,"Bardaaa"
                                          ,"Magazyn2", 100,
                                          Meta::Obraz,
-                                         EksponatMuzealny::w,
+                                         Meta::w,
                                          "XXI"));
     for(int i=0; i< 100; ++i){
         MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
                                              1,"Bardaaa"
                                              ,"Magazyn2", 100,
                                              Meta::Obraz,
-                                             EksponatMuzealny::w,
+                                             Meta::w,
                                              "XXI"));
     }
     //MK::getInstance()[2]->nazwa("Ca³kiem nowa nazwa");
@@ -96,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-void MainWindow::seDisabledIfEmpty(){
+void MainWindow::setDisabledIfEmpty(){
     if (model->isEmpty()){
         ui->tableView->setEnabled(false);
         ui->statusBar->showMessage("Brak danych do wyœwietlenia.",1000);
@@ -124,7 +131,7 @@ void MainWindow::on_comboBox_wyborTypu_currentIndexChanged(int index)
         ui->comboBox_wyborTypu->removeItem(0);
     Meta::Typ nowyTyp = static_cast<Meta::Typ> (ui->comboBox_wyborTypu->itemData(index).toInt());
     model->setNewTyp(nowyTyp);
-    seDisabledIfEmpty();
+    setDisabledIfEmpty();
 }
 
 void  MainWindow::setVisiblePanelDodawania(){
@@ -205,7 +212,7 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp1->setToolTip("Rodzaj mebla.");
         ui->dod_l_dp2->setText("Material"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
         ui->dod_l_dp2->setToolTip("Materia³ z jakiego wykonano mebel.");
-        ui->dod_l_dp3->hide(); ui->dod_dp3->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_l_dp3->hide(); ui->dod_dp3->hide(); ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break; }
     case Meta::Obraz: {
         ui->dod_dp1->setValidator(v_dp1);
@@ -216,14 +223,14 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp2->setToolTip("Szerokoœæ obrazu.");
         ui->dod_l_dp3->setText("Autor"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
         ui->dod_l_dp3->setToolTip("Autor obrazu.");
-        ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break;}
     case Meta::PrzedmiotUzytkowy: {
         ui->dod_l_dp1->setText("Opis dzia³ania"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
         ui->dod_l_dp1->setToolTip("Krótki opis co robi ten przedmiot.");
         ui->dod_l_dp2->setText("Czy mo¿na dotkn¹æ"); ui->dod_l_dp2->show();  ui->dod_dp2->hide();
         ui->dod_l_dp2->setToolTip("Czy zwiedzaj¹cy mog¹ go dotkn¹æ.");
-        ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
+        ui->dod_dp2gb->show(); ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
         break;}
     case Meta::Rekopis: {
@@ -231,7 +238,7 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp1->setToolTip("Autor rêkopisu.");
         ui->dod_l_dp2->setText("Czy jest zeskanowany"); ui->dod_l_dp2->show();  ui->dod_dp2->hide();
         ui->dod_l_dp2->setToolTip("Czy rêkopis jest zeskanownay.");
-        ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
+        ui->dod_dp2gb->show(); ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
         break;}
     case Meta::Rzezba: {
@@ -242,7 +249,7 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp1->setToolTip("Materia³ z jakiego wykoano rzeŸbê.");
         ui->dod_l_dp3->setText("Powierzchnia"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
         ui->dod_l_dp1->setToolTip("Powierzchnia jak¹ zajmuje rzeŸba.");
-        ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break;}
     case Meta::Starodruk: {
         ui->dod_dp3->setValidator(v_dp3a);
@@ -252,13 +259,13 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp1->setToolTip("Krótkie streszczenie starodruku.");
         ui->dod_l_dp3->setText("Liczba Stron"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
         ui->dod_l_dp1->setToolTip("Liczba stron w starodruku.");
-        ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break;}
     default:
         ui->dod_l_dp1->hide();  ui->dod_dp1->hide();
         ui->dod_l_dp2->hide();  ui->dod_dp2->hide();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
-        ui->dod_dp2_T->hide();  ui->dod_dp2_N->hide();
+        ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide();  ui->dod_dp2_N->hide();
     }
 
 
@@ -271,7 +278,6 @@ bool MainWindow::checkDodajFields(){
         ui->dod_nazwa->setToolTip("Nale¿y podaæ nazwê obiektu.");
         ui->dod_nazwa->clear();
     } else if(!ui->dod_nazwa->text().simplified().isEmpty()){
-        retunValue = true;
         ui->dod_l_nazwa->setStyleSheet("");
         ui->dod_nazwa->setToolTip("");
     }
@@ -282,7 +288,6 @@ bool MainWindow::checkDodajFields(){
         ui->dod_pol->setToolTip("Nale¿y podaæ po³o¿enie obiektu.");
         ui->dod_pol->clear();
     } else if(!ui->dod_pol->text().simplified().isEmpty()){
-        retunValue = true;
         ui->dod_l_polozenie->setStyleSheet("");
         ui->dod_pol->setToolTip("");
     }
@@ -293,17 +298,16 @@ bool MainWindow::checkDodajFields(){
         ui->dod_dat->setToolTip("Nale¿y podaæ datê w wybranym formacie");
         ui->dod_dat->clear();
     } else if(!ui->dod_dat->text().simplified().isEmpty()){
-        retunValue = true;
         ui->dod_l_data->setStyleSheet("");
         ui->dod_dat->setToolTip("");
     }
+
     if(ui->dod_opis->toPlainText().simplified().isEmpty()){
         retunValue = false;
         ui->dod_l_opis->setStyleSheet("QLabel { color : red; }");
         ui->dod_opis->setToolTip("Nale¿y podaæ opis obiektu");
         ui->dod_opis->clear();
     } else if(!ui->dod_opis->toPlainText().simplified().isEmpty()){
-        retunValue = true;
         ui->dod_l_opis->setStyleSheet("");
         ui->dod_opis->setToolTip("");
     }
@@ -315,7 +319,6 @@ bool MainWindow::checkDodajFields(){
         ui->dod_wysN->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
         ui->dod_wysT->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
     } else if (ui->dod_wysN->isChecked() || ui->dod_wysT->isChecked()){
-        retunValue = true;
         ui->dod_l_wyst->setStyleSheet("");
         ui->dod_wysN->setToolTip("");
         ui->dod_wysT->setToolTip("");
@@ -327,7 +330,6 @@ bool MainWindow::checkDodajFields(){
             ui->dod_dp1->setToolTip("Nale¿y wype³niæ te pole.");
             ui->dod_dp1->clear();
         } else if(!ui->dod_dp1->text().simplified().isEmpty()){
-            retunValue = true;
             ui->dod_l_dp1->setStyleSheet("");
             ui->dod_dp1->setToolTip("");
         }
@@ -340,7 +342,6 @@ bool MainWindow::checkDodajFields(){
             ui->dod_dp2->setToolTip("Nale¿y wype³niæ te pole.");
             ui->dod_dp2->clear();
         } else if(!ui->dod_dp2->text().simplified().isEmpty()){
-            retunValue = true;
             ui->dod_l_dp2->setStyleSheet("");
             ui->dod_dp2->setToolTip("");
         }
@@ -353,7 +354,6 @@ bool MainWindow::checkDodajFields(){
             ui->dod_dp3->setToolTip("Nale¿y wype³niæ te pole.");
             ui->dod_dp3->clear();
         } else if(!ui->dod_dp3->text().simplified().isEmpty()){
-            retunValue = true;
             ui->dod_l_dp3->setStyleSheet("");
             ui->dod_dp3->setToolTip("");
         }
@@ -367,7 +367,7 @@ void MainWindow::on_dod_fDat_currentIndexChanged(int index)
     QRegExp wiek("[I,V,X,L]{1,3}");
     QRegExp rok("[0-2][0-9]{3}");
     QRegExp mr("^((0[1-9])|(1[0-2]))[.][0-2][0-9]{3}");
-    QRegExp dmr("(([1-9])|(0[1-9])|(1[0-2]))[.](([0-9])|([0-2][0-9])|(3[0-1]))[.]([0-2][0-9]{3})");
+    QRegExp dmr("(0[1-9]|[12][0-9]|3[01])[ \.](0[1-9]|1[012])[ \.][0-2][0-9]{3}");
     switch (fd) {
     case Meta::w: ui->dod_dat->setValidator(new QRegExpValidator(wiek,this)); break;
     case Meta::r : ui->dod_dat->setValidator(new QRegExpValidator(rok,this));  break;
@@ -386,8 +386,10 @@ void MainWindow::on_dod_b_anu_clicked()
     ui->dod_dp1->clear();
     ui->dod_dp2->clear();
     ui->dod_dp3->clear();
+    ui->dod_dp2gb->hide();
+    ui->dod_wart->setValue(0);
+    ui->dod_fDat->setCurrentIndex(0);
     ui->dod_wysN->setChecked(true);
-    ui->dod_wysT->setChecked(false);
     ui->dod_dp2_N->setChecked(true);
     ui->dod_l_nazwa->setStyleSheet("");
     ui->dod_nazwa->setToolTip("");
@@ -407,3 +409,90 @@ void MainWindow::on_dod_b_anu_clicked()
     ui->dod_l_dp3->setStyleSheet("");
     ui->dod_dp3->setToolTip("");
 }
+
+void MainWindow::on_dod_b_dod_clicked()
+{
+    if (checkDodajFields()){
+        Meta::Typ nowyTyp = static_cast<Meta::Typ> (ui->dod_cb_typ->itemData(ui->dod_cb_typ->currentIndex()).toInt());
+        Meta::FormatDaty fd = static_cast<Meta::FormatDaty> (ui->dod_fDat->itemData(ui->dod_fDat->currentIndex()).toInt());
+        switch (nowyTyp){
+        case Meta::Mebel: {
+            MK::getInstance().addItem(new EMebel(ui->dod_dp1->text().simplified().toStdString(),
+                                                 //TODO: Tu powininno byc podpowiadanie!
+                                                 EksponatMuzealny::Braz/*ui->dod_dp2->text().simplified().toStdString()*/,
+                                                 ui->dod_nazwa->text().simplified().toStdString(),
+                                                 ui->dod_wysT->isChecked(),
+                                                 ui->dod_opis->toPlainText().simplified().toStdString(),
+                                                 ui->dod_pol->text().simplified().toStdString(),
+                                                 ui->dod_wart->value(),
+                                                 Meta::Mebel,fd,ui->dod_dat->text().simplified().toStdString()));
+            break; }
+        case Meta::Obraz: {
+            MK::getInstance().addItem(new EObraz(ui->dod_dp1->text().toFloat(),
+                                                 ui->dod_dp2->text().toFloat(),
+                                                 ui->dod_dp3->text().simplified().toStdString(),
+                                                 ui->dod_nazwa->text().simplified().toStdString(),
+                                                 ui->dod_wysT->isChecked(),
+                                                 ui->dod_opis->toPlainText().simplified().toStdString(),
+                                                 ui->dod_pol->text().simplified().toStdString(),
+                                                 ui->dod_wart->value(),
+                                                 Meta::Obraz,fd,ui->dod_dat->text().simplified().toStdString()));
+
+            break;}
+        case Meta::PrzedmiotUzytkowy: {
+            MK::getInstance().addItem(new EPrzemiotUzytkowy(ui->dod_dp1->text().simplified().toStdString(),
+                                                            ui->dod_dp2_T->isChecked(),
+                                                            ui->dod_nazwa->text().simplified().toStdString(),
+                                                            ui->dod_wysT->isChecked(),
+                                                            ui->dod_opis->toPlainText().simplified().toStdString(),
+                                                            ui->dod_pol->text().simplified().toStdString(),
+                                                            ui->dod_wart->value(),
+                                                            Meta::PrzedmiotUzytkowy,fd,ui->dod_dat->text().simplified().toStdString()));
+
+            break;}
+        case Meta::Rekopis: {
+            MK::getInstance().addItem(new ERekopis(ui->dod_dp1->text().simplified().toStdString(),
+                                                   ui->dod_dp2_T->isChecked(),
+                                                   ui->dod_nazwa->text().simplified().toStdString(),
+                                                   ui->dod_wysT->isChecked(),
+                                                   ui->dod_opis->toPlainText().simplified().toStdString(),
+                                                   ui->dod_pol->text().simplified().toStdString(),
+                                                   ui->dod_wart->value(),
+                                                   Meta::Rekopis,fd,ui->dod_dat->text().simplified().toStdString()));
+
+            break;}
+        case Meta::Rzezba: {
+            MK::getInstance().addItem(new ERzezba(ui->dod_dp1->text().simplified().toStdString(),
+                                                  EksponatMuzealny::Marmur/*ui->dod_dp2->text().simplified().toStdString()*/,
+                                                  ui->dod_dp3->text().toFloat(),
+                                                  ui->dod_nazwa->text().simplified().toStdString(),
+                                                  ui->dod_wysT->isChecked(),
+                                                  ui->dod_opis->toPlainText().simplified().toStdString(),
+                                                  ui->dod_pol->text().simplified().toStdString(),
+                                                  ui->dod_wart->value(),
+                                                  Meta::Rzezba,fd,ui->dod_dat->text().simplified().toStdString()));
+
+            break;}
+        case Meta::Starodruk: {
+            MK::getInstance().addItem(new EStarodruk(ui->dod_dp1->text().simplified().toStdString(),
+                                                     ui->dod_dp2->text().simplified().toStdString(),
+                                                     ui->dod_dp3->text().toInt(),
+                                                     ui->dod_nazwa->text().simplified().toStdString(),
+                                                     ui->dod_wysT->isChecked(),
+                                                     ui->dod_opis->toPlainText().simplified().toStdString(),
+                                                     ui->dod_pol->text().simplified().toStdString(),
+                                                     ui->dod_wart->value(),
+                                                     Meta::Starodruk,fd,ui->dod_dat->text().simplified().toStdString()));
+
+            break;}
+        default:
+            break;
+        }
+        MKTyp::getInstance().updateMKTyp();
+        model->makeReset();
+        setDisabledIfEmpty();
+    } else if(!checkDodajFields()) {
+        ui->statusBar->showMessage("Niektóre pola s¹ nieuzupe³nione lub zaieraj¹ b³êdy",700);
+    }
+}
+
