@@ -32,10 +32,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->actionPoka_panel_dodawania->trigger();
     ui->actionPoka_szczeg_y->trigger();
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     setDodawanieEnabled(false);
 
     setMetaToComboBox(ui->comboBox_wyborTypu,true);
     setMetaToComboBox(ui->dod_cb_typ);
+
 
     //    Tworzenie validatorów do opcjonalnych pól
     QRegExp rx("[1-9]\\d{0,3}"); // 0..9999
@@ -148,6 +151,7 @@ void  MainWindow::setVisiblePanelSzczegoly(){
     if(ui->panelSzczegolow->isHidden()){
         ui->actionPoka_szczeg_y->setText("Ukryj panel szczegó³ów");
         ui->panelSzczegolow->show();
+        on_tableView_clicked(QModelIndex());
     } else {
         ui->actionPoka_szczeg_y->setText("Poka¿ panel szczegó³ów");
         ui->panelSzczegolow->hide();
@@ -367,7 +371,7 @@ void MainWindow::on_dod_fDat_currentIndexChanged(int index)
     QRegExp wiek("[I,V,X,L]{1,3}");
     QRegExp rok("[0-2][0-9]{3}");
     QRegExp mr("^((0[1-9])|(1[0-2]))[.][0-2][0-9]{3}");
-    QRegExp dmr("(0[1-9]|[12][0-9]|3[01])[ \.](0[1-9]|1[012])[ \.][0-2][0-9]{3}");
+    QRegExp dmr("(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.][0-2][0-9]{3}");
     switch (fd) {
     case Meta::w: ui->dod_dat->setValidator(new QRegExpValidator(wiek,this)); break;
     case Meta::r : ui->dod_dat->setValidator(new QRegExpValidator(rok,this));  break;
@@ -496,3 +500,27 @@ void MainWindow::on_dod_b_dod_clicked()
     }
 }
 
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    QString aktelem;
+    if (index.row() != -1){
+        aktelem = QString("%1 z %2").arg(index.row(),0).arg(model->rowCount()-1,0);
+    } else {
+        aktelem = QString("Wybierz eksponat");
+    }
+    ui->sz_licznik->setText(aktelem);
+
+    if (index.row() >= 0){
+        EksponatMuzealny* element = MK::getInstance()[index.row()];
+        if(element != NULL){
+            QString title;
+            title = QString("%1 : %2").arg(element->getId(),0).arg(element->getNazwa().c_str());
+            ui->sz_groupbox->setTitle(title);
+            //element = MK::getInstance()[index.row()];
+            qDebug() << element->getOpis().c_str();
+        }
+    }
+    qDebug() << "Id:" << index.row();
+//    qDebug() << model->rowCount();
+}

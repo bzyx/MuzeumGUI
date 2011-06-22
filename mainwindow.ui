@@ -123,9 +123,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-199</y>
+           <y>0</y>
            <width>371</width>
-           <height>398</height>
+           <height>402</height>
           </rect>
          </property>
          <attribute name="label">
@@ -645,7 +645,10 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_2">
+              <widget class="QLineEdit" name="sz_licznik">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -680,9 +683,12 @@
             </layout>
            </item>
            <item>
-            <widget class="QGroupBox" name="groupBox">
+            <widget class="QGroupBox" name="sz_groupbox">
              <property name="title">
-              <string>id:Nazwa</string>
+              <string/>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_16">
               <item>

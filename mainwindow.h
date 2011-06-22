@@ -35,6 +35,8 @@ private slots:
 
     void on_dod_b_dod_clicked();
 
+    void on_tableView_clicked(const QModelIndex &index);
+
 private:
     void setMetaToComboBox(QComboBox* cb, bool wszyskie=false);
     Ui::MainWindow *ui;
