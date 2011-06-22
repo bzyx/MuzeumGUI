@@ -123,7 +123,7 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-71</y>
+           <y>0</y>
            <width>371</width>
            <height>382</height>
           </rect>
@@ -162,7 +162,7 @@
              <widget class="QComboBox" name="dod_cb_typ"/>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_13">
+             <widget class="QLabel" name="dod_l_nazwa">
               <property name="text">
                <string>Nazwa</string>
               </property>
@@ -172,7 +172,7 @@
              <widget class="QLineEdit" name="dod_nazwa"/>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_14">
+             <widget class="QLabel" name="dod_l_wyst">
               <property name="text">
                <string>Wystawiony</string>
               </property>
@@ -182,9 +182,6 @@
              <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <widget class="QRadioButton" name="dod_wysT">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
                 <property name="text">
                  <string>Tak</string>
                 </property>
@@ -195,12 +192,15 @@
                 <property name="text">
                  <string>Nie</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
              </layout>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_15">
+             <widget class="QLabel" name="dod_l_polozenie">
               <property name="text">
                <string>Położenie</string>
               </property>
@@ -233,7 +233,7 @@
              </widget>
             </item>
             <item row="6" column="0">
-             <widget class="QLabel" name="label_17">
+             <widget class="QLabel" name="dod_l_data">
               <property name="text">
                <string>Data</string>
               </property>
@@ -250,7 +250,7 @@
              </layout>
             </item>
             <item row="7" column="0">
-             <widget class="QLabel" name="label_18">
+             <widget class="QLabel" name="dod_l_opis">
               <property name="text">
                <string>Opis</string>
               </property>
@@ -303,6 +303,9 @@
                 <property name="text">
                  <string>Nie</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
              </layout>
@@ -323,13 +326,6 @@
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="dod_b_wycz">
-              <property name="text">
-               <string>Wyczyść</string>
-              </property>
-             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="dod_b_dod">

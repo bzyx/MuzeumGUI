@@ -202,41 +202,56 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
     switch (nowyTyp){
     case Meta::Mebel: {
         ui->dod_l_dp1->setText("Rodzaj"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+        ui->dod_l_dp1->setToolTip("Rodzaj mebla.");
         ui->dod_l_dp2->setText("Material"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
+        ui->dod_l_dp2->setToolTip("Materia³ z jakiego wykonano mebel.");
         ui->dod_l_dp3->hide(); ui->dod_dp3->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break; }
     case Meta::Obraz: {
         ui->dod_dp1->setValidator(v_dp1);
         ui->dod_dp2->setValidator(v_dp2);
         ui->dod_l_dp1->setText("Wysokoœæ"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+        ui->dod_l_dp1->setToolTip("Wysokoœæ obrazu.");
         ui->dod_l_dp2->setText("Szerokoœæ"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
+        ui->dod_l_dp2->setToolTip("Szerokoœæ obrazu.");
         ui->dod_l_dp3->setText("Autor"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
+        ui->dod_l_dp3->setToolTip("Autor obrazu.");
         ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break;}
     case Meta::PrzedmiotUzytkowy: {
         ui->dod_l_dp1->setText("Opis dzia³ania"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+        ui->dod_l_dp1->setToolTip("Krótki opis co robi ten przedmiot.");
         ui->dod_l_dp2->setText("Czy mo¿na dotkn¹æ"); ui->dod_l_dp2->show();  ui->dod_dp2->hide();
+        ui->dod_l_dp2->setToolTip("Czy zwiedzaj¹cy mog¹ go dotkn¹æ.");
         ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
         break;}
     case Meta::Rekopis: {
         ui->dod_l_dp1->setText("Autor"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+        ui->dod_l_dp1->setToolTip("Autor rêkopisu.");
         ui->dod_l_dp2->setText("Czy jest zeskanowany"); ui->dod_l_dp2->show();  ui->dod_dp2->hide();
+        ui->dod_l_dp2->setToolTip("Czy rêkopis jest zeskanownay.");
         ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
         break;}
     case Meta::Rzezba: {
         ui->dod_dp3->setValidator(v_dp3);
         ui->dod_l_dp1->setText("Postaæ"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+        ui->dod_l_dp1->setToolTip("Opis/nazwa przedstawianej postaci.");
         ui->dod_l_dp2->setText("Materia³"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
+        ui->dod_l_dp1->setToolTip("Materia³ z jakiego wykoano rzeŸbê.");
         ui->dod_l_dp3->setText("Powierzchnia"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
+        ui->dod_l_dp1->setToolTip("Powierzchnia jak¹ zajmuje rzeŸba.");
         ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break;}
     case Meta::Starodruk: {
         ui->dod_dp3->setValidator(v_dp3a);
         ui->dod_l_dp1->setText("Autor"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
+        ui->dod_l_dp1->setToolTip("Autor starodruku.");
         ui->dod_l_dp2->setText("Streszczenie"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
+        ui->dod_l_dp1->setToolTip("Krótkie streszczenie starodruku.");
         ui->dod_l_dp3->setText("Liczba Stron"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
+        ui->dod_l_dp1->setToolTip("Liczba stron w starodruku.");
         ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
         break;}
     default:
@@ -248,19 +263,111 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
 
 
 }
-void  MainWindow::checkDodajFields(){
-    qDebug() << ui->dod_dp3->text().toFloat();
-    //Sprawdzenie poprawnoœci pól
-    //ui->dod_nazwa->is
+bool MainWindow::checkDodajFields(){
+    bool retunValue = true;
+    if(ui->dod_nazwa->text().simplified().isEmpty()){
+        retunValue = false;
+        ui->dod_l_nazwa->setStyleSheet("QLabel { color : red; }");
+        ui->dod_nazwa->setToolTip("Nale¿y podaæ nazwê obiektu.");
+        ui->dod_nazwa->clear();
+    } else if(!ui->dod_nazwa->text().simplified().isEmpty()){
+        retunValue = true;
+        ui->dod_l_nazwa->setStyleSheet("");
+        ui->dod_nazwa->setToolTip("");
+    }
+
+    if(ui->dod_pol->text().simplified().isEmpty()){
+        retunValue = false;
+        ui->dod_l_polozenie->setStyleSheet("QLabel { color : red; }");
+        ui->dod_pol->setToolTip("Nale¿y podaæ po³o¿enie obiektu.");
+        ui->dod_pol->clear();
+    } else if(!ui->dod_pol->text().simplified().isEmpty()){
+        retunValue = true;
+        ui->dod_l_polozenie->setStyleSheet("");
+        ui->dod_pol->setToolTip("");
+    }
+
+    if(ui->dod_dat->text().simplified().isEmpty()){
+        retunValue = false;
+        ui->dod_l_data->setStyleSheet("QLabel { color : red; }");
+        ui->dod_dat->setToolTip("Nale¿y podaæ datê w wybranym formacie");
+        ui->dod_dat->clear();
+    } else if(!ui->dod_dat->text().simplified().isEmpty()){
+        retunValue = true;
+        ui->dod_l_data->setStyleSheet("");
+        ui->dod_dat->setToolTip("");
+    }
+    if(ui->dod_opis->toPlainText().simplified().isEmpty()){
+        retunValue = false;
+        ui->dod_l_opis->setStyleSheet("QLabel { color : red; }");
+        ui->dod_opis->setToolTip("Nale¿y podaæ opis obiektu");
+        ui->dod_opis->clear();
+    } else if(!ui->dod_opis->toPlainText().simplified().isEmpty()){
+        retunValue = true;
+        ui->dod_l_opis->setStyleSheet("");
+        ui->dod_opis->setToolTip("");
+    }
+
+    if (!(ui->dod_wysN->isChecked() || ui->dod_wysT->isChecked())){
+        retunValue = false;
+        ui->dod_l_wyst->setStyleSheet("QLabel { color : red; }");
+        ui->dod_l_wyst->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
+        ui->dod_wysN->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
+        ui->dod_wysT->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
+    } else if (ui->dod_wysN->isChecked() || ui->dod_wysT->isChecked()){
+        retunValue = true;
+        ui->dod_l_wyst->setStyleSheet("");
+        ui->dod_wysN->setToolTip("");
+        ui->dod_wysT->setToolTip("");
+    }
+    if(!ui->dod_dp1->isHidden()){
+        if(ui->dod_dp1->text().simplified().isEmpty()){
+            retunValue = false;
+            ui->dod_l_dp1->setStyleSheet("QLabel { color : red; }");
+            ui->dod_dp1->setToolTip("Nale¿y wype³niæ te pole.");
+            ui->dod_dp1->clear();
+        } else if(!ui->dod_dp1->text().simplified().isEmpty()){
+            retunValue = true;
+            ui->dod_l_dp1->setStyleSheet("");
+            ui->dod_dp1->setToolTip("");
+        }
+    }
+
+    if(!ui->dod_dp2->isHidden()){
+        if(ui->dod_dp2->text().simplified().isEmpty()){
+            retunValue = false;
+            ui->dod_l_dp2->setStyleSheet("QLabel { color : red; }");
+            ui->dod_dp2->setToolTip("Nale¿y wype³niæ te pole.");
+            ui->dod_dp2->clear();
+        } else if(!ui->dod_dp2->text().simplified().isEmpty()){
+            retunValue = true;
+            ui->dod_l_dp2->setStyleSheet("");
+            ui->dod_dp2->setToolTip("");
+        }
+    }
+
+    if(!ui->dod_dp3->isHidden()){
+        if(ui->dod_dp3->text().simplified().isEmpty()){
+            retunValue = false;
+            ui->dod_l_dp3->setStyleSheet("QLabel { color : red; }");
+            ui->dod_dp3->setToolTip("Nale¿y wype³niæ te pole.");
+            ui->dod_dp3->clear();
+        } else if(!ui->dod_dp3->text().simplified().isEmpty()){
+            retunValue = true;
+            ui->dod_l_dp3->setStyleSheet("");
+            ui->dod_dp3->setToolTip("");
+        }
+    }
+    return retunValue;
 }
 
 void MainWindow::on_dod_fDat_currentIndexChanged(int index)
 {
     Meta::FormatDaty fd = static_cast<Meta::FormatDaty> (ui->dod_fDat->itemData(index).toInt());
     QRegExp wiek("[I,V,X,L]{1,3}");
-    QRegExp rok("[0-2][0-9][0-9][0-9]");
-    QRegExp mr("^((0[1-9])|(1[0-2]))[.][0-2][0-9][0-9][0-9]");
-    QRegExp dmr("(([1-9])|(0[1-9])|(1[0-2]))[.](([0-9])|([0-2][0-9])|(3[0-1]))[.]([0-2][0-9][0-9][0-9])");
+    QRegExp rok("[0-2][0-9]{3}");
+    QRegExp mr("^((0[1-9])|(1[0-2]))[.][0-2][0-9]{3}");
+    QRegExp dmr("(([1-9])|(0[1-9])|(1[0-2]))[.](([0-9])|([0-2][0-9])|(3[0-1]))[.]([0-2][0-9]{3})");
     switch (fd) {
     case Meta::w: ui->dod_dat->setValidator(new QRegExpValidator(wiek,this)); break;
     case Meta::r : ui->dod_dat->setValidator(new QRegExpValidator(rok,this));  break;
@@ -268,4 +375,35 @@ void MainWindow::on_dod_fDat_currentIndexChanged(int index)
     case Meta::dmr : ui->dod_dat->setValidator(new QRegExpValidator(dmr,this)); break;
     }
     //Ustawianie maski w zale¿noœci od ui->dod_fDat
+}
+
+void MainWindow::on_dod_b_anu_clicked()
+{
+    ui->dod_nazwa->clear();
+    ui->dod_pol->clear();
+    ui->dod_dat->clear();
+    ui->dod_opis->clear();
+    ui->dod_dp1->clear();
+    ui->dod_dp2->clear();
+    ui->dod_dp3->clear();
+    ui->dod_wysN->setChecked(true);
+    ui->dod_wysT->setChecked(false);
+    ui->dod_dp2_N->setChecked(true);
+    ui->dod_l_nazwa->setStyleSheet("");
+    ui->dod_nazwa->setToolTip("");
+    ui->dod_l_polozenie->setStyleSheet("");
+    ui->dod_pol->setToolTip("");
+    ui->dod_l_data->setStyleSheet("");
+    ui->dod_dat->setToolTip("");
+    ui->dod_l_opis->setStyleSheet("");
+    ui->dod_opis->setToolTip("");
+    ui->dod_l_wyst->setStyleSheet("");
+    ui->dod_wysN->setToolTip("");
+    ui->dod_wysT->setToolTip("");
+    ui->dod_l_dp1->setStyleSheet("");
+    ui->dod_dp1->setToolTip("");
+    ui->dod_l_dp2->setStyleSheet("");
+    ui->dod_dp2->setToolTip("");
+    ui->dod_l_dp3->setStyleSheet("");
+    ui->dod_dp3->setToolTip("");
 }

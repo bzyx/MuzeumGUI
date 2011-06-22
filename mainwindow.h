@@ -26,10 +26,12 @@ private slots:
     void setVisiblePanelDodawania();
     void setVisiblePanelSzczegoly();
     void setDodawanieEnabled(bool b);
-    void checkDodajFields();
+    bool checkDodajFields();
     void on_dod_cb_typ_currentIndexChanged(int index);
 
     void on_dod_fDat_currentIndexChanged(int index);
+
+    void on_dod_b_anu_clicked();
 
 private:
     void setMetaToComboBox(QComboBox* cb, bool wszyskie=false);
