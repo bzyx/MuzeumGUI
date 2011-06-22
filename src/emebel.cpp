@@ -18,7 +18,7 @@ void EMebel::material(EksponatMuzealny::Material material){
 EMebel::EMebel(std::string rodzaj,EksponatMuzealny::Material material ,
                std::string nazwa, bool wystawiony, std::string opis,
                std::string polozenie, int wartosc,
-               Meta::Typ typ, FormatDaty formatDaty, std::string data):EksponatMuzealny(nazwa,wystawiony,opis,polozenie,
+               Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data):EksponatMuzealny(nazwa,wystawiony,opis,polozenie,
         wartosc,typ,formatDaty,data){
     m_rodzaj = rodzaj;
     m_material = material;

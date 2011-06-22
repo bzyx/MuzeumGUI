@@ -24,7 +24,7 @@ void EStarodruk::liczbaStron(int liczbaStron){
 EStarodruk::EStarodruk(std::string autor, std::string streszczenie, int liczbaStron,
        std::string nazwa, bool wystawiony, std::string opis,
        std::string polozenie, int wartosc,
-       Meta::Typ typ, FormatDaty formatDaty, std::string data):
+       Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data):
     EksponatMuzealny(nazwa,wystawiony,opis,polozenie,
         wartosc,typ,formatDaty,data){
     m_autor = autor;

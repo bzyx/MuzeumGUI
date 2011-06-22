@@ -21,6 +21,7 @@ public:
     void setNewTyp(Meta::Typ typ);
     void czyMoznaZmieniac(bool mz);
     bool isEmpty();
+    void makeReset();
     ~EksponatModel();
 
 private:

@@ -63,7 +63,7 @@ private:
     std::string m_polozenie;
     int m_wartosc;
     Meta::Typ m_typ;
-    FormatDaty m_FormatDaty;
+    Meta::FormatDaty m_FormatDaty;
     std::string m_data;
 public:
     /**
@@ -147,13 +147,13 @@ public:
      * @brief
      * Zwraca w jakim formacie jest zapisana data
      */
-    FormatDaty getFormatDaty();
+    Meta::FormatDaty getFormatDaty();
     /**
      * @brief
      * Ustawia w jakim formacie ma byæ zapisana data
      * @param formatDaty
      */
-    void formatDaty(FormatDaty formatDaty);
+    void formatDaty(Meta::FormatDaty formatDaty);
     /**
      * @brief
      * Zwraca datê przpisan¹ do obiektu
@@ -190,7 +190,7 @@ public:
  */
     EksponatMuzealny(std::string nazwa, bool wystawiony, std::string opis,
                      std::string polozenie, int wartosc,
-                     Meta::Typ typ, FormatDaty formatDaty, std::string data);
+                     Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data);
     /**
      * @brief
      * Ustawia wewnêtrzy licznik identyfikatora.
@@ -237,7 +237,7 @@ public:
      * @brief
      * Zwraca nazwê formatu daty jako string
      */
-    std::string nazwaFormatDaty(FormatDaty formatDaty);
+    std::string nazwaFormatDaty(Meta::FormatDaty formatDaty);
     /**
      * @brief
      * Konwersja wartoœci bool na "Tak/Nie"

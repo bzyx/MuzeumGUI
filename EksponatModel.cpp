@@ -104,4 +104,8 @@ bool EksponatModel::isEmpty(){
     //return true;
 }
 
+void EksponatModel::makeReset(){
+    reset();
+}
+
 bool EksponatModel::moznaZmieniac;

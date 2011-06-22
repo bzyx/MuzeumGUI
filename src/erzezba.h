@@ -68,7 +68,7 @@ public:
             EksponatMuzealny::Material material, float powierzchnia,
             std::string nazwa, bool wystawiony, std::string opis,
             std::string polozenie, int wartosc,
-            Meta::Typ typ, FormatDaty formatDaty, std::string data);
+            Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data);
     /**
  * @brief
  * Konsttruktor domyœlny

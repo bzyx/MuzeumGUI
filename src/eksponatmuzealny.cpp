@@ -140,7 +140,7 @@ void EksponatMuzealny::typ(Meta::Typ typ){
  *
  * @return EksponatMuzealny::FormatDaty
  */
-EksponatMuzealny::FormatDaty EksponatMuzealny::getFormatDaty(){
+Meta::FormatDaty EksponatMuzealny::getFormatDaty(){
     return m_FormatDaty;
 }
 
@@ -149,7 +149,7 @@ EksponatMuzealny::FormatDaty EksponatMuzealny::getFormatDaty(){
  *
  * @param formatDaty
  */
-void EksponatMuzealny::formatDaty(FormatDaty formatDaty){
+void EksponatMuzealny::formatDaty(Meta::FormatDaty formatDaty){
     m_FormatDaty = formatDaty;
 }
 
@@ -198,7 +198,7 @@ EksponatMuzealny::EksponatMuzealny()
  */
 EksponatMuzealny::EksponatMuzealny(std::string nazwa, bool wystawiony,
                                    std::string opis, std::string polozenie,
-                                   int wartosc, Meta::Typ typ, FormatDaty formatDaty,
+                                   int wartosc, Meta::Typ typ, Meta::FormatDaty formatDaty,
                                    std::string data)
 {
     m_id = EksponatMuzealny::m_lastid;
@@ -294,7 +294,7 @@ string EksponatMuzealny::nazwaTypu(Meta::Typ typ){
  * @return string
  */
 string EksponatMuzealny::nazwaFormatDaty(
-    EksponatMuzealny::FormatDaty formatDaty){
+    Meta::FormatDaty formatDaty){
     switch(formatDaty)
     {
     case 5:
