@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     src/estarodruk.cpp \
     eksponatmodel.cpp \
     src/meta.cpp \
-    src/mktyp.cpp
+    src/mktyp.cpp \
+    src/material.cpp \
+    src/materialmodel.cpp
 
 HEADERS  += mainwindow.h \
     src/file.h \
@@ -37,7 +39,9 @@ HEADERS  += mainwindow.h \
     src/estarodruk.h \
     eksponatmodel.h \
     src/meta.h \
-    src/mktyp.h
+    src/mktyp.h \
+    src/material.h \
+    src/materialmodel.h
 
 FORMS    += mainwindow.ui
 
