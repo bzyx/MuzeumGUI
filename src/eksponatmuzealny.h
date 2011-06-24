@@ -4,7 +4,7 @@
 #include <QPair>
 #include <QList>
 #include "src/meta.h"
-
+#include "src/material.h"
 class QStringList;
 class QString;
 
@@ -25,8 +25,9 @@ public:
      * @brief
      * Okreœla typ elementu jaki jest przechowywany w wektorze (zamiast RTTI)
      */
-    typedef enum {NieOkreslonoTypu=-1, Obraz=5, PrzedmiotUzytkowy,
-                  Rzezba, Mebel, Rekopis, Starodruk } Typ;
+//    typedef enum {NieOkreslonoTypu=-1, Obraz=5, PrzedmiotUzytkowy,
+//                  Rzezba, Mebel, Rekopis, Starodruk } Typ;
+//TODO: usn¹æ ostatecznie
     /**
      * @brief
      * Record to file - struktura do zapisu danych do pliku XML
@@ -38,9 +39,10 @@ public:
      * Okreœla rodzaj materia³u z jakego jest wykonay przedmiot
      * wymagana ponowna komplilacja aby dodaæ nowy typ :(
      */
-    typedef enum {NieOkreslonoMaterialu=-1, Braz=5, Drewno, Gips,
-                  Glina, Granit, Marmur, Metal, Mosiadz,
-                  Piaskowiec, Srebro, Zloto } Material;
+//    typedef enum {NieOkreslonoMaterialu=-1, Braz=5, Drewno, Gips,
+//                  Glina, Granit, Marmur, Metal, Mosiadz,
+//                  Piaskowiec, Srebro, Zloto } Material;
+//TODO: Usun¹æ ostatecznie
     /**
      * @brief
      * Okreœla format zapisu daty. Nie mo¿na przechowywaæ datetime poniewa¿
@@ -49,7 +51,8 @@ public:
      * dnia miesiaca i roku (dmr)
      * w, r, mm.rr, dd.mm.rrrr
      */
-    typedef enum {w=5,r,mr,dmr} FormatDaty;
+//    typedef enum {w=5,r,mr,dmr} FormatDaty;
+    //TODO: Usun¹æ ostatecznie
 
 private:
     /**
@@ -197,13 +200,15 @@ public:
      * Po uruchomieniu programu i wczytaniu pliku
      * nie mo¿e wczytywaæ od 0 bo by nadpisa³.
      */
-    void lastId(int id);
+    static void lastId(int id);
+    static int getLastId();
     /**
      * @brief
      * Metoda czysto wirtulana.
      * Nale¿y przeci¹¿yæ w klasach pochodnych.
      * Ma zwracaæ jako listê QString poszczegó³ne atrybuty obiektu.
      */
+
     virtual QStringList getAtrybuty() =0;
     /**
      * @brief
@@ -232,18 +237,20 @@ public:
      * @brief
      * Zwraca nazwê typu jako string
      */
-    std::string nazwaTypu(Meta::Typ typ);
+//    std::string nazwaTypu(Meta::Typ typ);
+    //TODO: USUÑ
     /**
      * @brief
      * Zwraca nazwê formatu daty jako string
      */
-    std::string nazwaFormatDaty(Meta::FormatDaty formatDaty);
+    //std::string nazwaFormatDaty(Meta::FormatDaty formatDaty);
+    //TODO: USUÑ
     /**
      * @brief
      * Konwersja wartoœci bool na "Tak/Nie"
      */
-    std::string b2s(bool b);
-
+//    std::string b2s(bool b);
+    //TODO: USUÑ
     /**
      * @brief
      * Wirtualny deskturuktor
@@ -255,7 +262,7 @@ public:
      * Przetwarza typ Material na string
      * @param m
      */
-    std::string Material2s(Material m);
+//    std::string Material2s(Material m);
 };
 
 #endif // EKSPONATMUZEALNY_H

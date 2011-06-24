@@ -9,13 +9,13 @@ std::string EMebel::getRodzaj(){
 void EMebel::rodzaj(std::string rodzaj){
     m_rodzaj = rodzaj;
 }
-EksponatMuzealny::Material EMebel::getMaterial(){
+int EMebel::getMaterial(){
     return m_material;
 }
-void EMebel::material(EksponatMuzealny::Material material){
+void EMebel::material(int material){
     m_material=material;
 }
-EMebel::EMebel(std::string rodzaj,EksponatMuzealny::Material material ,
+EMebel::EMebel(std::string rodzaj,int material ,
                std::string nazwa, bool wystawiony, std::string opis,
                std::string polozenie, int wartosc,
                Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data):EksponatMuzealny(nazwa,wystawiony,opis,polozenie,
@@ -25,13 +25,13 @@ EMebel::EMebel(std::string rodzaj,EksponatMuzealny::Material material ,
 }
 EMebel::EMebel():EksponatMuzealny(){
     m_rodzaj = "";
-    m_material = EksponatMuzealny::NieOkreslonoMaterialu;
+    m_material = 0;
 }
 QStringList EMebel::getAtrybuty(){
     QStringList nowa = getPodstawoweAtrybuty();
     QStringList tmp;
     tmp << m_rodzaj.c_str()
-        << EksponatMuzealny::Material2s(m_material).c_str();
+        << Material::nazwaForMatV(m_material);
     nowa.append(tmp);
     return nowa;
 }

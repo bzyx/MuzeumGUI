@@ -19,6 +19,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const;
     void setNewTyp(Meta::Typ typ);
+    Meta::Typ getCurrentTyp();
     void czyMoznaZmieniac(bool mz);
     bool isEmpty();
     void makeReset();

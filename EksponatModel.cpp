@@ -88,6 +88,10 @@ void EksponatModel::setNewTyp(Meta::Typ typ){
         reset();
 }
 
+Meta::Typ EksponatModel::getCurrentTyp(){
+    return m_typ;
+}
+
 bool EksponatModel::isEmpty(){
     if (moznaZmieniac){
         if (m_typ == Meta::NieOkreslonoTypu){

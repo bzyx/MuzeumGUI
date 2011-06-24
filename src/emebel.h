@@ -12,7 +12,7 @@ class EMebel : public EksponatMuzealny
 {
 private:
     std::string m_rodzaj; /**< TODO */
-    EksponatMuzealny::Material m_material; /**< TODO */
+    int m_material; /**< TODO */
 public:
     /**
      * @brief
@@ -29,13 +29,13 @@ public:
      * @brief
      * Zwraca rodzaj materialu z jakiego jest mebele
      */
-    EksponatMuzealny::Material getMaterial();
+    int getMaterial();
     /**
      * @brief
      * Ustawia rodzaj materialu mebla
      * @param material
      */
-    void material(EksponatMuzealny::Material material);
+    void material(int material);
 /**
  * @brief
  * rodzaj,material + EksponatMuzealny
@@ -50,7 +50,7 @@ public:
  * @param formatDaty
  * @param data
  */
-    EMebel(std::string rodzaj,EksponatMuzealny::Material material ,
+    EMebel(std::string rodzaj,int material ,
            std::string nazwa, bool wystawiony, std::string opis,
            std::string polozenie, int wartosc,
            Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data);

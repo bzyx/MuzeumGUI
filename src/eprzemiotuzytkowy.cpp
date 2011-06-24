@@ -36,7 +36,7 @@ QStringList EPrzemiotUzytkowy::getAtrybuty(){
     QStringList nowa = getPodstawoweAtrybuty();
     QStringList tmp;
     tmp << m_opisDzialania.c_str()
-        << b2s(m_czyMoznaDotykac).c_str();
+        << Meta::b2s(m_czyMoznaDotykac).c_str();
     nowa.append(tmp);
     return nowa;
 }

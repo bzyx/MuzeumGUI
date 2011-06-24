@@ -12,7 +12,7 @@ class ERzezba : public EksponatMuzealny
 {
 private:
     std::string m_postac; /**< TODO */
-    EksponatMuzealny::Material m_material; /**< TODO */
+    int m_material; /**< TODO */
     float m_powierzchnia; /**< TODO */
 public:
     /**
@@ -30,13 +30,13 @@ public:
      * @brief
      * Zwraca materia³ z jakiego jest rzeŸba
      */
-    EksponatMuzealny::Material getMaterial();
+    int getMaterial();
     /**
      * @brief
      * Ustaiwa materia³ z jakiego jest rzeŸba
      * @param material
      */
-    void material(EksponatMuzealny::Material material);
+    void material(int material);
     /**
      * @brief
      * Zwraca jak du¿¹ powierzchniê zajmuje rzeŸba
@@ -65,7 +65,7 @@ public:
  * @param data
  */
     ERzezba(std::string postac,
-            EksponatMuzealny::Material material, float powierzchnia,
+            int material, float powierzchnia,
             std::string nazwa, bool wystawiony, std::string opis,
             std::string polozenie, int wartosc,
             Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data);

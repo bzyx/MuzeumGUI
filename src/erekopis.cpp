@@ -32,7 +32,7 @@ QStringList ERekopis::getAtrybuty(){
     QStringList nowa = getPodstawoweAtrybuty();
     QStringList tmp;
     tmp << m_autor.c_str()
-        << EksponatMuzealny::b2s(m_czyZeskanowany).c_str();
+        << Meta::b2s(m_czyZeskanowany).c_str();
     nowa.append(tmp);
     return nowa;
 }

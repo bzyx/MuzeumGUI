@@ -223,6 +223,10 @@ void EksponatMuzealny::lastId(int id){
     EksponatMuzealny::m_lastid = id;
 }
 
+int EksponatMuzealny::getLastId(){
+    return EksponatMuzealny::m_lastid;
+}
+
 /**
  * @brief
  *
@@ -231,13 +235,13 @@ void EksponatMuzealny::lastId(int id){
 QStringList EksponatMuzealny::getPodstawoweAtrybuty(){
     QStringList pA;
     pA << QString::number(m_id)
-       << QString(nazwaTypu(m_typ).c_str())
+       << QString(Meta::nazwaTypu(m_typ).c_str())
        << m_nazwa.c_str()
-       << b2s(m_wystawiony).c_str()
+       << Meta::b2s(m_wystawiony).c_str()
        << m_opis.c_str()
        << m_polozenie.c_str()
        << QString::number(m_wartosc)
-       << nazwaFormatDaty(m_FormatDaty).c_str()
+       << Meta::nazwaFormatDaty(m_FormatDaty).c_str()
        << m_data.c_str();
     return pA;
 }
@@ -267,25 +271,25 @@ QStringList EksponatMuzealny::getPodstawoweHeaders(){
  * @param typ
  * @return string
  */
-string EksponatMuzealny::nazwaTypu(Meta::Typ typ){
-    switch (typ)
-    {
-    case 5:
-        return "Obraz";
-    case 6:
-        return "Przedmiot U¿ytkowy";
-    case 7:
-        return "RzeŸba";
-    case 8:
-        return "Mebel";
-    case 9:
-        return "Rekopis";
-    case 10:
-        return "Starodruk";
-    default:
-        return "Nieznay typ";
-    }
-}
+//string EksponatMuzealny::nazwaTypu(Meta::Typ typ){
+//    switch (typ)
+//    {
+//    case 5:
+//        return "Obraz";
+//    case 6:
+//        return "Przedmiot U¿ytkowy";
+//    case 7:
+//        return "RzeŸba";
+//    case 8:
+//        return "Mebel";
+//    case 9:
+//        return "Rekopis";
+//    case 10:
+//        return "Starodruk";
+//    default:
+//        return "Nieznay typ";
+//    }
+//}
 
 /**
  * @brief
@@ -293,22 +297,22 @@ string EksponatMuzealny::nazwaTypu(Meta::Typ typ){
  * @param formatDaty
  * @return string
  */
-string EksponatMuzealny::nazwaFormatDaty(
-    Meta::FormatDaty formatDaty){
-    switch(formatDaty)
-    {
-    case 5:
-        return "w";
-    case 6:
-        return "r";
-    case 7:
-        return "mr";
-    case 8:
-        return "dmr";
-    default:
-        return "NieznayFormat";
-    }
-}
+//string EksponatMuzealny::nazwaFormatDaty(
+//    Meta::FormatDaty formatDaty){
+//    switch(formatDaty)
+//    {
+//    case 5:
+//        return "w";
+//    case 6:
+//        return "r";
+//    case 7:
+//        return "mr";
+//    case 8:
+//        return "dmr";
+//    default:
+//        return "NieznayFormat";
+//    }
+//}
 
 /**
  * @brief
@@ -316,12 +320,12 @@ string EksponatMuzealny::nazwaFormatDaty(
  * @param b
  * @return string
  */
-string EksponatMuzealny::b2s(bool b){
-    if(b)
-        return "Tak";
-    else
-        return "Nie";
-}
+//string EksponatMuzealny::b2s(bool b){
+//    if(b)
+//        return "Tak";
+//    else
+//        return "Nie";
+//}
 
 /**
  * @brief
@@ -331,32 +335,32 @@ EksponatMuzealny::~EksponatMuzealny(){
 
 }
 
-string EksponatMuzealny::Material2s(Material m){
-    switch(m)
-    {
-    case 5:
-        return "Braz";
-    case 6:
-        return "Drewno";
-    case 7:
-        return "Gips";
-    case 8:
-        return "Glina";
-    case 9:
-        return "Granit";
-    case 10:
-        return "Marmur";
-    case 11:
-        return "Metal";
-    case 12:
-        return "Mosi¹dz";
-    case 13:
-        return "Piaskowiec";
-    case 14:
-        return "Srebro";
-    case 15:
-        return "Z³oto";
-    default:
-        return "Nie Okreslono Materialu";
-    }
-}
+//string EksponatMuzealny::Material2s(Material m){
+//    switch(m)
+//    {
+//    case 5:
+//        return "Braz";
+//    case 6:
+//        return "Drewno";
+//    case 7:
+//        return "Gips";
+//    case 8:
+//        return "Glina";
+//    case 9:
+//        return "Granit";
+//    case 10:
+//        return "Marmur";
+//    case 11:
+//        return "Metal";
+//    case 12:
+//        return "Mosi¹dz";
+//    case 13:
+//        return "Piaskowiec";
+//    case 14:
+//        return "Srebro";
+//    case 15:
+//        return "Z³oto";
+//    default:
+//        return "Nie Okreslono Materialu";
+//    }
+//}

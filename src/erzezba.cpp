@@ -11,11 +11,11 @@ void ERzezba::postac(std::string postac){
     m_postac = postac;
 }
 
-EksponatMuzealny::Material ERzezba::getMaterial(){
+int ERzezba::getMaterial(){
     return m_material;
 }
 
-void ERzezba::material(EksponatMuzealny::Material material){
+void ERzezba::material(int material){
     m_material = material;
 }
 
@@ -28,7 +28,7 @@ void ERzezba::powierchnia(float powierzchnia){
 }
 
 ERzezba::ERzezba(std::string postac,
-                 EksponatMuzealny::Material material, float powierzchnia,
+                 int material, float powierzchnia,
                  std::string nazwa, bool wystawiony, std::string opis,
                  std::string polozenie, int wartosc,
                  Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data):
@@ -41,7 +41,7 @@ ERzezba::ERzezba(std::string postac,
 
 ERzezba::ERzezba():EksponatMuzealny(){
     m_postac = "";
-    m_material = EksponatMuzealny::NieOkreslonoMaterialu;
+    m_material = 0;
     m_powierzchnia = 0.0;
 }
 
@@ -49,7 +49,7 @@ QStringList ERzezba::getAtrybuty(){
     QStringList nowa = getPodstawoweAtrybuty();
     QStringList tmp;
     tmp << m_postac.c_str()
-        << Material2s(m_material).c_str()
+        << Material::nazwaForMatV(m_material)
         << QString::number(m_powierzchnia);
     nowa.append(tmp);
     return nowa;
