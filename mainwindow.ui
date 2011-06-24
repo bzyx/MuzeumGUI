@@ -147,7 +147,10 @@
             <item row="0" column="1">
              <widget class="QLineEdit" name="dod_id">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -290,6 +293,9 @@
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
                <widget class="QLineEdit" name="dod_dp2"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="dod_dp2_cb"/>
               </item>
               <item>
                <widget class="QGroupBox" name="dod_dp2gb">
@@ -638,7 +644,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_5">
+              <widget class="QPushButton" name="sz_pop">
                <property name="text">
                 <string>&lt;&lt;</string>
                </property>
@@ -661,7 +667,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_11">
+              <widget class="QPushButton" name="sz_nas">
                <property name="text">
                 <string>&gt;&gt;</string>
                </property>
@@ -701,7 +707,11 @@
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QLineEdit" name="lineEdit_3"/>
+                 <widget class="QLineEdit" name="sz_id">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="2">
                  <widget class="QLabel" name="label_4">
@@ -711,7 +721,11 @@
                  </widget>
                 </item>
                 <item row="0" column="3">
-                 <widget class="QLineEdit" name="lineEdit_4"/>
+                 <widget class="QLineEdit" name="sz_typ">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="4">
                  <widget class="QLabel" name="label_5">
@@ -721,7 +735,11 @@
                  </widget>
                 </item>
                 <item row="0" column="5">
-                 <widget class="QLineEdit" name="lineEdit_5"/>
+                 <widget class="QLineEdit" name="sz_nazwa">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="0" column="6">
                  <widget class="QLabel" name="label_6">
@@ -731,7 +749,11 @@
                  </widget>
                 </item>
                 <item row="0" column="7">
-                 <widget class="QLineEdit" name="lineEdit_6"/>
+                 <widget class="QLineEdit" name="sz_wys">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="1" column="0">
                  <widget class="QLabel" name="label_7">
@@ -741,7 +763,11 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLineEdit" name="lineEdit_7"/>
+                 <widget class="QLineEdit" name="sz_pol">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="1" column="2">
                  <widget class="QLabel" name="label_8">
@@ -751,7 +777,11 @@
                  </widget>
                 </item>
                 <item row="1" column="3">
-                 <widget class="QLineEdit" name="lineEdit_8"/>
+                 <widget class="QLineEdit" name="sz_dat">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="1" column="4">
                  <widget class="QLabel" name="label_9">
@@ -760,36 +790,11 @@
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="5" rowspan="0" colspan="3">
-                 <widget class="QPlainTextEdit" name="plainTextEdit">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="sizeIncrement">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="baseSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
                 <item row="1" column="5" colspan="3">
-                 <widget class="QPlainTextEdit" name="plainTextEdit_4">
+                 <widget class="QPlainTextEdit" name="sz_opi">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
                     <horstretch>0</horstretch>
@@ -802,45 +807,72 @@
                     <height>50</height>
                    </size>
                   </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="label_10">
+                 <widget class="QLabel" name="sz_l_dp1">
                   <property name="text">
                    <string>Dp1</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="lineEdit_9">
+                 <widget class="QLineEdit" name="sz_dp1">
                   <property name="text">
-                   <string>dodatkowa inf 1</string>
+                   <string/>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="2">
-                 <widget class="QLabel" name="label_27">
+                 <widget class="QLabel" name="sz_l_dp2">
                   <property name="text">
                    <string>Dp2</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="3">
-                 <widget class="QLineEdit" name="lineEdit_18">
+                 <widget class="QLineEdit" name="sz_dp2">
                   <property name="text">
-                   <string>dodatkowa inf 2</string>
+                   <string/>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="4">
-                 <widget class="QLabel" name="label_28">
+                 <widget class="QLabel" name="sz_l_dp3">
                   <property name="text">
                    <string>Dp3</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="5">
-                 <widget class="QLineEdit" name="lineEdit_19"/>
+                 <widget class="QLineEdit" name="sz_dp3">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="6">
+                 <widget class="QLabel" name="label_13">
+                  <property name="text">
+                   <string>Wartość:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="7">
+                 <widget class="QLineEdit" name="sz_war">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>

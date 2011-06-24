@@ -18,6 +18,8 @@
 #include "src/erzezba.h"
 #include "src/estarodruk.h"
 
+#include "src/material.h"
+#include "src/materialmodel.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -38,6 +40,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setMetaToComboBox(ui->comboBox_wyborTypu,true);
     setMetaToComboBox(ui->dod_cb_typ);
+
+    ui->sz_l_dp1->hide();
+    ui->sz_l_dp2->hide();
+    ui->sz_l_dp3->hide();
+    ui->sz_dp1->hide();
+    ui->sz_dp2->hide();
+    ui->sz_dp3->hide();
+
+    QSettings ust("./settings.ini", QSettings::IniFormat);
+    Material::getInstance().readFromFile(&ust);
+
+    MaterialModel* matModel;
+    matModel = new MaterialModel(this);
+
+    ui->dod_dp2_cb->setModel(matModel);
 
 
     //    Tworzenie validatorów do opcjonalnych pól
@@ -104,8 +121,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setModel(model);
     model->czyMoznaZmieniac(true);
 
+    ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()));
+    Material::getInstance().saveToFile(&ust);
 }
-
 void MainWindow::setDisabledIfEmpty(){
     if (model->isEmpty()){
         ui->tableView->setEnabled(false);
@@ -214,9 +232,11 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
     case Meta::Mebel: {
         ui->dod_l_dp1->setText("Rodzaj"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
         ui->dod_l_dp1->setToolTip("Rodzaj mebla.");
-        ui->dod_l_dp2->setText("Material"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
+        ui->dod_l_dp2->setText("Material"); ui->dod_l_dp2->show();  ui->dod_dp2->hide();
+        ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_dp2_cb->show();
         ui->dod_l_dp2->setToolTip("Materia³ z jakiego wykonano mebel.");
-        ui->dod_l_dp3->hide(); ui->dod_dp3->hide(); ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_l_dp3->hide(); ui->dod_dp3->hide();
         break; }
     case Meta::Obraz: {
         ui->dod_dp1->setValidator(v_dp1);
@@ -228,6 +248,7 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp3->setText("Autor"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
         ui->dod_l_dp3->setToolTip("Autor obrazu.");
         ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_dp2_cb->hide();
         break;}
     case Meta::PrzedmiotUzytkowy: {
         ui->dod_l_dp1->setText("Opis dzia³ania"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
@@ -236,6 +257,7 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp2->setToolTip("Czy zwiedzaj¹cy mog¹ go dotkn¹æ.");
         ui->dod_dp2gb->show(); ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
+        ui->dod_dp2_cb->hide();
         break;}
     case Meta::Rekopis: {
         ui->dod_l_dp1->setText("Autor"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
@@ -244,13 +266,15 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp2->setToolTip("Czy rêkopis jest zeskanownay.");
         ui->dod_dp2gb->show(); ui->dod_dp2_T->show(); ui->dod_dp2_N->show();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
+        ui->dod_dp2_cb->hide();
         break;}
     case Meta::Rzezba: {
         ui->dod_dp3->setValidator(v_dp3);
         ui->dod_l_dp1->setText("Postaæ"); ui->dod_l_dp1->show();  ui->dod_dp1->show();
         ui->dod_l_dp1->setToolTip("Opis/nazwa przedstawianej postaci.");
-        ui->dod_l_dp2->setText("Materia³"); ui->dod_l_dp2->show();  ui->dod_dp2->show();
-        ui->dod_l_dp1->setToolTip("Materia³ z jakiego wykoano rzeŸbê.");
+        ui->dod_l_dp2->setText("Materia³"); ui->dod_l_dp2->show();  ui->dod_dp2->hide();
+        ui->dod_dp2_cb->show();
+        ui->dod_l_dp1->setToolTip("Materia³ z jakiego wykonano rzeŸbê.");
         ui->dod_l_dp3->setText("Powierzchnia"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
         ui->dod_l_dp1->setToolTip("Powierzchnia jak¹ zajmuje rzeŸba.");
         ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
@@ -264,12 +288,14 @@ void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
         ui->dod_l_dp3->setText("Liczba Stron"); ui->dod_l_dp3->show(); ui->dod_dp3->show();
         ui->dod_l_dp1->setToolTip("Liczba stron w starodruku.");
         ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide(); ui->dod_dp2_N->hide();
+        ui->dod_dp2_cb->hide();
         break;}
     default:
         ui->dod_l_dp1->hide();  ui->dod_dp1->hide();
         ui->dod_l_dp2->hide();  ui->dod_dp2->hide();
         ui->dod_l_dp3->hide();  ui->dod_dp3->hide();
         ui->dod_dp2gb->hide(); ui->dod_dp2_T->hide();  ui->dod_dp2_N->hide();
+        ui->dod_dp2_cb->hide();
     }
 
 
@@ -417,13 +443,14 @@ void MainWindow::on_dod_b_anu_clicked()
 void MainWindow::on_dod_b_dod_clicked()
 {
     if (checkDodajFields()){
+        ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()+1));
         Meta::Typ nowyTyp = static_cast<Meta::Typ> (ui->dod_cb_typ->itemData(ui->dod_cb_typ->currentIndex()).toInt());
         Meta::FormatDaty fd = static_cast<Meta::FormatDaty> (ui->dod_fDat->itemData(ui->dod_fDat->currentIndex()).toInt());
+        int numMat = static_cast<int> (ui->dod_dp2_cb->itemData(ui->dod_dp2_cb->currentIndex()).toInt());
         switch (nowyTyp){
         case Meta::Mebel: {
             MK::getInstance().addItem(new EMebel(ui->dod_dp1->text().simplified().toStdString(),
-                                                 //TODO: Tu powininno byc podpowiadanie!
-                                                 EksponatMuzealny::Braz/*ui->dod_dp2->text().simplified().toStdString()*/,
+                                                 numMat,
                                                  ui->dod_nazwa->text().simplified().toStdString(),
                                                  ui->dod_wysT->isChecked(),
                                                  ui->dod_opis->toPlainText().simplified().toStdString(),
@@ -467,7 +494,7 @@ void MainWindow::on_dod_b_dod_clicked()
             break;}
         case Meta::Rzezba: {
             MK::getInstance().addItem(new ERzezba(ui->dod_dp1->text().simplified().toStdString(),
-                                                  EksponatMuzealny::Marmur/*ui->dod_dp2->text().simplified().toStdString()*/,
+                                                  numMat,
                                                   ui->dod_dp3->text().toFloat(),
                                                   ui->dod_nazwa->text().simplified().toStdString(),
                                                   ui->dod_wysT->isChecked(),
@@ -511,16 +538,153 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     }
     ui->sz_licznik->setText(aktelem);
 
+    Meta::Typ curr_typ = model->getCurrentTyp();
+    EksponatMuzealny* element;
     if (index.row() >= 0){
-        EksponatMuzealny* element = MK::getInstance()[index.row()];
+        if(curr_typ == Meta::NieOkreslonoTypu){
+            element = MK::getInstance()[index.row()];
+        } else {
+            element = MKTyp::getInstance().getObjectFor(curr_typ,index.row());
+        }
         if(element != NULL){
             QString title;
             title = QString("%1 : %2").arg(element->getId(),0).arg(element->getNazwa().c_str());
             ui->sz_groupbox->setTitle(title);
-            //element = MK::getInstance()[index.row()];
-            qDebug() << element->getOpis().c_str();
+            ui->sz_id->setText(QString::number(element->getId()));
+            QString form;
+            if (element->getFormatDaty() == 5)
+                form = "wiek";
+            else
+                form = "r.";
+            ui->sz_nazwa->setText(element->getNazwa().c_str());
+            QString data;
+            data = QString("%1 %2").arg(element->getData().c_str()).arg(form);
+            ui->sz_typ->setText(Meta::nazwaTypu(element->getTyp()).c_str());
+            ui->sz_wys->setText(Meta::b2s(element->getWystawiony()).c_str());
+            ui->sz_pol->setText(element->getPolozenie().c_str());
+            ui->sz_dat->setText(data);
+            ui->sz_opi->setPlainText(element->getOpis().c_str());
+            ui->sz_war->setText(QString::number(element->getWartosc()));
+
+            switch (element->getTyp()){
+            case Meta::Mebel: {
+                ui->sz_l_dp1->show();
+                ui->sz_l_dp2->show();
+                ui->sz_dp1->show();
+                ui->sz_dp2->show();
+                ui->sz_l_dp3->hide();
+                ui->sz_dp3->hide();
+                ui->sz_l_dp1->setText("Rodzaj");
+                ui->sz_l_dp2->setText("Material");
+                EMebel* m = dynamic_cast<EMebel*> (element);
+                ui->sz_dp1->setText(m->getRodzaj().c_str());
+                ui->sz_dp2->setText(Meta::nazwaTypu(m->getMaterial()).c_str());
+                break; }
+            case Meta::Obraz: {
+                ui->sz_l_dp1->show();
+                ui->sz_l_dp2->show();
+                ui->sz_l_dp3->show();
+                ui->sz_dp1->show();
+                ui->sz_dp2->show();
+                ui->sz_dp3->show();
+                ui->sz_l_dp1->setText("Wysokoœæ");
+                ui->sz_l_dp2->setText("Szerokoœæ");
+                ui->sz_l_dp3->setText("Autor obrazu.");
+                EObraz* m = dynamic_cast<EObraz*> (element);
+                ui->sz_dp1->setText(QString::number(m->getWysokosc()));
+                ui->sz_dp2->setText(QString::number(m->getSzerokosc()));
+                ui->sz_dp3->setText(m->getAutor().c_str());
+                break;}
+            case Meta::PrzedmiotUzytkowy: {
+                ui->sz_l_dp1->show();
+                ui->sz_l_dp2->show();
+                ui->sz_dp1->show();
+                ui->sz_dp2->show();
+                ui->sz_l_dp3->hide();
+                ui->sz_dp3->hide();
+                ui->sz_l_dp1->setText("Opis dzia³ania");
+                ui->sz_l_dp2->setText("Czy mo¿na dotkn¹æ");
+                EPrzemiotUzytkowy* m = dynamic_cast<EPrzemiotUzytkowy*> (element);
+                ui->sz_dp1->setText(m->getOpisDzialania().c_str());
+                ui->sz_dp2->setText(Meta::b2s(m->getCzyMoznaDotykac()).c_str());
+                break;}
+            case Meta::Rekopis: {
+                ui->sz_l_dp1->show();
+                ui->sz_l_dp2->show();
+                ui->sz_dp1->show();
+                ui->sz_dp2->show();
+                ui->sz_l_dp3->hide();
+                ui->sz_dp3->hide();
+                ui->sz_l_dp1->setText("Autor");
+                ui->sz_l_dp2->setText("Zeskanowany");
+                ERekopis* m = dynamic_cast<ERekopis*> (element);
+                ui->sz_dp1->setText(m->getAutor().c_str());
+                ui->sz_dp2->setText(Meta::b2s(m->getCzyZeskanowany()).c_str());
+                break;}
+            case Meta::Rzezba: {
+                ui->sz_l_dp1->show();
+                ui->sz_l_dp2->show();
+                ui->sz_l_dp3->show();
+                ui->sz_dp1->show();
+                ui->sz_dp2->show();
+                ui->sz_dp3->show();
+                ui->sz_l_dp1->setText("Postaæ");
+                ui->sz_l_dp2->setText("Materia³");
+                ui->sz_l_dp3->setText("Powierzchnia");
+                ERzezba* m = dynamic_cast<ERzezba*> (element);
+                ui->sz_dp1->setText(m->getPostac().c_str());
+                ui->sz_dp2->setText(Meta::nazwaTypu(m->getMaterial()).c_str());
+                ui->sz_dp3->setText(QString::number(m->getPowierzchnia()));
+                break;}
+            case Meta::Starodruk: {
+                ui->sz_l_dp1->show();
+                ui->sz_l_dp2->show();
+                ui->sz_l_dp3->show();
+                ui->sz_dp1->show();
+                ui->sz_dp2->show();
+                ui->sz_dp3->show();
+                ui->sz_l_dp1->setText("Autor");
+                ui->sz_l_dp2->setText("Streszczenie");
+                ui->sz_l_dp3->setText("Liczba Stron");
+                EStarodruk* m = dynamic_cast<EStarodruk*> (element);
+                ui->sz_dp1->setText(m->getAutor().c_str());
+                ui->sz_dp2->setText(m->getStreszczenie().c_str());
+                ui->sz_dp3->setText(QString::number(m->getLiczbaStron()));
+                break;}
+            default:
+                ui->sz_l_dp1->hide();
+                ui->sz_l_dp2->hide();
+                ui->sz_l_dp3->hide();
+                ui->sz_dp1->hide();
+                ui->sz_dp2->hide();
+                ui->sz_dp3->hide();
+            }
         }
     }
-    qDebug() << "Id:" << index.row();
-//    qDebug() << model->rowCount();
+}
+
+
+
+void MainWindow::on_sz_pop_clicked()
+{
+    QModelIndex m;
+    if( ui->tableView->currentIndex().row() > 0){
+            m = ui->tableView->model()->index(ui->tableView->currentIndex().row()-1,
+                                              ui->tableView->currentIndex().column());
+            ui->tableView->setCurrentIndex(m);
+            on_tableView_clicked(m);
+    }
+
+}
+
+void MainWindow::on_sz_nas_clicked()
+{
+    QModelIndex m;
+    if( ui->tableView->currentIndex().row() < ui->tableView->model()->rowCount()){
+            m = ui->tableView->model()->index(ui->tableView->currentIndex().row()+1,
+                                              ui->tableView->currentIndex().column());
+            ui->tableView->setCurrentIndex(m);
+            on_tableView_clicked(m);
+    }
+
 }
