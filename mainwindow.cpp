@@ -123,6 +123,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()));
     Material::getInstance().saveToFile(&ust);
+    MK::getInstance().saveToFile("plik.xml");
+    MK::getInstance().readFromFile("plik.xml");
 }
 void MainWindow::setDisabledIfEmpty(){
     if (model->isEmpty()){
