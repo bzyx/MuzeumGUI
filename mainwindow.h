@@ -41,7 +41,12 @@ private slots:
 
     void on_sz_nas_clicked();
 
+    void on_actionOtw_rz_triggered();
+
+
 private:
+    QString lastFileName;
+    QString fileName;
     void setMetaToComboBox(QComboBox* cb, bool wszyskie=false);
     Ui::MainWindow *ui;
     EksponatModel* model;

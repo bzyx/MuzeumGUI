@@ -2,5 +2,6 @@
     <qresource prefix="/images/gui">
         <file>res/ikonka.JPG</file>
         <file>res/ikonka.png</file>
+        <file>res/images/gui/tlo.png</file>
     </qresource>
 </RCC>

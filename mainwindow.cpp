@@ -6,6 +6,7 @@
 #include <QTextCodec>
 #include <QDebug>
 #include <QRegExpValidator>
+#include <QFileDialog>
 #include "src/eprzemiotuzytkowy.h"
 #include "src/muzeumkontener.h"
 #include "eksponatmodel.h"
@@ -48,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sz_dp2->hide();
     ui->sz_dp3->hide();
 
+   ui->comboBox_wyborTypu->setEnabled(false);
     QSettings ust("./settings.ini", QSettings::IniFormat);
     Material::getInstance().readFromFile(&ust);
 
@@ -69,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dod_fDat->addItem("Miesi¹c i rok (mm.rrrr)",Meta::mr);
     ui->dod_fDat->addItem("Dzieñ,miesi¹æ,rok (dd.mm.rrrr)",Meta::dmr);
 
-    MK::getInstance().readFromFile("plik.xml");
+    //MK::getInstance().readFromFile("plik.xml");
 
     //    MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
 //                                                    1,"Bardzo krótki opis"
@@ -126,6 +128,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()));
     Material::getInstance().saveToFile(&ust);
+
+  setDisabledIfEmpty();
+  ui->tableView->hide();
+  ui->naStart->show();
+  ui->naStart2->show();
 
 }
 void MainWindow::setDisabledIfEmpty(){
@@ -694,4 +701,16 @@ void MainWindow::on_sz_nas_clicked()
             on_tableView_clicked(m);
     }
 
+}
+
+void MainWindow::on_actionOtw_rz_triggered()
+{
+    fileName = QFileDialog::getOpenFileName(this,"Nazwa pliku z baz¹",lastFileName,"Pliki XML (*.xml)");
+    MK::getInstance().readFromFile(fileName.toStdString());
+    MKTyp::getInstance().updateMKTyp();
+    on_comboBox_wyborTypu_currentIndexChanged(0);
+    ui->tableView->show();
+      ui->naStart->hide();
+      ui->naStart2->hide();
+      ui->comboBox_wyborTypu->setEnabled(true);
 }
