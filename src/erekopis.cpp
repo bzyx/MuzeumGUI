@@ -38,7 +38,7 @@ QStringList ERekopis::getAtrybuty(){
 }
 QStringList ERekopis::getHeaders(){
     QStringList nowa = getPodstawoweHeaders();
-    nowa << "Autor/Autorzy"
+    nowa << "Autor"
          << "Zeskanowany";
     return nowa;
 }
