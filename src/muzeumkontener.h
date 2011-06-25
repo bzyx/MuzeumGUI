@@ -5,6 +5,7 @@
 
 #include <deque>
 #include <string>
+#include <QXmlStreamReader>
 #include <src/eksponatmuzealny.h>
 //DO usuniêcia jak bêdzie w eksponacie
 #include <src/meta.h>
@@ -102,6 +103,7 @@ private:
     static MKontener m_kontener; /** Lista przechowuj¹ca dane */
 private:
     MKontener::iterator itForTyp;
+    void paraseAttributesAndAdd(Meta::Typ,QXmlStreamAttributes* attr);
 };
 
 #endif // MK_H

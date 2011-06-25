@@ -1,5 +1,6 @@
 #include "meta.h"
 
+#include <cstring>
 Meta::Meta()
 {
 }
@@ -21,6 +22,18 @@ std::string Meta::nazwaFormatDaty(
     }
 }
 
+Meta::FormatDaty Meta::formatDatyNazwa(std::string formatDaty){
+    if(!strcmp(formatDaty.c_str(),"wiek"))
+        return Meta::w;
+    if(!strcmp(formatDaty.c_str(),"r."))
+        return Meta::r;
+    if(!strcmp(formatDaty.c_str(),"mr."))
+        return Meta::mr ;
+    if(!strcmp(formatDaty.c_str(),"dmr."))
+        return Meta::dmr;
+
+        return Meta::NzF;
+}
 
 std::string Meta::b2s(bool b){
     if(b)
@@ -28,7 +41,11 @@ std::string Meta::b2s(bool b){
     else
         return "Nie";
 }
-
+bool Meta::s2b(std::string b){
+    if(!strcmp(b.c_str(),"Tak"))
+        return true;
+    return false;
+}
 std::string Meta::nazwaTypu(int typ){
     switch (typ)
     {

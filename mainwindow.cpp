@@ -68,51 +68,54 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dod_fDat->addItem("Rok (rrrr)",Meta::r);
     ui->dod_fDat->addItem("Miesi¹c i rok (mm.rrrr)",Meta::mr);
     ui->dod_fDat->addItem("Dzieñ,miesi¹æ,rok (dd.mm.rrrr)",Meta::dmr);
-    MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
-                                                    1,"Bardzo krótki opis"
-                                                    ,"Magazyn1", 100,
-                                                    Meta::PrzedmiotUzytkowy,
-                                                    Meta::w,
-                                                    "XXI") );
-    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
-                                         1,"Bardzo inny opis opis"
-                                         ,"Magazyn1", 100,
-                                         Meta::Obraz,
-                                         Meta::w,
-                                         "XX"));
-    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
-                                         1,"Bardaaa"
-                                         ,"Magazyn2", 100,
-                                         Meta::Obraz,
-                                         Meta::w,
-                                         "XXI"));
 
-    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
-                                         1,"Bardaaa"
-                                         ,"Magazyn2", 100,
-                                         Meta::Obraz,
-                                         Meta::w,
-                                         "XXI"));
-    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
-                                         1,"Bardaaa"
-                                         ,"Magazyn2", 100,
-                                         Meta::Obraz,
-                                         Meta::w,
-                                         "XXI"));
-    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
-                                         1,"Bardaaa"
-                                         ,"Magazyn2", 100,
-                                         Meta::Obraz,
-                                         Meta::w,
-                                         "XXI"));
-    for(int i=0; i< 100; ++i){
-        MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
-                                             1,"Bardaaa"
-                                             ,"Magazyn2", 100,
-                                             Meta::Obraz,
-                                             Meta::w,
-                                             "XXI"));
-    }
+    MK::getInstance().readFromFile("plik.xml");
+
+    //    MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
+//                                                    1,"Bardzo krótki opis"
+//                                                    ,"Magazyn1", 100,
+//                                                    Meta::PrzedmiotUzytkowy,
+//                                                    Meta::w,
+//                                                    "XXI") );
+//    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
+//                                         1,"Bardzo inny opis opis"
+//                                         ,"Magazyn1", 100,
+//                                         Meta::Obraz,
+//                                         Meta::w,
+//                                         "XX"));
+//    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
+//                                         1,"Bardaaa"
+//                                         ,"Magazyn2", 100,
+//                                         Meta::Obraz,
+//                                         Meta::w,
+//                                         "XXI"));
+
+//    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
+//                                         1,"Bardaaa"
+//                                         ,"Magazyn2", 100,
+//                                         Meta::Obraz,
+//                                         Meta::w,
+//                                         "XXI"));
+//    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
+//                                         1,"Bardaaa"
+//                                         ,"Magazyn2", 100,
+//                                         Meta::Obraz,
+//                                         Meta::w,
+//                                         "XXI"));
+//    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
+//                                         1,"Bardaaa"
+//                                         ,"Magazyn2", 100,
+//                                         Meta::Obraz,
+//                                         Meta::w,
+//                                         "XXI"));
+//    for(int i=0; i< 100; ++i){
+//        MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
+//                                             1,"Bardaaa"
+//                                             ,"Magazyn2", 100,
+//                                             Meta::Obraz,
+//                                             Meta::w,
+//                                             "XXI"));
+//    }
     //MK::getInstance()[2]->nazwa("Ca³kiem nowa nazwa");
     // EObraz* test = dynamic_cast<EObraz*> (MK::getInstance()[2]);
     //test->wysokosc(222.22);
@@ -123,8 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()));
     Material::getInstance().saveToFile(&ust);
-    MK::getInstance().saveToFile("plik.xml");
-    MK::getInstance().readFromFile("plik.xml");
+
 }
 void MainWindow::setDisabledIfEmpty(){
     if (model->isEmpty()){
@@ -139,6 +141,7 @@ void MainWindow::setDisabledIfEmpty(){
 
 MainWindow::~MainWindow()
 {
+    MK::getInstance().saveToFile("plik.xml");
     delete v_dp1;
     delete v_dp2;
     delete v_dp3;
@@ -220,6 +223,7 @@ void MainWindow::setMetaToComboBox(QComboBox* cb, bool wszyskie){
 
 void MainWindow::on_dod_cb_typ_currentIndexChanged(int index)
 {
+    on_dod_b_anu_clicked();
     v_dp1 = new QDoubleValidator(0.00,30.00,2,this);
     if(ui->dod_cb_typ->itemText(0)=="")
         ui->dod_cb_typ->removeItem(0);
@@ -405,6 +409,7 @@ void MainWindow::on_dod_fDat_currentIndexChanged(int index)
     case Meta::r : ui->dod_dat->setValidator(new QRegExpValidator(rok,this));  break;
     case Meta::mr : ui->dod_dat->setValidator(new QRegExpValidator(mr,this));  break;
     case Meta::dmr : ui->dod_dat->setValidator(new QRegExpValidator(dmr,this)); break;
+    //default: break;
     }
     //Ustawianie maski w zale¿noœci od ui->dod_fDat
 }
