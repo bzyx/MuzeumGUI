@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QComboBox>
 #include <QValidator>
+#include <QSettings>
 #include "eksponatmodel.h"
 
 namespace Ui {
@@ -22,7 +23,7 @@ public:
     void setDisabledIfEmpty();
 
 private slots:
-    void on_comboBox_wyborTypu_currentIndexChanged(int index);
+    void on_top_cb_wysTyp_currentIndexChanged(int index);
     void setVisiblePanelDodawania();
     void setVisiblePanelSzczegoly();
     void setDodawanieEnabled(bool b);
@@ -42,15 +43,36 @@ private slots:
     void on_sz_nas_clicked();
 
     void on_actionOtw_rz_triggered();
+    void actionsAfterOpen();
 
+    void on_actionZapisz_jako_triggered();
+
+    void on_actionZamknij_triggered();
+
+    void on_actionZapis_triggered();
+
+    void on_actionNowa_baza_triggered();
+
+    void on_naStar_ostPlik_clicked();
+
+    void on_naStart_clicked();
+
+    void on_naStart2_clicked();
 
 private:
+    QString tytul;
+    QSettings* ust;
     QString lastFileName;
     QString fileName;
+    QString saveFileName;
     void setMetaToComboBox(QComboBox* cb, bool wszyskie=false);
     Ui::MainWindow *ui;
     EksponatModel* model;
     QValidator *v_dp1, *v_dp2, *v_dp3,*v_dp3a;
+    void saveSettings(QSettings* file);
+    void readSettings(QSettings* file);
+    void closeEvent(QCloseEvent *event);
+    bool OKToClose();
 };
 
 #endif // MAINWINDOW_H

@@ -7,6 +7,9 @@
 #include <QDebug>
 #include <QRegExpValidator>
 #include <QFileDialog>
+#include <QDesktopWidget>
+#include <QDesktopServices>
+#include <QMessageBox>
 #include "src/eprzemiotuzytkowy.h"
 #include "src/muzeumkontener.h"
 #include "eksponatmodel.h"
@@ -27,7 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP-1250"));
-
+    tytul = "Muzemum - baza danych";
+    setWindowTitle(tytul);
     ui->setupUi(this);
     connect(ui->actionPoka_panel_dodawania,SIGNAL(triggered()),this,SLOT(setVisiblePanelDodawania()));
     connect(ui->actionPoka_szczeg_y,SIGNAL(triggered()),this,SLOT(setVisiblePanelSzczegoly()));
@@ -39,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     setDodawanieEnabled(false);
 
-    setMetaToComboBox(ui->comboBox_wyborTypu,true);
+    setMetaToComboBox(ui->top_cb_wysTyp,true);
     setMetaToComboBox(ui->dod_cb_typ);
 
     ui->sz_l_dp1->hide();
@@ -49,9 +53,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sz_dp2->hide();
     ui->sz_dp3->hide();
 
-   ui->comboBox_wyborTypu->setEnabled(false);
-    QSettings ust("./settings.ini", QSettings::IniFormat);
-    Material::getInstance().readFromFile(&ust);
+    ui->top_cb_wysTyp->setEnabled(false);
+    ust = new QSettings("./settings.ini", QSettings::IniFormat);
+    readSettings(ust);
+    Material::getInstance().readFromFile(ust);
 
     MaterialModel* matModel;
     matModel = new MaterialModel(this);
@@ -74,50 +79,50 @@ MainWindow::MainWindow(QWidget *parent) :
     //MK::getInstance().readFromFile("plik.xml");
 
     //    MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
-//                                                    1,"Bardzo krótki opis"
-//                                                    ,"Magazyn1", 100,
-//                                                    Meta::PrzedmiotUzytkowy,
-//                                                    Meta::w,
-//                                                    "XXI") );
-//    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
-//                                         1,"Bardzo inny opis opis"
-//                                         ,"Magazyn1", 100,
-//                                         Meta::Obraz,
-//                                         Meta::w,
-//                                         "XX"));
-//    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
-//                                         1,"Bardaaa"
-//                                         ,"Magazyn2", 100,
-//                                         Meta::Obraz,
-//                                         Meta::w,
-//                                         "XXI"));
+    //                                                    1,"Bardzo krótki opis"
+    //                                                    ,"Magazyn1", 100,
+    //                                                    Meta::PrzedmiotUzytkowy,
+    //                                                    Meta::w,
+    //                                                    "XXI") );
+    //    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
+    //                                         1,"Bardzo inny opis opis"
+    //                                         ,"Magazyn1", 100,
+    //                                         Meta::Obraz,
+    //                                         Meta::w,
+    //                                         "XX"));
+    //    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
+    //                                         1,"Bardaaa"
+    //                                         ,"Magazyn2", 100,
+    //                                         Meta::Obraz,
+    //                                         Meta::w,
+    //                                         "XXI"));
 
-//    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
-//                                         1,"Bardaaa"
-//                                         ,"Magazyn2", 100,
-//                                         Meta::Obraz,
-//                                         Meta::w,
-//                                         "XXI"));
-//    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
-//                                         1,"Bardaaa"
-//                                         ,"Magazyn2", 100,
-//                                         Meta::Obraz,
-//                                         Meta::w,
-//                                         "XXI"));
-//    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
-//                                         1,"Bardaaa"
-//                                         ,"Magazyn2", 100,
-//                                         Meta::Obraz,
-//                                         Meta::w,
-//                                         "XXI"));
-//    for(int i=0; i< 100; ++i){
-//        MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
-//                                             1,"Bardaaa"
-//                                             ,"Magazyn2", 100,
-//                                             Meta::Obraz,
-//                                             Meta::w,
-//                                             "XXI"));
-//    }
+    //    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
+    //                                         1,"Bardaaa"
+    //                                         ,"Magazyn2", 100,
+    //                                         Meta::Obraz,
+    //                                         Meta::w,
+    //                                         "XXI"));
+    //    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
+    //                                         1,"Bardaaa"
+    //                                         ,"Magazyn2", 100,
+    //                                         Meta::Obraz,
+    //                                         Meta::w,
+    //                                         "XXI"));
+    //    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
+    //                                         1,"Bardaaa"
+    //                                         ,"Magazyn2", 100,
+    //                                         Meta::Obraz,
+    //                                         Meta::w,
+    //                                         "XXI"));
+    //    for(int i=0; i< 100; ++i){
+    //        MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
+    //                                             1,"Bardaaa"
+    //                                             ,"Magazyn2", 100,
+    //                                             Meta::Obraz,
+    //                                             Meta::w,
+    //                                             "XXI"));
+    //    }
     //MK::getInstance()[2]->nazwa("Ca³kiem nowa nazwa");
     // EObraz* test = dynamic_cast<EObraz*> (MK::getInstance()[2]);
     //test->wysokosc(222.22);
@@ -127,42 +132,62 @@ MainWindow::MainWindow(QWidget *parent) :
     model->czyMoznaZmieniac(true);
 
     ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()));
-    Material::getInstance().saveToFile(&ust);
+    Material::getInstance().saveToFile(ust);
 
-  setDisabledIfEmpty();
-  ui->tableView->hide();
-  ui->naStart->show();
-  ui->naStart2->show();
-
+    setDisabledIfEmpty();
+    ui->tableView->hide();
+    ui->naStart->show();
+    ui->naStart2->show();
+    ui->top_cb_wysTyp->hide();
+    ui->top_filt_lineEdit->hide();
+    ui->top_fil_cb->hide();
+    ui->top_fil_pushButt->hide();
+    ui->top_l_filt->hide();
+    ui->top_l_wysTyp->hide();
+    ui->mainToolBar->setEnabled(false);
+    ui->menuEdycja->setEnabled(false);
+    ui->centralWidget->setStyleSheet("background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #E86600, stop: 1 #E82200);");
+    //  ui->naStart->setStyleSheet("margin: 0 1px 0 1px;color: white;background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #2198c0, stop: 1 #0d5ca6);");
+    ui->naStart->setStyleSheet("margin: 0 1px 0 1px;color: white;background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #BF3F0A, stop: 1 #7F2A07);");
+    ui->naStart2->setStyleSheet("margin: 0 1px 0 1px;color: white;background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #BF3F0A, stop: 1 #7F2A07);");
+    if(!lastFileName.isEmpty()){
+        ui->naStar_ostPlik->setStyleSheet("margin: 0 1px 0 1px;color: white;background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #BF3F0A, stop: 1 #7F2A07);");
+        ui->naStar_ostPlik->setText(ui->naStar_ostPlik->text().append("\n").append(lastFileName));
+        ui->naStar_ostPlik->show();
+    } else {
+        ui->naStar_ostPlik->hide();
+    }
+    ui->actionZapis->setEnabled(false);
+    ui->actionZapisz_jako->setEnabled(false);
 }
 void MainWindow::setDisabledIfEmpty(){
     if (model->isEmpty()){
         ui->tableView->setEnabled(false);
-        ui->statusBar->showMessage("Brak danych do wyœwietlenia.",1000);
+        //ui->statusBar->showMessage("Brak danych do wyœwietlenia.",1000);
     } else {
         ui->tableView->setEnabled(true);
-        ui->statusBar->clearMessage();
+        //ui->statusBar->clearMessage();
     }
 }
 
 
 MainWindow::~MainWindow()
 {
-    MK::getInstance().saveToFile("plik.xml");
     delete v_dp1;
     delete v_dp2;
     delete v_dp3;
     delete v_dp3a;
     delete ui;
     delete model;
+    delete ust;
 }
 
 
-void MainWindow::on_comboBox_wyborTypu_currentIndexChanged(int index)
+void MainWindow::on_top_cb_wysTyp_currentIndexChanged(int index)
 {
-    if(ui->comboBox_wyborTypu->itemText(0)=="")
-        ui->comboBox_wyborTypu->removeItem(0);
-    Meta::Typ nowyTyp = static_cast<Meta::Typ> (ui->comboBox_wyborTypu->itemData(index).toInt());
+    if(ui->top_cb_wysTyp->itemText(0)=="")
+        ui->top_cb_wysTyp->removeItem(0);
+    Meta::Typ nowyTyp = static_cast<Meta::Typ> (ui->top_cb_wysTyp->itemData(index).toInt());
     model->setNewTyp(nowyTyp);
     setDisabledIfEmpty();
 }
@@ -416,7 +441,7 @@ void MainWindow::on_dod_fDat_currentIndexChanged(int index)
     case Meta::r : ui->dod_dat->setValidator(new QRegExpValidator(rok,this));  break;
     case Meta::mr : ui->dod_dat->setValidator(new QRegExpValidator(mr,this));  break;
     case Meta::dmr : ui->dod_dat->setValidator(new QRegExpValidator(dmr,this)); break;
-    //default: break;
+        //default: break;
     }
     //Ustawianie maski w zale¿noœci od ui->dod_fDat
 }
@@ -683,10 +708,10 @@ void MainWindow::on_sz_pop_clicked()
 {
     QModelIndex m;
     if( ui->tableView->currentIndex().row() > 0){
-            m = ui->tableView->model()->index(ui->tableView->currentIndex().row()-1,
-                                              ui->tableView->currentIndex().column());
-            ui->tableView->setCurrentIndex(m);
-            on_tableView_clicked(m);
+        m = ui->tableView->model()->index(ui->tableView->currentIndex().row()-1,
+                                          ui->tableView->currentIndex().column());
+        ui->tableView->setCurrentIndex(m);
+        on_tableView_clicked(m);
     }
 
 }
@@ -695,10 +720,10 @@ void MainWindow::on_sz_nas_clicked()
 {
     QModelIndex m;
     if( ui->tableView->currentIndex().row() < ui->tableView->model()->rowCount()){
-            m = ui->tableView->model()->index(ui->tableView->currentIndex().row()+1,
-                                              ui->tableView->currentIndex().column());
-            ui->tableView->setCurrentIndex(m);
-            on_tableView_clicked(m);
+        m = ui->tableView->model()->index(ui->tableView->currentIndex().row()+1,
+                                          ui->tableView->currentIndex().column());
+        ui->tableView->setCurrentIndex(m);
+        on_tableView_clicked(m);
     }
 
 }
@@ -706,11 +731,218 @@ void MainWindow::on_sz_nas_clicked()
 void MainWindow::on_actionOtw_rz_triggered()
 {
     fileName = QFileDialog::getOpenFileName(this,"Nazwa pliku z baz¹",lastFileName,"Pliki XML (*.xml)");
-    MK::getInstance().readFromFile(fileName.toStdString());
+    if(!fileName.isEmpty()){
+        MK::getInstance().readFromFile(fileName.toStdString());
+        if (MK::getInstance().count()>0)
+            actionsAfterOpen();
+    }
+
+}
+
+void MainWindow::actionsAfterOpen(){
+    QString tytulOkna = tytul;
+    tytulOkna += " - ";
+    tytulOkna += fileName;
+    lastFileName = fileName;
+    setWindowTitle(tytulOkna);
+    ui->centralWidget->setStyleSheet("");
+    ui->naStart->setStyleSheet("");
+    ui->naStart2->setStyleSheet("");
+    ui->naStar_ostPlik->setStyleSheet("");
     MKTyp::getInstance().updateMKTyp();
-    on_comboBox_wyborTypu_currentIndexChanged(0);
+    on_top_cb_wysTyp_currentIndexChanged(0);
+
+    ui->top_cb_wysTyp->show();
+    ui->top_filt_lineEdit->show();
+    ui->top_fil_cb->show();
+    ui->top_fil_pushButt->show();
+    ui->top_l_filt->show();
+    ui->top_l_wysTyp->show();
+    ui->mainToolBar->setEnabled(true);
+    ui->menuEdycja->setEnabled(true);
+
+
     ui->tableView->show();
-      ui->naStart->hide();
-      ui->naStart2->hide();
-      ui->comboBox_wyborTypu->setEnabled(true);
+    ui->naStart->hide();
+    ui->naStart2->hide();
+    ui->naStar_ostPlik->hide();
+    ui->top_cb_wysTyp->setEnabled(true);
+
+    ui->actionZapis->setEnabled(true);
+    ui->actionZapisz_jako->setEnabled(true);
+}
+
+void MainWindow::saveSettings(QSettings* file){
+    file->beginWriteArray("Settings");
+    file->setArrayIndex(1);
+    file->setValue("X",geometry().x() );
+    file->setValue("Y",geometry().y());
+    file->setArrayIndex(2);
+    file->setValue("W",geometry().width());
+    file->setValue("H",geometry().height());
+    file->setArrayIndex(3);
+    file->setValue("LastFIleName",lastFileName);
+    file->endArray();
+
+}
+void MainWindow::readSettings(QSettings* file){
+    QDesktopWidget *desktop = QApplication::desktop();
+    int size = file->beginReadArray("Settings");
+    bool popr;
+    QRect r = geometry();
+    int wart;
+    if (size == 4){}
+    file->setArrayIndex(1);
+    wart = file->value("X").toString().toInt(&popr);
+    if(popr)
+        r.setX(wart);
+    else
+        r.setX((800-desktop->width())/2);
+    popr = false;
+    wart = file->value("Y").toString().toInt(&popr);
+    if(popr)
+        r.setY(wart);
+    else
+        r.setY((550-desktop->height())/2);
+
+    file->setArrayIndex(2);
+    popr = false;
+    wart = file->value("W").toString().toInt(&popr);
+    if(popr)
+        r.setWidth(wart);
+    else
+        r.setWidth(800);
+
+    popr = false;
+    wart = file->value("H").toString().toInt(&popr);
+    if(popr)
+        r.setHeight(wart);
+    else
+        r.setHeight(550);
+
+    file->setArrayIndex(3);
+    QString lfile = file->value("LastFIleName").toString();
+    if (!lfile.isEmpty())
+        lastFileName = lfile;
+    else
+        lastFileName = QString();
+
+    setGeometry(r);
+    //int value = file->value("MaterialId").toInt();
+    file->endArray();
+}
+
+void MainWindow::on_actionZapisz_jako_triggered()
+{
+    saveFileName = QFileDialog::getSaveFileName(this,"Zapisz jako",QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation),"Pliki XML (*.xml)");
+    if (!saveFileName.isEmpty()){
+        MK::getInstance().saveToFile(saveFileName.toStdString());
+        lastFileName = saveFileName;
+        QString tmp = tytul;
+        tmp += " - ";
+        tmp += saveFileName;
+        lastFileName = saveFileName;
+        setWindowTitle(tmp);
+        ui->statusBar->showMessage("Plik zosta³ zapisany",800);
+    } else {
+        ui->statusBar->showMessage("Plik nie zosta³ zapisany",1000);
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (OKToClose()) {
+        saveSettings(ust);
+        event->accept();
+    } else {
+        event->ignore();
+    }
+}
+
+bool MainWindow::OKToClose()
+{
+    QMessageBox ostrz;
+    ostrz.setWindowTitle("Muzemum - baza danych");
+    ostrz.setIcon(QMessageBox::Warning);
+    ostrz.setText("Czy napewno chcesz wyjœæ z programu? \nJeœli baza nie zosta³a zapisana spowoduje to jej utracenie.");
+    ostrz.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+    ostrz.setDefaultButton(QMessageBox::Yes);
+    ostrz.setEscapeButton(QMessageBox::Cancel);
+    ostrz.button(QMessageBox::Yes)->setText("Tak");
+    ostrz.button(QMessageBox::No)->setText("Nie");
+    ostrz.button(QMessageBox::Cancel)->setText("Anuluj");
+    int ret = ostrz.exec();
+    if (ret == QMessageBox::Yes)
+        return true;
+    else if (ret == QMessageBox::Cancel)
+        return false;
+
+    return false;
+}
+
+void MainWindow::on_actionZamknij_triggered()
+{
+    close();
+}
+
+void MainWindow::on_actionZapis_triggered()
+{
+    if(!saveFileName.isEmpty()){
+        MK::getInstance().saveToFile(saveFileName.toStdString());
+        QString tmp = tytul;
+        tmp += " - ";
+        tmp += saveFileName;
+        lastFileName = saveFileName;
+        setWindowTitle(tmp);
+        ui->statusBar->showMessage("Plik zosta³ zapisany",800);
+    } else {
+        on_actionZapisz_jako_triggered();
+    }
+}
+
+void MainWindow::on_actionNowa_baza_triggered()
+{
+    saveFileName = QFileDialog::getSaveFileName(this,"Utwórz now¹ bazê",QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation),"Pliki XML (*.xml)");
+    if (!saveFileName.isEmpty()){
+        MK::getInstance().saveToFile(saveFileName.toStdString());
+        QString tmp = tytul;
+        tmp += " - ";
+        tmp += saveFileName;
+        lastFileName = saveFileName;
+        setWindowTitle(tmp);
+        ui->statusBar->showMessage("Plik zosta³ utworzony",800);
+    } else {
+        ui->statusBar->showMessage("Plik nie zosta³ utworzony",1000);
+    }
+}
+
+void MainWindow::on_naStar_ostPlik_clicked()
+{
+    QDir file(lastFileName);
+    if (!file.exists()){
+        MK::getInstance().readFromFile(lastFileName.toStdString());
+        qDebug() << MK::getInstance().count();
+        if (MK::getInstance().count()>0){
+            //QString tmp = tytul;
+           // tmp += " - ";
+            //tmp += lastFileName;
+            fileName = lastFileName;
+            saveFileName = lastFileName;
+            //setWindowTitle(tmp);
+            actionsAfterOpen();
+            ui->statusBar->showMessage("Plik zosta³ wczytany",800);
+        }
+    } else {
+        ui->statusBar->showMessage("Plik nie istnieje",1000);
+    }
+}
+
+void MainWindow::on_naStart_clicked()
+{
+    on_actionOtw_rz_triggered();
+}
+
+void MainWindow::on_naStart2_clicked()
+{
+    on_actionNowa_baza_triggered();
 }

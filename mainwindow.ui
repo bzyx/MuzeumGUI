@@ -58,14 +58,14 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="top_l_wysTyp">
         <property name="text">
          <string>Wyświetlany Typ</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_wyborTypu"/>
+       <widget class="QComboBox" name="top_cb_wysTyp"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_3">
@@ -81,14 +81,14 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="top_l_filt">
         <property name="text">
          <string>Filtrowanie:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="top_filt_lineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -98,10 +98,10 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_2"/>
+       <widget class="QComboBox" name="top_fil_cb"/>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="top_fil_pushButt">
         <property name="text">
          <string>Filtruj</string>
         </property>
@@ -135,7 +135,7 @@
          <enum>QFrame::Plain</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="tabSpacing">
          <number>0</number>
@@ -145,7 +145,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>304</width>
+           <width>303</width>
            <height>402</height>
           </rect>
          </property>
@@ -392,7 +392,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>304</width>
+           <width>303</width>
            <height>374</height>
           </rect>
          </property>
@@ -644,6 +644,22 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="naStar_ostPlik">
+          <property name="maximumSize">
+           <size>
+            <width>400</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Kliknij, aby wczytać ostatnio używany plik:</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="naStart">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
@@ -653,7 +669,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>300</width>
+            <width>400</width>
             <height>150</height>
            </size>
           </property>
@@ -669,7 +685,7 @@
          <widget class="QPushButton" name="naStart2">
           <property name="maximumSize">
            <size>
-            <width>300</width>
+            <width>400</width>
             <height>150</height>
            </size>
           </property>
@@ -1012,13 +1028,14 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>18</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlik">
     <property name="title">
      <string>Plik</string>
     </property>
+    <addaction name="actionNowa_baza"/>
     <addaction name="actionOtw_rz"/>
     <addaction name="actionZapis"/>
     <addaction name="actionZapisz_jako"/>
@@ -1071,10 +1088,16 @@
    <property name="text">
     <string>Otwórz</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionZapis">
    <property name="text">
-    <string>Zapis</string>
+    <string>Zapisz</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionZapisz_jako">
@@ -1085,6 +1108,9 @@
   <action name="actionZamknij">
    <property name="text">
     <string>Wyjdź</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionDodaj">
@@ -1115,6 +1141,14 @@
   <action name="actionPoka_szczeg_y">
    <property name="text">
     <string>Pokaż szczegóły</string>
+   </property>
+  </action>
+  <action name="actionNowa_baza">
+   <property name="text">
+    <string>Nowa baza</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>
