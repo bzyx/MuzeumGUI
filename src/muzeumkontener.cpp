@@ -201,19 +201,19 @@ void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
     if(poprawnyRekord){
         //    attr->at(0).value() -> Id (nie potrzebne)
         //    attr->at(1).value() -> Typ (nie potrzebne mamy z tagu XML)
-        QString nazwa = attr->at(2).value().toString();
-        bool wystawiony = Meta::s2b(attr->at(3).value().toString().toStdString());
-        QString opis = attr->at(4).value().toString();
-        QString polozenie = attr->at(5).value().toString();
-        int wartosc = attr->at(6).value().toString().toInt();
-        Meta::FormatDaty fDaty = Meta::formatDatyNazwa(attr->at(7).value().toString().toStdString());
-        QString data = attr->at(8).value().toString();
+        QString nazwa = attr->value("Nazwa").toString();//attr->at(2).value().toString();
+        bool wystawiony = Meta::s2b(attr->value("Wystawiony").toString().toStdString());//Meta::s2b(attr->at(3).value().toString().toStdString());
+        QString opis = attr->value("Opis").toString();
+        QString polozenie = attr->value("Po³o¿enie").toString();
+        int wartosc = attr->value("Wartoœæ").toString().toInt();
+        Meta::FormatDaty fDaty = Meta::formatDatyNazwa(attr->value("Formatdaty").toString().toStdString());
+        QString data = attr->value("Data").toString();
 
         switch(typ){
         case Meta::Mebel: {
             if(attr->count()-1 == 10){
-                QString rodzaj = attr->at(9).value().toString();
-                int material = Material::valueForMatN(attr->at(10).value().toString());
+                QString rodzaj = attr->value("Rodzaj").toString();
+                int material = Material::valueForMatN(attr->value("Materia³").toString());
                 MK::getInstance().addItem(new EMebel(rodzaj.toStdString(),material,
                                                      nazwa.toStdString(), wystawiony,
                                                      opis.toStdString(),
@@ -224,9 +224,9 @@ void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
             break;}
         case Meta::Obraz: {
             if(attr->count()-1 == 11){
-                float wys = attr->at(9).value().toString().toDouble();
-                float szer = attr->at(10).value().toString().toDouble();
-                QString autor = attr->at(11).value().toString();
+                float wys = attr->value("Wysokoœæ").toString().toDouble();
+                float szer = attr->value("Szerokoœæ").toString().toDouble();
+                QString autor = attr->value("Autor").toString();
 
                 MK::getInstance().addItem(new EObraz(wys,szer,autor.toStdString(),
                                                      nazwa.toStdString(), wystawiony,
@@ -239,8 +239,8 @@ void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
             break;}
         case Meta::PrzedmiotUzytkowy: {
             if(attr->count()-1 == 10){
-                QString opisDzial = attr->at(9).value().toString();
-                bool czyMoznaDot = Meta::s2b(attr->at(10).value().toString().toStdString());
+                QString opisDzial = attr->value("Opisdzia³ania").toString();
+                bool czyMoznaDot = Meta::s2b(attr->value("Czymo¿nadotykaæ").toString().toStdString());
                 MK::getInstance().addItem(new EPrzemiotUzytkowy(opisDzial.toStdString(),czyMoznaDot,
                                                                 nazwa.toStdString(), wystawiony,
                                                                 opis.toStdString(),
@@ -264,9 +264,9 @@ void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
             break;}
         case Meta::Rzezba: {
             if(attr->count()-1 == 11){
-                QString postac = attr->at(9).value().toString();
-                int material = Material::valueForMatN(attr->at(10).value().toString());
-                float pow = attr->at(11).value().toString().toDouble();
+                QString postac = attr->value("Postaæ").toString();
+                int material = Material::valueForMatN(attr->value("Materia³").toString());
+                float pow = attr->value("Powierzchnia").toString().toDouble();
                 MK::getInstance().addItem(new ERzezba(postac.toStdString(),material, pow,
                                                       nazwa.toStdString(), wystawiony,
                                                       opis.toStdString(),
@@ -277,9 +277,9 @@ void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
             break;}
         case Meta::Starodruk: {
             if(attr->count()-1 == 11){
-                QString autor = attr->at(9).value().toString();
-                QString streszczenie = attr->at(10).value().toString();
-                int lSton = attr->at(11).value().toString().toInt();
+                QString autor = attr->value("Autor").toString();
+                QString streszczenie = attr->value("Streszczenie").toString();
+                int lSton = attr->value("Liczbastron").toString().toInt();
                 MK::getInstance().addItem(new EStarodruk(autor.toStdString(),streszczenie.toStdString(),lSton,
                                                          nazwa.toStdString(), wystawiony,
                                                          opis.toStdString(),
