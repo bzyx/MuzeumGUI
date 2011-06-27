@@ -4,6 +4,7 @@
 #include <QXmlStreamReader>
 #include <QList>
 #include <QPair>
+#include <QDebug>
 #include <deque>
 
 #include "muzeumkontener.h"
@@ -30,16 +31,27 @@ void MK::addItem(EksponatMuzealny* e)
 }
 
 bool MK::deleteItem(int id){
+
+   // it.operator []( = id;
+//    m_kontener.erase(m_kontener.begin()-1+id);
+    //qDebug() << m_kontener.begin()+id;
+//    if(id == 0){
+//        m_kontener.erase(m_kontener.begin());
+//    ret = true;
+//    } else {
     bool ret = false;
     MKontener::iterator it;
-    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
+    for( it=m_kontener.begin(); it!=m_kontener.end()+1; it++ )
     {
+//        qDebug() <<(*it)->getId();
         if ((*it)->getId() == id){
             m_kontener.erase(it);
             ret = true;
+            break;
         }
     }
     return ret;
+//    }
 }
 
 void MK::MK::deleteAll()
@@ -199,7 +211,7 @@ void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
         if(attr->at(i).value().isEmpty())
             poprawnyRekord = false;
     if(poprawnyRekord){
-        //    attr->at(0).value() -> Id (nie potrzebne)
+        EksponatMuzealny::lastId(attr->value("Id").toString().toInt());
         //    attr->at(1).value() -> Typ (nie potrzebne mamy z tagu XML)
         QString nazwa = attr->value("Nazwa").toString();//attr->at(2).value().toString();
         bool wystawiony = Meta::s2b(attr->value("Wystawiony").toString().toStdString());//Meta::s2b(attr->at(3).value().toString().toStdString());
