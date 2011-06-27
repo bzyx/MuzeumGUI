@@ -144,9 +144,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>0</y>
-           <width>303</width>
-           <height>402</height>
+           <y>-174</y>
+           <width>319</width>
+           <height>399</height>
           </rect>
          </property>
          <attribute name="label">
@@ -391,9 +391,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>0</y>
-           <width>303</width>
-           <height>374</height>
+           <y>-166</y>
+           <width>317</width>
+           <height>391</height>
           </rect>
          </property>
          <attribute name="label">
@@ -413,7 +413,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_14">
+             <widget class="QLineEdit" name="ed_id">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -426,13 +426,6 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="comboBox_5">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_21">
               <property name="text">
@@ -441,7 +434,7 @@
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_15"/>
+             <widget class="QLineEdit" name="ed_nazwa"/>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_22">
@@ -453,14 +446,14 @@
             <item row="3" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_9">
               <item>
-               <widget class="QRadioButton" name="radioButton_3">
+               <widget class="QRadioButton" name="ed_wy_T">
                 <property name="text">
                  <string>Tak</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QRadioButton" name="radioButton_4">
+               <widget class="QRadioButton" name="ed_wys_N">
                 <property name="text">
                  <string>Nie</string>
                 </property>
@@ -476,7 +469,7 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QLineEdit" name="lineEdit_16"/>
+             <widget class="QLineEdit" name="ed_pol"/>
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_24">
@@ -486,7 +479,7 @@
              </widget>
             </item>
             <item row="5" column="1">
-             <widget class="QSpinBox" name="spinBox_2">
+             <widget class="QSpinBox" name="ed_wart">
               <property name="suffix">
                <string> zł</string>
               </property>
@@ -511,7 +504,7 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_10">
               <item>
-               <widget class="QComboBox" name="comboBox_6">
+               <widget class="QComboBox" name="ed_cb_fDat">
                 <item>
                  <property name="text">
                   <string>Format daty</string>
@@ -520,7 +513,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_17"/>
+               <widget class="QLineEdit" name="ed_dat"/>
               </item>
              </layout>
             </item>
@@ -532,30 +525,27 @@
              </widget>
             </item>
             <item row="7" column="1">
-             <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+             <widget class="QPlainTextEdit" name="ed_opi"/>
             </item>
             <item row="8" column="0">
-             <widget class="QLabel" name="label_32">
+             <widget class="QLabel" name="ed_l_dp1">
               <property name="text">
                <string>Dp1</string>
               </property>
              </widget>
             </item>
             <item row="8" column="1">
-             <widget class="QLineEdit" name="lineEdit_23"/>
+             <widget class="QLineEdit" name="ed_dp1"/>
             </item>
             <item row="9" column="0">
-             <widget class="QLabel" name="label_33">
+             <widget class="QLabel" name="ed_l_dp2">
               <property name="text">
                <string>Dp2</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
-             <widget class="QLineEdit" name="lineEdit_24"/>
-            </item>
             <item row="10" column="0">
-             <widget class="QLabel" name="label_34">
+             <widget class="QLabel" name="ed_l_dp3">
               <property name="text">
                <string>Dp3</string>
               </property>
@@ -563,6 +553,55 @@
             </item>
             <item row="10" column="1">
              <widget class="QLineEdit" name="lineEdit_25"/>
+            </item>
+            <item row="9" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLineEdit" name="ed_dp2"/>
+              </item>
+              <item>
+               <widget class="QComboBox" name="ed_dp2_cb"/>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="groupBox">
+                <property name="title">
+                 <string/>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QRadioButton" name="ed_dp2_N">
+                   <property name="text">
+                    <string>Nie</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="ed_dp2_T">
+                   <property name="text">
+                    <string>Tak</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="ed_typ">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -582,7 +621,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="ed_usun">
               <property name="text">
                <string>Usuń</string>
               </property>
@@ -602,14 +641,14 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="ed_zapisz">
               <property name="text">
-               <string>Zapis</string>
+               <string>Zapisz</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="ed_anuluj">
               <property name="text">
                <string>Anuluj</string>
               </property>
@@ -1057,9 +1096,17 @@
      <string>Pomoc</string>
     </property>
     <addaction name="actionO_programie"/>
+    <addaction name="actionO_Qt"/>
+   </widget>
+   <widget class="QMenu" name="menuMateria_y">
+    <property name="title">
+     <string>Materiały</string>
+    </property>
+    <addaction name="actionDodaj_materia"/>
    </widget>
    <addaction name="menuPlik"/>
    <addaction name="menuEdycja"/>
+   <addaction name="menuMateria_y"/>
    <addaction name="menuPomoc"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -1117,15 +1164,24 @@
    <property name="text">
     <string>Dodaj</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="actionEdytuj">
    <property name="text">
     <string>Edytuj</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
   </action>
   <action name="actionUsu">
    <property name="text">
     <string>Usuń</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
    </property>
   </action>
   <action name="actionO_programie">
@@ -1149,6 +1205,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionDodaj_materia">
+   <property name="text">
+    <string>Dodaj materiał</string>
+   </property>
+  </action>
+  <action name="actionO_Qt">
+   <property name="text">
+    <string>O Qt</string>
    </property>
   </action>
  </widget>

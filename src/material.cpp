@@ -67,7 +67,7 @@ void Material::readFromFile(QSettings* file){
 }
 
 int  Material::count(){
-    return materialy.size();
+    return materialy.size()+1;
 }
 Material::~Material(){}
 Material::Material(){

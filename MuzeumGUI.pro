@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     src/meta.cpp \
     src/mktyp.cpp \
     src/material.cpp \
-    src/materialmodel.cpp
+    src/materialmodel.cpp \
+    materialdialog.cpp
 
 HEADERS  += mainwindow.h \
     src/file.h \
@@ -41,9 +42,11 @@ HEADERS  += mainwindow.h \
     src/meta.h \
     src/mktyp.h \
     src/material.h \
-    src/materialmodel.h
+    src/materialmodel.h \
+    materialdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    materialdialog.ui
 
 RESOURCES += \
     zasoby.qrc

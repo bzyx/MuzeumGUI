@@ -58,9 +58,8 @@ MainWindow::MainWindow(QWidget *parent) :
     readSettings(ust);
     Material::getInstance().readFromFile(ust);
 
-    MaterialModel* matModel;
+    //MaterialModel* matModel;
     matModel = new MaterialModel(this);
-
     ui->dod_dp2_cb->setModel(matModel);
 
 
@@ -132,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent) :
     model->czyMoznaZmieniac(true);
 
     ui->dod_id->setText(QString::number(EksponatMuzealny::getLastId()));
-    Material::getInstance().saveToFile(ust);
+
 
     setDisabledIfEmpty();
     ui->tableView->hide();
@@ -441,9 +440,8 @@ void MainWindow::on_dod_fDat_currentIndexChanged(int index)
     case Meta::r : ui->dod_dat->setValidator(new QRegExpValidator(rok,this));  break;
     case Meta::mr : ui->dod_dat->setValidator(new QRegExpValidator(mr,this));  break;
     case Meta::dmr : ui->dod_dat->setValidator(new QRegExpValidator(dmr,this)); break;
-        //default: break;
+    default: break;
     }
-    //Ustawianie maski w zale¿noœci od ui->dod_fDat
 }
 
 void MainWindow::on_dod_b_anu_clicked()
@@ -617,7 +615,7 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
                 ui->sz_l_dp2->setText("Material");
                 EMebel* m = dynamic_cast<EMebel*> (element);
                 ui->sz_dp1->setText(m->getRodzaj().c_str());
-                ui->sz_dp2->setText(Meta::nazwaTypu(m->getMaterial()).c_str());
+                ui->sz_dp2->setText(Material::nazwaForMatV(m->getMaterial()));
                 break; }
             case Meta::Obraz: {
                 ui->sz_l_dp1->show();
@@ -672,7 +670,7 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
                 ui->sz_l_dp3->setText("Powierzchnia");
                 ERzezba* m = dynamic_cast<ERzezba*> (element);
                 ui->sz_dp1->setText(m->getPostac().c_str());
-                ui->sz_dp2->setText(Meta::nazwaTypu(m->getMaterial()).c_str());
+                ui->sz_dp2->setText(Material::nazwaForMatV(m->getMaterial()));
                 ui->sz_dp3->setText(QString::number(m->getPowierzchnia()));
                 break;}
             case Meta::Starodruk: {
@@ -852,6 +850,7 @@ void MainWindow::on_actionZapisz_jako_triggered()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (OKToClose()) {
+        Material::getInstance().saveToFile(ust);
         saveSettings(ust);
         event->accept();
     } else {
@@ -924,7 +923,7 @@ void MainWindow::on_naStar_ostPlik_clicked()
         qDebug() << MK::getInstance().count();
         if (MK::getInstance().count()>0){
             //QString tmp = tytul;
-           // tmp += " - ";
+            // tmp += " - ";
             //tmp += lastFileName;
             fileName = lastFileName;
             saveFileName = lastFileName;
@@ -945,4 +944,42 @@ void MainWindow::on_naStart_clicked()
 void MainWindow::on_naStart2_clicked()
 {
     on_actionNowa_baza_triggered();
+}
+
+void MainWindow::on_actionDodaj_triggered()
+{
+    if(!ui->panelDodawania->isVisible())
+        ui->actionPoka_panel_dodawania->trigger();
+    ui->panelDodawania->setCurrentIndex(0);
+}
+
+void MainWindow::on_actionEdytuj_triggered()
+{
+    if(!ui->panelDodawania->isVisible())
+        ui->actionPoka_panel_dodawania->trigger();
+    ui->panelDodawania->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionO_Qt_triggered()
+{
+    QApplication::aboutQt();
+}
+
+void MainWindow::on_actionO_programie_triggered()
+{
+    QMessageBox::about(this,
+                       "O programie...",
+                       QString(
+                           "<p>Muzeum - baza danych</p>"
+                           "<p align=\"right\"> <br><i>Marcin Jabrzyk</i><br><b>Programowanie Komputerów 4</b><br>Informatyka sem. 4 gr. R<br> <br>2011 </p>")
+                       );
+}
+
+void MainWindow::on_actionDodaj_materia_triggered()
+{
+    MaterialDialog dialog;
+    dialog.exec();
+    delete matModel;
+    matModel = new MaterialModel(this);
+    ui->dod_dp2_cb->setModel(matModel);
 }

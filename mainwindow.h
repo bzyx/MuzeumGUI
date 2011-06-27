@@ -8,6 +8,8 @@
 #include <QValidator>
 #include <QSettings>
 #include "eksponatmodel.h"
+#include "src/materialmodel.h"
+#include "materialdialog.h"
 
 namespace Ui {
     class MainWindow;
@@ -21,6 +23,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setDisabledIfEmpty();
+    MaterialModel* matModel;
 
 private slots:
     void on_top_cb_wysTyp_currentIndexChanged(int index);
@@ -58,6 +61,17 @@ private slots:
     void on_naStart_clicked();
 
     void on_naStart2_clicked();
+
+    void on_actionDodaj_triggered();
+
+    void on_actionEdytuj_triggered();
+
+    void on_actionO_Qt_triggered();
+
+    void on_actionO_programie_triggered();
+
+    void on_actionDodaj_materia_triggered();
+
 
 private:
     QString tytul;
