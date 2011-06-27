@@ -80,33 +80,6 @@
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="QLabel" name="top_l_filt">
-        <property name="text">
-         <string>Filtrowanie:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="top_filt_lineEdit">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="top_fil_cb"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="top_fil_pushButt">
-        <property name="text">
-         <string>Filtruj</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item>
@@ -124,7 +97,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>320</width>
+          <width>350</width>
           <height>16777215</height>
          </size>
         </property>
@@ -144,9 +117,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-174</y>
-           <width>319</width>
-           <height>399</height>
+           <y>-91</y>
+           <width>333</width>
+           <height>388</height>
           </rect>
          </property>
          <attribute name="label">
@@ -157,6 +130,12 @@
            <layout class="QFormLayout" name="formLayout">
             <property name="fieldGrowthPolicy">
              <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
+            <property name="horizontalSpacing">
+             <number>0</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>5</number>
             </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label_11">
@@ -320,6 +299,12 @@
               </item>
               <item>
                <widget class="QGroupBox" name="dod_dp2gb">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>200</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string/>
                 </property>
@@ -391,9 +376,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-166</y>
-           <width>317</width>
-           <height>391</height>
+           <y>-148</y>
+           <width>333</width>
+           <height>393</height>
           </rect>
          </property>
          <attribute name="label">
@@ -404,6 +389,9 @@
            <layout class="QFormLayout" name="formLayout_2">
             <property name="fieldGrowthPolicy">
              <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
+            <property name="horizontalSpacing">
+             <number>0</number>
             </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label_19">
@@ -427,7 +415,7 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_21">
+             <widget class="QLabel" name="ed_l_nazwa">
               <property name="text">
                <string>Nazwa</string>
               </property>
@@ -437,7 +425,7 @@
              <widget class="QLineEdit" name="ed_nazwa"/>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_22">
+             <widget class="QLabel" name="ed_l_wyst">
               <property name="text">
                <string>Wystawiony</string>
               </property>
@@ -446,9 +434,12 @@
             <item row="3" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_9">
               <item>
-               <widget class="QRadioButton" name="ed_wy_T">
+               <widget class="QRadioButton" name="ed_wys_T">
                 <property name="text">
                  <string>Tak</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -462,7 +453,7 @@
              </layout>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_23">
+             <widget class="QLabel" name="ed_l_pol">
               <property name="text">
                <string>Położenie</string>
               </property>
@@ -472,7 +463,7 @@
              <widget class="QLineEdit" name="ed_pol"/>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_24">
+             <widget class="QLabel" name="ed_l_wart">
               <property name="text">
                <string>Wartość</string>
               </property>
@@ -495,7 +486,7 @@
              </widget>
             </item>
             <item row="6" column="0">
-             <widget class="QLabel" name="label_25">
+             <widget class="QLabel" name="ed_l_dat">
               <property name="text">
                <string>Data</string>
               </property>
@@ -504,13 +495,7 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_10">
               <item>
-               <widget class="QComboBox" name="ed_cb_fDat">
-                <item>
-                 <property name="text">
-                  <string>Format daty</string>
-                 </property>
-                </item>
-               </widget>
+               <widget class="QComboBox" name="ed_cb_fDat"/>
               </item>
               <item>
                <widget class="QLineEdit" name="ed_dat"/>
@@ -518,7 +503,7 @@
              </layout>
             </item>
             <item row="7" column="0">
-             <widget class="QLabel" name="label_26">
+             <widget class="QLabel" name="ed_l_opis">
               <property name="text">
                <string>Opis</string>
               </property>
@@ -552,7 +537,7 @@
              </widget>
             </item>
             <item row="10" column="1">
-             <widget class="QLineEdit" name="lineEdit_25"/>
+             <widget class="QLineEdit" name="ed_dp3"/>
             </item>
             <item row="9" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -563,7 +548,13 @@
                <widget class="QComboBox" name="ed_dp2_cb"/>
               </item>
               <item>
-               <widget class="QGroupBox" name="groupBox">
+               <widget class="QGroupBox" name="ed_dp2_gb">
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>200</height>
+                 </size>
+                </property>
                 <property name="title">
                  <string/>
                 </property>
@@ -575,6 +566,9 @@
                   <widget class="QRadioButton" name="ed_dp2_N">
                    <property name="text">
                     <string>Nie</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -650,7 +644,7 @@
             <item>
              <widget class="QPushButton" name="ed_anuluj">
               <property name="text">
-               <string>Anuluj</string>
+               <string>Anuluj / Wyczyść</string>
               </property>
              </widget>
             </item>

@@ -31,6 +31,7 @@ private slots:
     void setVisiblePanelSzczegoly();
     void setDodawanieEnabled(bool b);
     bool checkDodajFields();
+    bool checkEdytujFields();
     void on_dod_cb_typ_currentIndexChanged(int index);
 
     void on_dod_fDat_currentIndexChanged(int index);
@@ -73,7 +74,20 @@ private slots:
     void on_actionDodaj_materia_triggered();
 
 
+    void on_tableView_doubleClicked(const QModelIndex &index);
+
+    void on_actionUsu_triggered();
+
+    void on_ed_cb_fDat_currentIndexChanged(int index);
+
+    void on_ed_anuluj_clicked();
+
+    void on_ed_zapisz_clicked();
+
+    void on_ed_usun_clicked();
+
 private:
+    int currentEditing;
     QString tytul;
     QSettings* ust;
     QString lastFileName;

@@ -54,13 +54,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sz_dp3->hide();
 
     ui->top_cb_wysTyp->setEnabled(false);
-    ust = new QSettings("./settings.ini", QSettings::IniFormat);
+    ust = new QSettings("settings.ini", QSettings::IniFormat);
     readSettings(ust);
     Material::getInstance().readFromFile(ust);
 
     //MaterialModel* matModel;
     matModel = new MaterialModel(this);
     ui->dod_dp2_cb->setModel(matModel);
+    ui->ed_dp2_cb->setModel(matModel);
 
 
     //    Tworzenie validatorów do opcjonalnych pól
@@ -75,56 +76,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dod_fDat->addItem("Miesi¹c i rok (mm.rrrr)",Meta::mr);
     ui->dod_fDat->addItem("Dzieñ,miesi¹æ,rok (dd.mm.rrrr)",Meta::dmr);
 
-    //MK::getInstance().readFromFile("plik.xml");
+    ui->ed_cb_fDat->addItem("Wiek (w)",Meta::w);
+    ui->ed_cb_fDat->addItem("Rok (rrrr)",Meta::r);
+    ui->ed_cb_fDat->addItem("Miesi¹c i rok (mm.rrrr)",Meta::mr);
+    ui->ed_cb_fDat->addItem("Dzieñ,miesi¹æ,rok (dd.mm.rrrr)",Meta::dmr);
 
-    //    MK::getInstance().addItem(new EPrzemiotUzytkowy("ttttt",1,"EMtest",
-    //                                                    1,"Bardzo krótki opis"
-    //                                                    ,"Magazyn1", 100,
-    //                                                    Meta::PrzedmiotUzytkowy,
-    //                                                    Meta::w,
-    //                                                    "XXI") );
-    //    MK::getInstance().addItem(new EObraz(17.0,18.5,"Van Gogh","EMtest",
-    //                                         1,"Bardzo inny opis opis"
-    //                                         ,"Magazyn1", 100,
-    //                                         Meta::Obraz,
-    //                                         Meta::w,
-    //                                         "XX"));
-    //    MK::getInstance().addItem(new EObraz(1,12.5,"azPicasso","abubat",
-    //                                         1,"Bardaaa"
-    //                                         ,"Magazyn2", 100,
-    //                                         Meta::Obraz,
-    //                                         Meta::w,
-    //                                         "XXI"));
-
-    //    MK::getInstance().addItem(new EObraz(4,12.5,"aaPicasso","abubat",
-    //                                         1,"Bardaaa"
-    //                                         ,"Magazyn2", 100,
-    //                                         Meta::Obraz,
-    //                                         Meta::w,
-    //                                         "XXI"));
-    //    MK::getInstance().addItem(new EObraz(4,155,"zdasPicasso","abubat",
-    //                                         1,"Bardaaa"
-    //                                         ,"Magazyn2", 100,
-    //                                         Meta::Obraz,
-    //                                         Meta::w,
-    //                                         "XXI"));
-    //    MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
-    //                                         1,"Bardaaa"
-    //                                         ,"Magazyn2", 100,
-    //                                         Meta::Obraz,
-    //                                         Meta::w,
-    //                                         "XXI"));
-    //    for(int i=0; i< 100; ++i){
-    //        MK::getInstance().addItem(new EObraz(4,12.5,"zasPicasso","abubat",
-    //                                             1,"Bardaaa"
-    //                                             ,"Magazyn2", 100,
-    //                                             Meta::Obraz,
-    //                                             Meta::w,
-    //                                             "XXI"));
-    //    }
-    //MK::getInstance()[2]->nazwa("Ca³kiem nowa nazwa");
-    // EObraz* test = dynamic_cast<EObraz*> (MK::getInstance()[2]);
-    //test->wysokosc(222.22);
     MKTyp::getInstance().updateMKTyp();
     model = new EksponatModel(Meta::NieOkreslonoTypu,parent);
     ui->tableView->setModel(model);
@@ -138,10 +94,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->naStart->show();
     ui->naStart2->show();
     ui->top_cb_wysTyp->hide();
-    ui->top_filt_lineEdit->hide();
-    ui->top_fil_cb->hide();
-    ui->top_fil_pushButt->hide();
-    ui->top_l_filt->hide();
     ui->top_l_wysTyp->hide();
     ui->mainToolBar->setEnabled(false);
     ui->menuEdycja->setEnabled(false);
@@ -161,11 +113,12 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 void MainWindow::setDisabledIfEmpty(){
     if (model->isEmpty()){
+        ui->tableView->reset();
         ui->tableView->setEnabled(false);
-        //ui->statusBar->showMessage("Brak danych do wyœwietlenia.",1000);
+        ui->statusBar->showMessage("Brak danych do wyœwietlenia.",1000);
     } else {
         ui->tableView->setEnabled(true);
-        //ui->statusBar->clearMessage();
+        ui->statusBar->clearMessage();
     }
 }
 
@@ -194,6 +147,7 @@ void MainWindow::on_top_cb_wysTyp_currentIndexChanged(int index)
 void  MainWindow::setVisiblePanelDodawania(){
     if(ui->panelDodawania->isHidden()){
         ui->actionPoka_panel_dodawania->setText("Ukryj panel dodawania");
+        ui->panelDodawania->setCurrentIndex(0);
         ui->panelDodawania->show();
     } else {
         ui->actionPoka_panel_dodawania->setText("Poka¿ panel dodawania");
@@ -556,7 +510,7 @@ void MainWindow::on_dod_b_dod_clicked()
         default:
             break;
         }
-        MKTyp::getInstance().updateMKTyp();
+        //MKTyp::getInstance().updateMKTyp();
         model->makeReset();
         setDisabledIfEmpty();
     } else if(!checkDodajFields()) {
@@ -751,10 +705,6 @@ void MainWindow::actionsAfterOpen(){
     on_top_cb_wysTyp_currentIndexChanged(0);
 
     ui->top_cb_wysTyp->show();
-    ui->top_filt_lineEdit->show();
-    ui->top_fil_cb->show();
-    ui->top_fil_pushButt->show();
-    ui->top_l_filt->show();
     ui->top_l_wysTyp->show();
     ui->mainToolBar->setEnabled(true);
     ui->menuEdycja->setEnabled(true);
@@ -795,13 +745,13 @@ void MainWindow::readSettings(QSettings* file){
     if(popr)
         r.setX(wart);
     else
-        r.setX((800-desktop->width())/2);
+        r.setX((desktop->width()-800)/2);
     popr = false;
     wart = file->value("Y").toString().toInt(&popr);
     if(popr)
         r.setY(wart);
     else
-        r.setY((550-desktop->height())/2);
+        r.setY((desktop->height()-550)/2);
 
     file->setArrayIndex(2);
     popr = false;
@@ -920,7 +870,6 @@ void MainWindow::on_naStar_ostPlik_clicked()
     QDir file(lastFileName);
     if (!file.exists()){
         MK::getInstance().readFromFile(lastFileName.toStdString());
-        qDebug() << MK::getInstance().count();
         if (MK::getInstance().count()>0){
             //QString tmp = tytul;
             // tmp += " - ";
@@ -928,6 +877,18 @@ void MainWindow::on_naStar_ostPlik_clicked()
             fileName = lastFileName;
             saveFileName = lastFileName;
             //setWindowTitle(tmp);
+
+            //            for (unsigned int i=0; i< 50; ++i){
+
+            //                MK::getInstance().addItem(new EObraz(4,12.5,"Picaaaasso","abubat",
+            //                                                     1,"Bardaaa"
+            //                                                     ,"Magazyn2", 100,
+            //                                                     Meta::Obraz,
+            //                                                     Meta::w,
+            //                                                     "XXI"));
+
+            //            }
+
             actionsAfterOpen();
             ui->statusBar->showMessage("Plik zosta³ wczytany",800);
         }
@@ -955,9 +916,15 @@ void MainWindow::on_actionDodaj_triggered()
 
 void MainWindow::on_actionEdytuj_triggered()
 {
-    if(!ui->panelDodawania->isVisible())
-        ui->actionPoka_panel_dodawania->trigger();
-    ui->panelDodawania->setCurrentIndex(1);
+    QModelIndex index = ui->tableView->currentIndex();
+    if(index.row() != -1){
+        on_tableView_doubleClicked(index);
+    } else {
+        QMessageBox::warning(this,"Muzeum - baza danych","Nale¿y zaznaczyæ element do edycji.",QMessageBox::Ok);
+    }
+    //    if(!ui->panelDodawania->isVisible())
+    //        ui->actionPoka_panel_dodawania->trigger();
+    //    ui->panelDodawania->setCurrentIndex(1);
 }
 
 void MainWindow::on_actionO_Qt_triggered()
@@ -982,4 +949,375 @@ void MainWindow::on_actionDodaj_materia_triggered()
     delete matModel;
     matModel = new MaterialModel(this);
     ui->dod_dp2_cb->setModel(matModel);
+}
+
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    if(model->getCurrentTyp()!= Meta::NieOkreslonoTypu){
+        QMessageBox::information(this,"Muzeum - baza danych","Mo¿liwoœæ edycji jest dostêpna w trybie widoku wszystkich elementów",QMessageBox::Ok);
+    }else {
+    Meta::Typ typObiektu = MK::getInstance()[index.row()]->getTyp();
+    currentEditing = index.row();
+    if(!ui->panelDodawania->isVisible())
+        ui->actionPoka_panel_dodawania->trigger();
+    ui->panelDodawania->setCurrentIndex(1);
+    int id= ui->tableView->model()->data(index,Qt::UserRole).toInt();
+    ui->ed_id->setText(QString::number(id));
+    ui->ed_typ->setText(Meta::nazwaTypu(MK::getInstance()[index.row()]->getTyp()).c_str());
+    ui->ed_nazwa->setText(MK::getInstance()[index.row()]->getNazwa().c_str());
+    ui->ed_wys_T->setChecked(MK::getInstance()[index.row()]->getWystawiony());
+    ui->ed_wys_N->setChecked(!MK::getInstance()[index.row()]->getWystawiony());
+    ui->ed_pol->setText(MK::getInstance()[index.row()]->getPolozenie().c_str());
+    ui->ed_wart->setValue(MK::getInstance()[index.row()]->getWartosc());
+    Meta::FormatDaty fd = MK::getInstance()[index.row()]->getFormatDaty();
+    int inx = 0;
+    switch (fd){
+    case Meta::w: inx = 0; break;
+    case Meta::r: inx = 1; break;
+    case Meta::mr: inx = 2; break;
+    case Meta::dmr: inx = 3; break;
+    default: inx = 0;
+    }
+    ui->ed_cb_fDat->setCurrentIndex(inx);
+    ui->ed_dat->setText(MK::getInstance()[index.row()]->getData().c_str());
+    ui->ed_opi->setPlainText(MK::getInstance()[index.row()]->getOpis().c_str());
+
+    ui->dod_dp1->setValidator(0);
+    ui->dod_dp2->setValidator(0);
+    ui->dod_dp3->setValidator(0);
+
+    switch (typObiektu){
+    case Meta::Mebel: {
+        EMebel* m = dynamic_cast<EMebel*>(MK::getInstance()[index.row()]);
+        ui->ed_l_dp1->setText("Rodzaj");  ui->ed_l_dp1->show();
+        ui->ed_dp1->setText(m->getRodzaj().c_str());  ui->ed_dp1->show();
+        ui->ed_l_dp2->setText("Materia³");ui->ed_l_dp2->show();
+        ui->ed_dp2->hide();
+        ui->ed_dp2_N->hide();
+        ui->ed_dp2_T->hide();
+        ui->ed_dp2_gb->hide();
+        ui->ed_dp2_cb->setCurrentIndex(m->getMaterial()); ui->ed_dp2_cb->show();
+        ui->ed_l_dp3->hide();
+        ui->ed_dp3->hide();
+        break;}
+    case Meta::Obraz: {
+        EObraz* m = dynamic_cast<EObraz*>(MK::getInstance()[index.row()]);
+        ui->ed_l_dp1->setText("Wysokoœæ"); ui->ed_l_dp1->show();
+        ui->ed_dp1->setText(QString::number(m->getWysokosc())); ui->ed_dp1->show();
+        ui->ed_dp1->setValidator(v_dp1);
+        ui->ed_l_dp2->setText("Szerokoœæ"); ui->ed_l_dp2->show();
+        ui->ed_dp2->setText(QString::number(m->getSzerokosc())); ui->ed_dp2->show();
+        ui->ed_dp2->setValidator(v_dp2);
+        ui->ed_dp2_N->hide();
+        ui->ed_dp2_T->hide();
+        ui->ed_dp2_gb->hide();
+        ui->ed_dp2_cb->hide();
+        ui->ed_l_dp3->setText("Autor"); ui->ed_l_dp3->show();
+        ui->ed_dp3->setText(m->getAutor().c_str()); ui->ed_dp3->show();
+        break;}
+    case Meta::PrzedmiotUzytkowy: {
+        EPrzemiotUzytkowy* m = dynamic_cast<EPrzemiotUzytkowy*>(MK::getInstance()[index.row()]);
+        ui->ed_l_dp1->setText("Opis dzia³ania");ui->ed_l_dp1->show();
+        ui->ed_dp1->setText(m->getOpisDzialania().c_str());ui->ed_dp1->show();
+        ui->ed_l_dp2->setText("Czy mo¿na dotkn¹æ");ui->ed_l_dp2->show();
+        ui->ed_dp2->hide();
+        ui->ed_dp2_N->setChecked(!m->getCzyMoznaDotykac());ui->ed_dp2_N->show();
+        ui->ed_dp2_T->setChecked(m->getCzyMoznaDotykac());ui->ed_dp2_T->show();
+        ui->ed_dp2_gb->show();
+        ui->ed_dp2_cb->hide();
+        ui->ed_l_dp3->hide();
+        ui->ed_dp3->hide();
+        break;}
+    case Meta::Rekopis: {
+        ERekopis* m = dynamic_cast<ERekopis*>(MK::getInstance()[index.row()]);
+        ui->ed_l_dp1->setText("Autor");ui->ed_l_dp1->show();
+        ui->ed_dp1->setText(m->getAutor().c_str());ui->ed_dp1->show();
+        ui->ed_l_dp2->setText("Czy jest zeskanowany");ui->ed_l_dp2->show();
+        ui->ed_dp2->hide();
+        ui->ed_dp2_N->setChecked(!m->getCzyZeskanowany());ui->ed_dp2_N->show();
+        ui->ed_dp2_T->setChecked(m->getCzyZeskanowany());ui->ed_dp2_T->show();
+        ui->ed_dp2_gb->show();
+        ui->ed_dp2_cb->hide();
+        ui->ed_l_dp3->hide();
+        ui->ed_dp3->hide();
+        break;}
+    case Meta::Rzezba: {
+        ERzezba* m = dynamic_cast<ERzezba*>(MK::getInstance()[index.row()]);
+        ui->ed_l_dp1->setText("Postaæ");  ui->ed_l_dp1->show();
+        ui->ed_dp1->setText(m->getPostac().c_str());  ui->ed_dp1->show();
+        ui->ed_l_dp2->setText("Materia³");ui->ed_l_dp2->show();
+        ui->ed_dp2->hide();
+        ui->ed_dp2_N->hide();
+        ui->ed_dp2_T->hide();
+        ui->ed_dp2_gb->hide();
+        ui->ed_dp2_cb->setCurrentIndex(m->getMaterial()); ui->ed_dp2_cb->show();
+        ui->ed_l_dp3->setText("Powierzchnia"); ui->ed_l_dp3->show();
+        ui->ed_dp3->setText(QString::number(m->getPowierzchnia())); ui->ed_dp3->show();
+        ui->ed_dp3->setValidator(v_dp3);
+
+        break;}
+    case Meta::Starodruk:{
+        EStarodruk* m = dynamic_cast<EStarodruk*>(MK::getInstance()[index.row()]);
+        ui->ed_l_dp1->setText("Autor");  ui->ed_l_dp1->show();
+        ui->ed_dp1->setText(m->getAutor().c_str());  ui->ed_dp1->show();
+        ui->ed_l_dp2->setText("Streszczenie");ui->ed_l_dp2->show();
+        ui->ed_dp2->setText(m->getStreszczenie().c_str()); ui->ed_dp2->show();
+        ui->ed_dp2_N->hide();
+        ui->ed_dp2_T->hide();
+        ui->ed_dp2_gb->hide();
+        ui->ed_dp2_cb->hide();
+        ui->ed_l_dp3->setText("Liczba Stron"); ui->ed_l_dp3->show();
+        ui->ed_dp3->setText(QString::number(m->getLiczbaStron())); ui->ed_dp3->show();
+        ui->ed_dp3->setValidator(v_dp3a);
+        break;}
+    default: {
+        ui->ed_l_dp1->hide();
+        ui->ed_dp1->hide();
+        ui->ed_l_dp2->hide();
+        ui->ed_dp2->hide();
+        ui->ed_dp2_N->hide();
+        ui->ed_dp2_T->hide();
+        ui->ed_dp2_gb->hide();
+        ui->ed_dp2_cb->hide();
+        ui->ed_l_dp3->hide();
+        ui->ed_dp3->hide();
+        break;}
+    }
+}
+
+
+}
+void MainWindow::on_actionUsu_triggered(){
+    QModelIndex index = ui->tableView->currentIndex();
+    if(index.row() != -1){
+        int i= ui->tableView->model()->data(index,Qt::UserRole).toInt();
+        MK::getInstance().deleteItem(i);
+        //    delete model;
+        //    model = new EksponatModel(Meta::NieOkreslonoTypu,this->parent());
+        //    ui->tableView->setModel(model);
+        //    model->czyMoznaZmieniac(true);
+        //    MKTyp::getInstance().updateMKTyp();
+        model->makeReset();
+        setDisabledIfEmpty();
+        ui->tableView->reset();
+        setDisabledIfEmpty();
+    } else{
+        QMessageBox::warning(this,"Muzeum - baza danych","Nale¿y zaznaczyæ element do usuniniêcia.",QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_ed_cb_fDat_currentIndexChanged(int index)
+{
+    Meta::FormatDaty fd = static_cast<Meta::FormatDaty> (ui->ed_cb_fDat->itemData(index).toInt());
+    QRegExp wiek("[I,V,X,L]{1,3}");
+    QRegExp rok("[0-2][0-9]{3}");
+    QRegExp mr("^((0[1-9])|(1[0-2]))[.][0-2][0-9]{3}");
+    QRegExp dmr("(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.][0-2][0-9]{3}");
+    switch (fd) {
+    case Meta::w: ui->ed_dat->setValidator(new QRegExpValidator(wiek,this)); break;
+    case Meta::r : ui->ed_dat->setValidator(new QRegExpValidator(rok,this));  break;
+    case Meta::mr : ui->ed_dat->setValidator(new QRegExpValidator(mr,this));  break;
+    case Meta::dmr : ui->ed_dat->setValidator(new QRegExpValidator(dmr,this)); break;
+    default: break;
+    }
+}
+
+void MainWindow::on_ed_anuluj_clicked()
+{
+    ui->ed_id->clear();
+    ui->ed_typ->clear();
+    ui->ed_nazwa->clear();
+    ui->ed_wys_T->setChecked(false);
+    ui->ed_wys_N->setChecked(true);
+    ui->ed_pol->clear();
+    ui->ed_wart->clear();
+    ui->ed_dat->clear();
+    ui->ed_opi->clear();
+    ui->ed_cb_fDat->setCurrentIndex(0);
+
+    ui->ed_l_dp1->hide();
+    ui->ed_dp1->hide();
+    ui->ed_l_dp2->hide();
+    ui->ed_dp2->hide();
+    ui->ed_dp2_N->hide();
+    ui->ed_dp2_T->hide();
+    ui->ed_dp2_gb->hide();
+    ui->ed_dp2_cb->hide();
+    ui->ed_l_dp3->hide();
+    ui->ed_dp3->hide();
+
+    ui->ed_l_nazwa->setStyleSheet("");
+    ui->ed_nazwa->setToolTip("");
+    ui->ed_l_pol->setStyleSheet("");
+    ui->ed_pol->setToolTip("");
+    ui->ed_l_dat->setStyleSheet("");
+    ui->ed_dat->setToolTip("");
+    ui->ed_l_opis->setStyleSheet("");
+    ui->ed_opi->setToolTip("");
+    ui->ed_l_wyst->setStyleSheet("");
+    ui->ed_wys_N->setToolTip("");
+    ui->ed_wys_T->setToolTip("");
+    ui->ed_l_dp1->setStyleSheet("");
+    ui->ed_dp1->setToolTip("");
+    ui->ed_l_dp2->setStyleSheet("");
+    ui->ed_dp2->setToolTip("");
+    ui->ed_l_dp3->setStyleSheet("");
+    ui->ed_dp3->setToolTip("");
+}
+bool MainWindow::checkEdytujFields(){
+    bool retunValue = true;
+    if(ui->ed_nazwa->text().simplified().isEmpty()){
+        retunValue = false;
+        ui->ed_l_nazwa->setStyleSheet("QLabel { color : red; }");
+        ui->ed_nazwa->setToolTip("Nale¿y podaæ nazwê obiektu.");
+        ui->ed_nazwa->clear();
+    } else if(!ui->ed_nazwa->text().simplified().isEmpty()){
+        ui->ed_l_nazwa->setStyleSheet("");
+        ui->ed_nazwa->setToolTip("");
+    }
+
+    if(ui->ed_pol->text().simplified().isEmpty()){
+        retunValue = false;
+        ui->ed_l_pol->setStyleSheet("QLabel { color : red; }");
+        ui->ed_pol->setToolTip("Nale¿y podaæ po³o¿enie obiektu.");
+        ui->ed_pol->clear();
+    } else if(!ui->ed_pol->text().simplified().isEmpty()){
+        ui->ed_l_pol->setStyleSheet("");
+        ui->ed_pol->setToolTip("");
+    }
+
+    if(ui->ed_dat->text().simplified().isEmpty()){
+        retunValue = false;
+        ui->ed_l_dat->setStyleSheet("QLabel { color : red; }");
+        ui->ed_dat->setToolTip("Nale¿y podaæ datê w wybranym formacie");
+        ui->ed_dat->clear();
+    } else if(!ui->ed_dat->text().simplified().isEmpty()){
+        ui->ed_l_dat->setStyleSheet("");
+        ui->ed_dat->setToolTip("");
+    }
+
+    if(ui->ed_opi->toPlainText().simplified().isEmpty()){
+        retunValue = false;
+        ui->ed_l_opis->setStyleSheet("QLabel { color : red; }");
+        ui->ed_opi->setToolTip("Nale¿y podaæ opis obiektu");
+        ui->ed_opi->clear();
+    } else if(!ui->ed_opi->toPlainText().simplified().isEmpty()){
+        ui->ed_l_opis->setStyleSheet("");
+        ui->ed_opi->setToolTip("");
+    }
+
+    if (!(ui->ed_wys_N->isChecked() || ui->ed_wys_T->isChecked())){
+        retunValue = false;
+        ui->ed_l_wyst->setStyleSheet("QLabel { color : red; }");
+        ui->ed_l_wyst->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
+        ui->ed_wys_N->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
+        ui->ed_wys_T->setToolTip("Nale¿y wybraæ czy eksponat ma byæ wystawiony.");
+    } else if (ui->ed_wys_N->isChecked() || ui->ed_wys_T->isChecked()){
+        ui->ed_l_wyst->setStyleSheet("");
+        ui->ed_wys_N->setToolTip("");
+        ui->ed_wys_T->setToolTip("");
+    }
+    if(!ui->ed_dp1->isHidden()){
+        if(ui->ed_dp1->text().simplified().isEmpty()){
+            retunValue = false;
+            ui->ed_l_dp1->setStyleSheet("QLabel { color : red; }");
+            ui->ed_dp1->setToolTip("Nale¿y wype³niæ te pole.");
+            ui->ed_dp1->clear();
+        } else if(!ui->ed_dp1->text().simplified().isEmpty()){
+            ui->ed_l_dp1->setStyleSheet("");
+            ui->ed_dp1->setToolTip("");
+        }
+    }
+
+    if(!ui->ed_dp2->isHidden()){
+        if(ui->ed_dp2->text().simplified().isEmpty()){
+            retunValue = false;
+            ui->ed_l_dp2->setStyleSheet("QLabel { color : red; }");
+            ui->ed_dp2->setToolTip("Nale¿y wype³niæ te pole.");
+            ui->ed_dp2->clear();
+        } else if(!ui->ed_dp2->text().simplified().isEmpty()){
+            ui->ed_l_dp2->setStyleSheet("");
+            ui->ed_dp2->setToolTip("");
+        }
+    }
+
+    if(!ui->ed_dp3->isHidden()){
+        if(ui->ed_dp3->text().simplified().isEmpty()){
+            retunValue = false;
+            ui->ed_l_dp3->setStyleSheet("QLabel { color : red; }");
+            ui->ed_dp3->setToolTip("Nale¿y wype³niæ te pole.");
+            ui->ed_dp3->clear();
+        } else if(!ui->ed_dp3->text().simplified().isEmpty()){
+            ui->ed_l_dp3->setStyleSheet("");
+            ui->ed_dp3->setToolTip("");
+        }
+    }
+    return retunValue;
+}
+
+void MainWindow::on_ed_zapisz_clicked()
+{
+    if(currentEditing!=-1){
+    if(checkEdytujFields()){
+    Meta::Typ typObiektu = MK::getInstance()[currentEditing]->getTyp();
+    MK::getInstance()[currentEditing]->nazwa(ui->ed_nazwa->text().simplified().toStdString());
+    MK::getInstance()[currentEditing]->wystawiony(ui->ed_wys_T->isChecked());
+    MK::getInstance()[currentEditing]->polozenie(ui->ed_pol->text().simplified().toStdString());
+    MK::getInstance()[currentEditing]->wartosc(ui->ed_wart->value());
+    Meta::FormatDaty fd = static_cast<Meta::FormatDaty> (ui->ed_cb_fDat->itemData(ui->ed_cb_fDat->currentIndex()).toInt());
+    MK::getInstance()[currentEditing]->formatDaty(fd);
+    MK::getInstance()[currentEditing]->data(ui->ed_dat->text().simplified().toStdString());
+    MK::getInstance()[currentEditing]->opis(ui->ed_opi->toPlainText().simplified().toStdString());
+
+    switch (typObiektu){
+    case Meta::Mebel: {
+        EMebel* m = dynamic_cast<EMebel*>(MK::getInstance()[currentEditing]);
+        m->rodzaj(ui->ed_dp1->text().simplified().toStdString());
+        int numMat = static_cast<int> (ui->ed_dp2_cb->itemData(ui->ed_dp2_cb->currentIndex()).toInt());
+        m->material(numMat);
+        break;}
+    case Meta::Obraz: {
+        EObraz* m = dynamic_cast<EObraz*>(MK::getInstance()[currentEditing]);
+        m->wysokosc(ui->ed_dp1->text().toDouble());
+        m->szerokosc(ui->ed_dp2->text().toDouble());
+        m->autor(ui->ed_dp3->text().simplified().toStdString());
+        break;}
+    case Meta::PrzedmiotUzytkowy: {
+        EPrzemiotUzytkowy* m = dynamic_cast<EPrzemiotUzytkowy*>(MK::getInstance()[currentEditing]);
+        m->opisDzialania(ui->ed_dp1->text().toStdString());
+        m->czyMoznaDotykac(ui->ed_dp2_T->isChecked());
+        break;}
+    case Meta::Rekopis: {
+        ERekopis* m = dynamic_cast<ERekopis*>(MK::getInstance()[currentEditing]);
+        m->autor(ui->ed_dp1->text().simplified().toStdString());
+        m->czyZeskanowany(ui->ed_dp2_T->isChecked());
+        break;}
+    case Meta::Rzezba: {
+        ERzezba* m = dynamic_cast<ERzezba*>(MK::getInstance()[currentEditing]);
+        m->postac(ui->ed_dp1->text().simplified().toStdString());
+        int numMat = static_cast<int> (ui->ed_dp2_cb->itemData(ui->ed_dp2_cb->currentIndex()).toInt());
+        m->material(numMat);
+        m->powierchnia(ui->ed_dp3->text().toDouble());
+        break;}
+    case Meta::Starodruk:{
+        EStarodruk* m = dynamic_cast<EStarodruk*>(MK::getInstance()[currentEditing]);
+        m->autor(ui->ed_dp1->text().simplified().toStdString());
+        m->sterszczenie(ui->ed_dp2->text().simplified().toStdString());
+        m->liczbaStron(ui->ed_dp3->text().toInt());
+        break;}
+    default: {
+        break;}
+    }
+
+    //on_ed_anuluj_clicked();
+    ui->statusBar->showMessage("Zmiany zosta³y zapisane",1000);
+    }
+    currentEditing =-1;
+    }
+
+}
+
+void MainWindow::on_ed_usun_clicked()
+{
+    on_actionUsu_triggered();
 }
