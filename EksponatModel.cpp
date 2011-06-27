@@ -51,6 +51,18 @@ QVariant EksponatModel::data(const QModelIndex &index, int role) const{
         }
         return z[index.column()];
     }
+    if (role == Qt::UserRole){
+        int z;
+        EksponatMuzealny* m;
+        if (m_typ == Meta::NieOkreslonoTypu){
+            m = MK::getInstance()[index.row()];
+            z = m->getId();
+        } else {
+            m = MKTyp::getInstance().getObjectFor(m_typ,index.row());
+            z = m->getId();
+        }
+        return z;
+    }
     else
         return QVariant();
 }
@@ -109,6 +121,7 @@ bool EksponatModel::isEmpty(){
 }
 
 void EksponatModel::makeReset(){
+    MKTyp::getInstance().updateMKTyp();
     reset();
 }
 
