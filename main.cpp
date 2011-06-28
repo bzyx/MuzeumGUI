@@ -68,13 +68,30 @@ oddzielony od interfejsu GUI. Dodatkow¹ zalet¹ tego rozwi¹zania jest bardzo du¿a
 - podzia³ kodu na czêœæ graficzn¹ i przetwrzaj¹c¹ pozwala na ³atw¹ rozbudowê \n
 - przyjemny dla u¿ytkownika interfejs z podpowiadaniem w razie problemów
 \subsection mozliwosci Instrukcja:
-\paragraph
 Po uruchomieniu programu pojawi siê nam okno w którym bêdziemy mieæ mo¿liwoœæ wczytania ostatnio u¿ywanego
 pliku (jeœli ju¿ wczeœniej u¿ywaliœmy programu), wcztaæ dowoln¹ bazê lub utworzyæ now¹. Te same operacje
 mo¿emy wykonaæ z menu plik. Mo¿liwa jest opcja dodania nowych materia³ów w menu Materia³y.
-Zak³adamy, ¿e wczytujem plik z baz¹.
-\paragraph
-Przehodzimy do g³ównego okna programu.
+Zak³adamy, ¿e wczytujem plik z baz¹. \n
+Przehodzimy do g³ównego okna programu. W Centralnej czêœci mamy podgl¹d danych. Mo¿emy zmieniæ
+wyœwietlany typ przez wybór z rozwiajnego menu. Klikaj¹c na poka¿ panel szczegó³ów i zaznaczaj¹c
+jakiœ element mo¿emy zobaczyæ widok szczegó³owy. U¿ywaj¹c klawiszy przycisków << i >> mo¿emy przemieszczaæ
+siê miêdzy rekordami. \n
+Dwukrotne klikniêcie na obiekcie w trybie "Wszyskie typy" otwiera perspektywê edycji danych. Teraz
+mo¿emy edytowaæ dane. ¯adne pole nie mo¿e byæ puste. Nie mo¿na zmieniæ identyfikatora ani typu.
+Wybieraj¹c format daty bêdziemy musiali wpisaæ datê w sposób taki jak w nawiasie opisuj¹cym wybrany
+format. W przypadku pozostawienia niewype³nionego pola i próby zapisania, b³êdne pole zostanie oznaczone
+na czerwono. Po najechaniu na niektóre czerwone pola zostanie wyœwietlona wskazówka jaka powinna byc jego zawartoœæ.
+W panelu edycji jest mo¿liwoœæ usuniêcia rekordu przez wciœniêcie przycisku Usuñ (lub wciœniêcia Del ). \n
+Panel dodawania jest podobny do panelu edycji. Wymagane jest wybranie Typu obiektu, w zale¿nosci od tego
+zmieniaj¹ siê dostêpne pola. W przypadku niewype³nienia jakiegoœ pola rekacja jest jak w panelu edycji
+pole zostaje oznaczone na czerwono. \n
+W menu plik istnieje mo¿liwoœæ zapisania danych do wybranego pliku. Standardowo pocz¹tkowa scie¿ka wskazuje
+na katalog Moje Dokumenty. Tworzenie nowej bazy lub otwarcie innej bez uprzedniego zapisania starej powoduje jej
+utracenie. \n
+W menu Materia³y mamy mo¿liwoœæ dodania nowych materia³ów, w przpadku próby dodania istsniej¹cego
+materia³u zostanie wyœwietlony odpowiedni komunikat. Materia³y zostaj¹ zapisane do pliku podczas wychodzenia
+z programu \n
+Do wiêkszoœci opcji zostaly zdefiniowane skróty klawiszowe, które mo¿na odczytaæ w menu programu.
 */
 
 #include <QtGui/QApplication>
