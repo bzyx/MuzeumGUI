@@ -1,85 +1,66 @@
+/****************************************************************************
+**
+** Copyright (C) 2011 Marcin Jabrzyk <marcin.jabrzyk@gmail.com>
+** All rights reserved.
+**
+** This file is part of MuzeumGUI <marcin.jabrzyk@gmail.com>
+**
+** Ten utwór jest dostêpny na licencji
+** Creative Commons
+** Uznanie autorstwa-U¿ycie niekomercyjne-Na tych samych warunkach
+** 3.0 Unported.
+**
+** http://creativecommons.org/licenses/by-nc-sa/3.0/
+**
+****************************************************************************/
+
 #include <src/eksponatmuzealny.h>
 #include <string>
 
 #ifndef EMEBEL_H
 #define EMEBEL_H
-
-/**
- * @brief
- * Klasa zarz¹daj¹ca obiekatami typu mebel
- */
 /*!
  \brief
+ Klasa zarz¹daj¹ca obiekatami typu mebel
 
  \class EMebel emebel.h "src/emebel.h"
 */
 class EMebel : public EksponatMuzealny
 {
 private:
-    std::string m_rodzaj; /**< TODO */ /*!< TODO */
-    int m_material; /**< TODO */ /*!< TODO */
+    std::string m_rodzaj; /**< Opis rodzaju mebla */
+    int m_material; /**< Numer materia³u z jakiego jest mebel */
 public:
-    /**
-     * @brief
-     * Zwraca rodzaj jaki rodzaj mebla
-     */
     /*!
      \brief
-
+       Zwraca rodzaj jaki rodzaj mebla
      \fn getRodzaj
     */
     std::string getRodzaj();
-    /**
-     * @brief
-     * Ustawia rodzaj mebla
-     * @param std::string
-     */
     /*!
      \brief
-
+     Ustawia rodzaj mebla
      \fn rodzaj
      \param std::string
     */
     void rodzaj(std::string);
-    /**
-     * @brief
-     * Zwraca rodzaj materialu z jakiego jest mebele
-     */
     /*!
      \brief
-
+     Zwraca numer materia³u z jakiego jest mebel.
      \fn getMaterial
     */
     int getMaterial();
-    /**
-     * @brief
-     * Ustawia rodzaj materialu mebla
-     * @param material
-     */
     /*!
      \brief
+     Ustawia numer materia³u z jakgo jest mebel. Stosowaæ prez klasê Material
 
      \fn material
      \param material
     */
     void material(int material);
-/**
- * @brief
- * rodzaj,material + EksponatMuzealny
- * @param rodzaj
- * @param material
- * @param nazwa
- * @param wystawiony
- * @param opis
- * @param polozenie
- * @param wartosc
- * @param typ
- * @param formatDaty
- * @param data
- */
 /*!
  \brief
-
+ rodzaj,material + EksponatMuzealny
  \fn EMebel
  \param rodzaj
  \param material
@@ -96,53 +77,33 @@ public:
            std::string nazwa, bool wystawiony, std::string opis,
            std::string polozenie, int wartosc,
            Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data);
-/**
- * @brief
- * Konstruktor domyslny
- */
 /*!
  \brief
-
+ Konstruktor domyslny
  \fn EMebel
 */
     EMebel();
-    /**
-     * @brief
-     * Zwraca atrybuty
-     */
     /*!
      \brief
-
+      Zwraca WSZYSTKIE atrybuty eksponatu (podstawowe + Mebla)
      \fn getAtrybuty
     */
     QStringList getAtrybuty();
-    /**
-     * @brief
-     * Zwraca nag³ówek atrybutów
-     */
     /*!
      \brief
-
+     Zwraca nag³ówek atrybutów
      \fn getHeaders
     */
     QStringList getHeaders();
-    /**
-     * @brief
-     * Rekord do zapisu
-     */
     /*!
      \brief
-
+      Rekord do zapisu
      \fn saveElement
     */
     r2f saveElement();
-    /**
-     * @brief
-     * Destruktor
-     */
     /*!
      \brief
-
+      Destruktor
      \fn ~EMebel
     */
     ~EMebel();
