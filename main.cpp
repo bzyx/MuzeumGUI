@@ -14,6 +14,8 @@
 **
 ****************************************************************************/
 /*!
+  \author Marcin Jabrzyk
+  \date 29.06.2011
   \mainpage Muzeum - Baza danych
   \section intro_sec Za³o¿enia programu
 ZAD. 8) Napisaæ program - obiektow¹ bazê danych o eksponatach zgromadzonych
