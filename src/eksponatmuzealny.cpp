@@ -1,8 +1,32 @@
+/****************************************************************************
+**
+** Copyright (C) 2011 Marcin Jabrzyk <marcin.jabrzyk@gmail.com>
+** All rights reserved.
+**
+** This file is part of MuzeumGUI <marcin.jabrzyk@gmail.com>
+**
+** Ten utwór jest dostêpny na licencji
+** Creative Commons
+** Uznanie autorstwa-U¿ycie niekomercyjne-Na tych samych warunkach
+** 3.0 Unported.
+**
+** http://creativecommons.org/licenses/by-nc-sa/3.0/
+**
+****************************************************************************/
+
 #include "eksponatmuzealny.h"
 
 using std::string;
+/*
+  Inicjalizacja obiektu statycznego.
+
+*/
 int EksponatMuzealny::m_lastid = 0;
 
+/*
+  Gettery i Settery poszczególnych zmiennych.
+
+*/
 int EksponatMuzealny::getId(){
     return m_id;
 }
@@ -58,6 +82,10 @@ string EksponatMuzealny::getData(){
 void EksponatMuzealny::data(std::string data){
     m_data = data;
 }
+/*
+  Konstruktory.
+
+*/
 EksponatMuzealny::EksponatMuzealny()
 {
     m_id = EksponatMuzealny::m_lastid;
