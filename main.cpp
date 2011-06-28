@@ -15,7 +15,7 @@
 ****************************************************************************/
 /*!
   \mainpage Muzeum - Baza danych
-  \section intro_sec Za³o¿enia programu'
+  \section intro_sec Za³o¿enia programu
 ZAD. 8) Napisaæ program - obiektow¹ bazê danych o eksponatach zgromadzonych
 w muzeum. Za³o¿yæ, ¿e zbiory muzealne zawieraj¹ takie eksponaty jak: obrazy,
 rzeŸby, meble, przedmioty u¿ytkowe, zabytkowe rêkopisy i starodruki. Nale¿y
@@ -56,14 +56,14 @@ publicznych zmiennnych w klasach. Zamiast tego stosowa³em liczne getery i setety
 wykonane zgodnie z wzorcem singletona. Postanowi³em wykorzystaæ wzorzec MVC do prezentacji danych
 u¿ytkownikowi, dziêki temu sam proces bezpoœrednich operacji na danych by³ bardzo prosty i mocno
 oddzielony od interfejsu GUI. Dodatkow¹ zalet¹ tego rozwi¹zania jest bardzo du¿a szybkoœæ prezentacji danych.
-\section mozliwosciIinstrukcja
+\section mozliwosciIinstrukcja Mo¿liwosci i instrukcja obs³ugi
 \subsection mozliwosci Funkcjonalnoœci programu:
--dodawanie/usuwanie/edycja zapisywanie i odczytywanie z pliku danych podzielonych na 6 grup tematycznych
--zapis w formacie XML pozwala na prost¹ wymianê danych z innymi aplikacjami
--rozszerzalna i nieulotna iloœæ materia³ów
--du¿a szybkoœæ dzia³ania nawet przy ogromnych iloœciach danych
--pe³na walidacja danych wprowadzanych do u¿ytkownika przez u¿ycie mi. in. wyra¿eñ regularnych
--podzia³ kodu na czêœæ graficzn¹ i przetwrzaj¹c¹ pozwala na ³atw¹ rozbudowê
+-dodawanie/usuwanie/edycja zapisywanie i odczytywanie z pliku danych podzielonych na 6 grup tematycznych \n
+-zapis w formacie XML pozwala na prost¹ wymianê danych z innymi aplikacjami \n
+-rozszerzalna i nieulotna iloœæ materia³ów \n
+-du¿a szybkoœæ dzia³ania nawet przy ogromnych iloœciach danych \n
+-pe³na walidacja danych wprowadzanych do u¿ytkownika przez u¿ycie mi. in. wyra¿eñ regularnych \n
+-podzia³ kodu na czêœæ graficzn¹ i przetwrzaj¹c¹ pozwala na ³atw¹ rozbudowê \n
 -przyjemny dla u¿ytkownika interfejs z podpowiadaniem w razie problemów
 \subsection mozliwosci Instrukcja:
 */
