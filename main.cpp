@@ -60,14 +60,21 @@ u¿ytkownikowi, dziêki temu sam proces bezpoœrednich operacji na danych by³ bardz
 oddzielony od interfejsu GUI. Dodatkow¹ zalet¹ tego rozwi¹zania jest bardzo du¿a szybkoœæ prezentacji danych.
 \section mozliwosciIinstrukcja Mo¿liwosci i instrukcja obs³ugi
 \subsection mozliwosci Funkcjonalnoœci programu:
--dodawanie/usuwanie/edycja zapisywanie i odczytywanie z pliku danych podzielonych na 6 grup tematycznych \n
--zapis w formacie XML pozwala na prost¹ wymianê danych z innymi aplikacjami \n
--rozszerzalna i nieulotna iloœæ materia³ów \n
--du¿a szybkoœæ dzia³ania nawet przy ogromnych iloœciach danych \n
--pe³na walidacja danych wprowadzanych do u¿ytkownika przez u¿ycie mi. in. wyra¿eñ regularnych \n
--podzia³ kodu na czêœæ graficzn¹ i przetwrzaj¹c¹ pozwala na ³atw¹ rozbudowê \n
--przyjemny dla u¿ytkownika interfejs z podpowiadaniem w razie problemów
+- dodawanie/usuwanie/edycja zapisywanie i odczytywanie z pliku danych podzielonych na 6 grup tematycznych \n
+- zapis w formacie XML pozwala na prost¹ wymianê danych z innymi aplikacjami \n
+- rozszerzalna i nieulotna iloœæ materia³ów \n
+- du¿a szybkoœæ dzia³ania nawet przy ogromnych iloœciach danych \n
+- pe³na walidacja danych wprowadzanych do u¿ytkownika przez u¿ycie mi. in. wyra¿eñ regularnych \n
+- podzia³ kodu na czêœæ graficzn¹ i przetwrzaj¹c¹ pozwala na ³atw¹ rozbudowê \n
+- przyjemny dla u¿ytkownika interfejs z podpowiadaniem w razie problemów
 \subsection mozliwosci Instrukcja:
+\paragraph
+Po uruchomieniu programu pojawi siê nam okno w którym bêdziemy mieæ mo¿liwoœæ wczytania ostatnio u¿ywanego
+pliku (jeœli ju¿ wczeœniej u¿ywaliœmy programu), wcztaæ dowoln¹ bazê lub utworzyæ now¹. Te same operacje
+mo¿emy wykonaæ z menu plik. Mo¿liwa jest opcja dodania nowych materia³ów w menu Materia³y.
+Zak³adamy, ¿e wczytujem plik z baz¹.
+\paragraph
+Przehodzimy do g³ównego okna programu.
 */
 
 #include <QtGui/QApplication>
