@@ -88,26 +88,6 @@ int MK::countByTyp(Meta::Typ typ){
 int MK::count(){
     return m_kontener.size();
 }
-EksponatMuzealny* MK::getObjectOfTyp(Meta::Typ typ){
-    for( itForTyp=m_kontener.begin(); itForTyp!=m_kontener.end(); ++itForTyp )
-    {
-        if ((*itForTyp)->getTyp() == typ){
-            return (*itForTyp);
-        }
-    }
-    return NULL;
-}
-
-EksponatMuzealny* MK::next(Meta::Typ typ){
-    for(; itForTyp!=m_kontener.end(); ++itForTyp )
-    {
-        if ((*itForTyp)->getTyp() == typ){
-            return (*itForTyp);
-        }
-
-    }
-    return NULL;
-}
 
 void MK::saveToFile(std::string filename){
     QFile file(filename.c_str());

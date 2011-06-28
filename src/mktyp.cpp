@@ -6,12 +6,6 @@ MKTyp& MKTyp::getInstance(){
     MKTyp static kontenerTyp;
     return kontenerTyp;
 }
-void MKTyp::setTyp(Meta::Typ typ){
-    m_typ=typ;
-}
-EksponatMuzealny* MKTyp::operator[](int id){
-    return getObjectFor(m_typ,id);
-}
 
 void MKTyp::updateMKTyp(){
     (m_Types[Meta::Mebel]).clear();
