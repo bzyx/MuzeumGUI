@@ -2,6 +2,5 @@
     <qresource prefix="/images/gui">
         <file>res/ikonka.JPG</file>
         <file>res/ikonka.png</file>
-        <file>res/qt_pl.qm</file>
     </qresource>
 </RCC>

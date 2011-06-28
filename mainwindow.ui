@@ -108,7 +108,7 @@
          <enum>QFrame::Plain</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="tabSpacing">
          <number>0</number>
@@ -117,9 +117,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-91</y>
-           <width>333</width>
-           <height>388</height>
+           <y>-140</y>
+           <width>334</width>
+           <height>391</height>
           </rect>
          </property>
          <attribute name="label">
@@ -376,9 +376,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-148</y>
-           <width>333</width>
-           <height>393</height>
+           <y>0</y>
+           <width>334</width>
+           <height>396</height>
           </rect>
          </property>
          <attribute name="label">
@@ -1061,7 +1061,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlik">
@@ -1213,6 +1213,64 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>dod_id</tabstop>
+  <tabstop>dod_cb_typ</tabstop>
+  <tabstop>dod_nazwa</tabstop>
+  <tabstop>dod_wysT</tabstop>
+  <tabstop>dod_wysN</tabstop>
+  <tabstop>dod_pol</tabstop>
+  <tabstop>dod_wart</tabstop>
+  <tabstop>dod_fDat</tabstop>
+  <tabstop>dod_dat</tabstop>
+  <tabstop>dod_opis</tabstop>
+  <tabstop>dod_dp1</tabstop>
+  <tabstop>top_cb_wysTyp</tabstop>
+  <tabstop>dod_dp2</tabstop>
+  <tabstop>dod_dp2_cb</tabstop>
+  <tabstop>dod_dp2_N</tabstop>
+  <tabstop>dod_dp2_T</tabstop>
+  <tabstop>dod_dp3</tabstop>
+  <tabstop>dod_b_dod</tabstop>
+  <tabstop>dod_b_anu</tabstop>
+  <tabstop>ed_id</tabstop>
+  <tabstop>ed_nazwa</tabstop>
+  <tabstop>ed_wys_T</tabstop>
+  <tabstop>ed_wys_N</tabstop>
+  <tabstop>ed_pol</tabstop>
+  <tabstop>ed_wart</tabstop>
+  <tabstop>ed_cb_fDat</tabstop>
+  <tabstop>ed_dat</tabstop>
+  <tabstop>ed_opi</tabstop>
+  <tabstop>ed_dp1</tabstop>
+  <tabstop>ed_dp3</tabstop>
+  <tabstop>ed_dp2</tabstop>
+  <tabstop>ed_dp2_cb</tabstop>
+  <tabstop>ed_dp2_N</tabstop>
+  <tabstop>ed_dp2_T</tabstop>
+  <tabstop>ed_typ</tabstop>
+  <tabstop>ed_usun</tabstop>
+  <tabstop>ed_zapisz</tabstop>
+  <tabstop>ed_anuluj</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>naStar_ostPlik</tabstop>
+  <tabstop>naStart</tabstop>
+  <tabstop>naStart2</tabstop>
+  <tabstop>sz_pop</tabstop>
+  <tabstop>sz_licznik</tabstop>
+  <tabstop>sz_nas</tabstop>
+  <tabstop>sz_id</tabstop>
+  <tabstop>sz_typ</tabstop>
+  <tabstop>sz_nazwa</tabstop>
+  <tabstop>sz_wys</tabstop>
+  <tabstop>sz_pol</tabstop>
+  <tabstop>sz_dat</tabstop>
+  <tabstop>sz_opi</tabstop>
+  <tabstop>sz_dp1</tabstop>
+  <tabstop>sz_dp2</tabstop>
+  <tabstop>sz_dp3</tabstop>
+  <tabstop>sz_war</tabstop>
+ </tabstops>
  <resources>
   <include location="zasoby.qrc"/>
  </resources>

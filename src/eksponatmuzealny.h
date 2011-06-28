@@ -3,266 +3,275 @@
 #include <string>
 #include <QPair>
 #include <QList>
+#include <QStringList>
+#include <QString>
 #include "src/meta.h"
 #include "src/material.h"
-class QStringList;
-class QString;
 
-
-/**
- * @brief
- * G³ówna klasa nadaj¹ca interfejs wszyskim klas¹ pochodnym
- * jakie zostan¹ z niej wyprowadzone.
- */
-/**
- * @brief
- *
- */
+/*!
+ \brief
+Glówna klasa - ndaje interfejs wszyskim klasom pochodnym, wyprowadza podstawowe funkcje.
+ \class EksponatMuzealny eksponatmuzealny.h "src/eksponatmuzealny.h"
+*/
 class EksponatMuzealny
 {
 public:
     /**
      * @brief
-     * Okreœla typ elementu jaki jest przechowywany w wektorze (zamiast RTTI)
-     */
-//    typedef enum {NieOkreslonoTypu=-1, Obraz=5, PrzedmiotUzytkowy,
-//                  Rzezba, Mebel, Rekopis, Starodruk } Typ;
-//TODO: usn¹æ ostatecznie
-    /**
-     * @brief
      * Record to file - struktura do zapisu danych do pliku XML
      */
+    /*!
+     \brief
+     Struktura, która jest u¿ywana podczas zapisu do pliku. S³u¿y do przechowywania
+     wartoœci w postaci "atryut","wartoœæAtrybutu"
+
+     \typedef krotka    */
     typedef QPair<QString, QString> krotka;
+    /*!
+     \brief
+     Lista któr¹ sk³ada siê z krotek zawieracj¹ca wszyskie atrybuty i wartoœci rekordu.
+
+     \typedef r2f    */
     typedef QList<krotka> r2f;
-    /**
-     * @brief
-     * Okreœla rodzaj materia³u z jakego jest wykonay przedmiot
-     * wymagana ponowna komplilacja aby dodaæ nowy typ :(
-     */
-//    typedef enum {NieOkreslonoMaterialu=-1, Braz=5, Drewno, Gips,
-//                  Glina, Granit, Marmur, Metal, Mosiadz,
-//                  Piaskowiec, Srebro, Zloto } Material;
-//TODO: Usun¹æ ostatecznie
-    /**
-     * @brief
-     * Okreœla format zapisu daty. Nie mo¿na przechowywaæ datetime poniewa¿
-     * niektóre z eksponatów mog¹ byæ znane tylko z
-     * wieku (w), roku (r), miesi¹ca i roku (mr),
-     * dnia miesiaca i roku (dmr)
-     * w, r, mm.rr, dd.mm.rrrr
-     */
-//    typedef enum {w=5,r,mr,dmr} FormatDaty;
-    //TODO: Usun¹æ ostatecznie
-
 private:
-    /**
-      /var m_lastid przechowuje ostatnio nadany identyfikator
-    */
-    static int m_lastid;
-    int m_id;
-    std::string m_nazwa;
-    bool m_wystawiony;
-    std::string m_opis;
-    std::string m_polozenie;
-    int m_wartosc;
-    Meta::Typ m_typ;
-    Meta::FormatDaty m_FormatDaty;
-    std::string m_data;
+    static int m_lastid; /*!< Przechowuje ostatnio ustawiony identyfikator */
+    int m_id; /*!< Identyfikator eksponatu */
+    std::string m_nazwa; /*!< Nazwa eksponatu */
+    bool m_wystawiony; /*!< Czy eksponat jest wystawiony "true" jeœli jest wystaiony  */
+    std::string m_opis; /*!< Opis eksponatu, w za³o¿eniu mo¿e byæ dosyæ d³gui */
+    std::string m_polozenie; /*!< TODO */
+    int m_wartosc; /*!< Wartoœc eksponatu wyra¿ona z PLN */
+    Meta::Typ m_typ; /*!< Typ (Rodzina) eksponatu */
+    Meta::FormatDaty m_FormatDaty; /*!< Sposób zapisu daty eksponatu */
+    std::string m_data; /*!< Data zapisana w wybranym formacie */
 public:
-    /**
-     * @brief
-     *  Zwraca identyfikator obiektu
-     */
+    /*!
+     \brief
+     Zwraca identyfikator eksponatu
+
+     \fn getId
+    */
     int getId();
-    /**
-     * @brief
-     *  Ustawia identyfikator obiektu (nie u¿ywaæ)
-     * @param id
-     */
+    /*!
+     \brief
+     Ustawia identyfikator obiektu. Wprowadzona w celu zgodnoœci z get (nie u¿ywaæ).
+     \fn id
+     \param id
+    */
     void id(int id);
-    /**
-     * @brief
-     * Zwraca nazwê/tytu³ obiektu
-     */
+    /*!
+     \brief
+     Zwraca nazwê/tytu³ eksponatu
+
+     \fn getNazwa
+    */
     std::string getNazwa();
-    /**
-     * @brief
-     * Ustawia nazwê/tytu³ obiektu
-     * @param nazwa
-     */
+    /*!
+     \brief
+     * Ustawia nazwê/tytu³ eksponatu
+
+     \fn nazwa
+     \param nazwa
+    */
     void nazwa(std::string nazwa);
-    /**
-     * @brief
-     * Zwraca wartoœæ true jeœli obiekt ma ustawiony status "wystawiony"
-     */
+    /*!
+     \brief
+     Zwraca wartoœæ true jeœli ekspoanat jest wystawiony
+
+     \fn getWystawiony
+    */
     bool getWystawiony();
-    /**
-     * @brief
-     * Ustwia czy obiekt ma byæ wystawiony czy nie
-     * @param wystawiony
-     */
+    /*!
+     \brief
+     Ustawia czy eksponat jest wystawiony
+
+     \fn wystawiony
+     \param wystawiony
+    */
     void wystawiony(bool wystawiony);
-    /**
-     * @brief
-     * Zwraca opis obiektu
-     */
+    /*!
+     \brief
+     Zwraca d³u¿szy opis ekspoantu
+
+     \fn getOpis
+    */
     std::string getOpis();
-    /**
-     * @brief
-     * Ustawia opis obiektu
-     * @param opis
-     */
+    /*!
+     \brief
+     Ustawia d³u¿szy opis eksponatu
+
+     \fn opis
+     \param opis
+    */
     void opis(std::string opis);
-    /**
-     * @brief
-     * Zwraca po³o¿enie obiektu "w którym jest magazynie"
-     */
+    /*!
+     \brief
+     Zwraca po³o¿enie eksponatu (mo¿e to byæ magazyn/galeria/sala/budynek)
+
+     \fn getPolozenie
+    */
     std::string getPolozenie();
-    /**
-     * @brief
-     * Ustawia po³o¿enie obiektu "do którego magazynu przynajle¿y"
-     * @param polozenie
-     */
+    /*!
+     \brief
+     Ustawia po³o¿enie eksponatu
+
+     \fn polozenie
+     \param polozenie
+    */
     void polozenie(std::string polozenie);
-    /**
-     * @brief
-     * Zwraca wartoœæ obiektu (eksponatu)
-     */
+    /*!
+     \brief
+     Zwraca wartoœæ obiektu w PLN
+
+     \fn getWartosc
+    */
     int getWartosc();
-    /**
-     * @brief
-     * Ustawia wartoœæ obiektu (eksponatu)
-     * @param wartosc
-     */
+    /*!
+     \brief
+     Ustawia wartoœæ eksponatu w PLN
+
+     \fn wartosc
+     \param wartosc
+    */
     void wartosc(int wartosc);
-    /**
-     * @brief
-     * Zwraca typ obiektu (jako element enumeratora Typ)
-     */
+    /*!
+     \brief
+     Zwraca typ eksponatu.
+
+     \fn getTyp
+    */
     Meta::Typ getTyp();
-    /**
-     * @brief
-     * Ustawia typ obiektu jako argument przyjmuje typ enumetatora
-     * @param typ
-     */
-    void typ(Meta::Typ typ);
-    /**
-     * @brief
-     * Zwraca w jakim formacie jest zapisana data
-     */
+    /*!
+     \brief
+     Ustawia typ/rodzinê eksponatu
+
+     \fn Typ
+     \param typ
+    */
+    void Typ(Meta::Typ typ);
+    /*!
+     \brief
+     Zwraca format daty w jakim jest zapisana data
+
+     \fn getFormatDaty
+    */
     Meta::FormatDaty getFormatDaty();
-    /**
-     * @brief
-     * Ustawia w jakim formacie ma byæ zapisana data
-     * @param formatDaty
-     */
+    /*!
+     \brief
+     Ustawia format zapisu daty
+
+     \fn formatDaty
+     \param formatDaty
+    */
     void formatDaty(Meta::FormatDaty formatDaty);
-    /**
-     * @brief
-     * Zwraca datê przpisan¹ do obiektu
-     */
+    /*!
+     \brief
+     Zwraca datê. Powinna byæ zapisana zgodnie z ustawionym formatem.
+
+     \fn getData
+    */
     std::string getData();
-    /**
-     * @brief
-     * Ustawia datê dla zadanego obietu
-     * nale¿y pamiêtaæ o formacie daty zadanym w formatDaty
-     * @param data
-     */
+    /*!
+     \brief
+     Ustawia datê. Nale¿y pamiêtaæ o zgodnoœci z wybranm formatem daty
+
+     \fn data
+     \param data
+    */
     void data(std::string data);
+    /*!
+ \brief
+ Konstruktor domyœlny - przydziela tylko unikalny identyfikator obiektu.
 
-    /**
- * @brief
- * Konsturktor domyœlny. Przydziela obiektowi unikalny
- * identyfikator
- */
-
+ \fn EksponatMuzealny
+*/
     EksponatMuzealny();
-    /**
- * @brief
- * Konstruktor z wszyskimi parametrami, id jest przydzielane
- * automatycznie.
- *
- * @param nazwa
- * @param wystawiony
- * @param opis
- * @param polozenie
- * @param wartosc
- * @param typ
- * @param formatDaty
- * @param data
- */
+    /*!
+ \brief
+ Konstruktor przyjmuj¹cy wszyskie mo¿liwe parametry. Odpoiwednie id jest przydzielane
+ automatycznie wg zmiennej klasowej lastId
+
+ \fn EksponatMuzealny
+ \param nazwa
+ \param wystawiony
+ \param opis
+ \param polozenie
+ \param wartosc
+ \param typ
+ \param formatDaty
+ \param data
+*/
     EksponatMuzealny(std::string nazwa, bool wystawiony, std::string opis,
                      std::string polozenie, int wartosc,
                      Meta::Typ typ, Meta::FormatDaty formatDaty, std::string data);
-    /**
-     * @brief
-     * Ustawia wewnêtrzy licznik identyfikatora.
-     * Po uruchomieniu programu i wczytaniu pliku
-     * nie mo¿e wczytywaæ od 0 bo by nadpisa³.
-     */
+    /*!
+     \brief
+     Ustawia zmienn¹ klasow¹ lastId. Mo¿e byæ pomocne przy wycztywaniu danych z pliku.
+     U¿ycie tej funkcji pozwala na zachowanie orginalnych identyfikatorów, przez
+     pominiêcie zbêdnych.
+
+     \fn lastId
+     \param id
+    */
     static void lastId(int id);
+    /*!
+     \brief
+     Zwraca aktualn¹ wartoœæ zmiennej klasowej lastId.
+
+     \fn getLastId
+    */
     static int getLastId();
-    /**
-     * @brief
-     * Metoda czysto wirtulana.
-     * Nale¿y przeci¹¿yæ w klasach pochodnych.
-     * Ma zwracaæ jako listê QString poszczegó³ne atrybuty obiektu.
-     */
+    /*!
+     \brief
+     Zwraca wartoœci atrybutów obiektów.
+     Metoda czysto wirtulana.
+     Nale¿y przeci¹¿yæ w klasach pochodnych.
+     Ma zwracaæ jako listê QString poszczegó³ne atrybuty obiektu.
 
+     \fn getAtrybuty
+    */
     virtual QStringList getAtrybuty() =0;
-    /**
-     * @brief
-     * Zwraca listê QString'ów z atrybutami klasy
-     * EksponatMuzelany tak aby mo¿na j¹ wywo³aæ w klasie pochodnej
-     */
-    QStringList getPodstawoweAtrybuty();
-    /**
-     * @brief
-     * Metoda czysto wirtualna.
-     * Bêdzie zwracaæ nag³ówek z nazwami pól
-     */
-    virtual QStringList getHeaders() = 0;
-    /**
-     * @brief
-     * Zwraca nag³ówek z nazwami pól klasy EksponatMuzealny
-     */
-    QStringList getPodstawoweHeaders();
-    /**
-     * @brief
-     * Zwraca listê par typu QString, QString w postaci
-     * Atrybut, WartoœcAtrybutu
-     */
-    virtual r2f saveElement() =0;
-    /**
-     * @brief
-     * Zwraca nazwê typu jako string
-     */
-//    std::string nazwaTypu(Meta::Typ typ);
-    //TODO: USUÑ
-    /**
-     * @brief
-     * Zwraca nazwê formatu daty jako string
-     */
-    //std::string nazwaFormatDaty(Meta::FormatDaty formatDaty);
-    //TODO: USUÑ
-    /**
-     * @brief
-     * Konwersja wartoœci bool na "Tak/Nie"
-     */
-//    std::string b2s(bool b);
-    //TODO: USUÑ
-    /**
-     * @brief
-     * Wirtualny deskturuktor
-     */
-    virtual ~EksponatMuzealny();
+    /*!
+     \brief
+     Zwraca wartoœci atrybutów nale¿¹cych do klasy EksponatMuzealny
+     Atrybuty w postaci list QString.
 
-    /**
-     * @brief
-     * Przetwarza typ Material na string
-     * @param m
-     */
-//    std::string Material2s(Material m);
+     \fn getPodstawoweAtrybuty
+    */
+    QStringList getPodstawoweAtrybuty();
+    /*!
+     \brief
+     Zwraca nazwy atrybutów - metoda wirtualna.
+     Wymagane przeci¹¿enie w klasie pochodnej.
+     Nazwy w postaci listy QString
+
+     \fn getHeaders
+    */
+    virtual QStringList getHeaders() = 0;
+    /*!
+     \brief
+     Zwraca nazwy atrybutów zdefiniowanych w klasie EksponatMuzealny
+     Nazwy w postaci listy QString
+
+     \fn getPodstawoweHeaders
+    */
+    QStringList getPodstawoweHeaders();
+    /*!
+     \brief
+     Zwraca listê par typu QString, QString w postaci
+     Atrybut, WartoœcAtrybutu
+     Wymagane przeci¹zenie w klasie pochodnej.
+
+     \fn saveElement
+    */
+    virtual r2f saveElement() =0;
+    /*!
+     \brief
+     Wirtualny destruktor.
+
+     \fn ~EksponatMuzealny
+    */
+    virtual ~EksponatMuzealny();
 };
 
 #endif // EKSPONATMUZEALNY_H

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP-1250"));
-    tytul = "Muzemum - baza danych";
+    tytul = "Muzeum - baza danych";
     setWindowTitle(tytul);
     ui->setupUi(this);
     connect(ui->actionPoka_panel_dodawania,SIGNAL(triggered()),this,SLOT(setVisiblePanelDodawania()));
@@ -811,7 +811,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 bool MainWindow::OKToClose()
 {
     QMessageBox ostrz;
-    ostrz.setWindowTitle("Muzemum - baza danych");
+    ostrz.setWindowTitle("Muzeum - baza danych");
     ostrz.setIcon(QMessageBox::Warning);
     ostrz.setText("Czy napewno chcesz wyjœæ z programu? \nJeœli baza nie zosta³a zapisana spowoduje to jej utracenie.");
     ostrz.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
@@ -860,6 +860,7 @@ void MainWindow::on_actionNowa_baza_triggered()
         lastFileName = saveFileName;
         setWindowTitle(tmp);
         ui->statusBar->showMessage("Plik zosta³ utworzony",800);
+        actionsAfterOpen();
     } else {
         ui->statusBar->showMessage("Plik nie zosta³ utworzony",1000);
     }
@@ -1109,7 +1110,7 @@ void MainWindow::on_actionUsu_triggered(){
 void MainWindow::on_ed_cb_fDat_currentIndexChanged(int index)
 {
     Meta::FormatDaty fd = static_cast<Meta::FormatDaty> (ui->ed_cb_fDat->itemData(index).toInt());
-    QRegExp wiek("[I,V,X,L]{1,3}");
+    QRegExp wiek("[I,V,X,L]{1,6}");
     QRegExp rok("[0-2][0-9]{3}");
     QRegExp mr("^((0[1-9])|(1[0-2]))[.][0-2][0-9]{3}");
     QRegExp dmr("(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.][0-2][0-9]{3}");
