@@ -36,6 +36,10 @@
      <property name="text">
       <string>Dodaj</string>
      </property>
+     <property name="icon">
+      <iconset resource="zasoby.qrc">
+       <normaloff>:/images/gui/res/images/gui/add.png</normaloff>:/images/gui/res/images/gui/add.png</iconset>
+     </property>
     </widget>
    </item>
    <item>
@@ -77,7 +81,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="zasoby.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pushButton</sender>

@@ -1,6 +1,18 @@
 <RCC>
     <qresource prefix="/images/gui">
-        <file>res/ikonka.JPG</file>
-        <file>res/ikonka.png</file>
+        <file>res/images/gui/1downarrow.png</file>
+        <file>res/images/gui/1leftarrow.png</file>
+        <file>res/images/gui/add.png</file>
+        <file>res/images/gui/archive_insert.png</file>
+        <file>res/images/gui/document_new.png</file>
+        <file>res/images/gui/document_open.png</file>
+        <file>res/images/gui/document_save.png</file>
+        <file>res/images/gui/document_save_as.png</file>
+        <file>res/images/gui/edit_add.png</file>
+        <file>res/images/gui/editdelete.png</file>
+        <file>res/images/gui/help_about.png</file>
+        <file>res/images/gui/list.png</file>
+        <file>res/images/gui/edit.png</file>
+        <file>res/images/ikonka.png</file>
     </qresource>
 </RCC>
