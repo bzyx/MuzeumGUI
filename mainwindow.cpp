@@ -1103,7 +1103,7 @@ void MainWindow::on_actionUsu_triggered(){
         ui->tableView->reset();
         setDisabledIfEmpty();
     } else{
-        QMessageBox::warning(this,"Muzeum - baza danych","Nale¿y zaznaczyæ element do usuniniêcia.",QMessageBox::Ok);
+        QMessageBox::warning(this,"Muzeum - baza danych","Nale¿y zaznaczyæ element do usuniêcia.",QMessageBox::Ok);
     }
 }
 
