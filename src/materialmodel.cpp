@@ -13,10 +13,7 @@
 ** http://creativecommons.org/licenses/by-nc-sa/3.0/
 **
 ****************************************************************************/
-/*!
-  \file materialmodel.cpp
 
-*/
 #include "materialmodel.h"
 
 MaterialModel::MaterialModel(QObject *parent)
@@ -44,8 +41,16 @@ QVariant MaterialModel::data(const QModelIndex &index, int role) const{
 int MaterialModel::rowCount(const QModelIndex &parent) const{
     return Material::getInstance().count();
 }
+/*
+  Nie ma potrzeby implementacji columnCount odk¹d QListView ma tylko jedn¹ kolumnê.
+
+*/
 
 QVariant MaterialModel::headerData(int section, Qt::Orientation orientation,
                                    int role) const{
+    /*
+      Zwracamy QVariant bo nie potzreba nam numerów wierszy ani nag³ówka
+
+    */
     return QVariant();
 }

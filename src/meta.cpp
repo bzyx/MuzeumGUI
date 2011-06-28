@@ -1,10 +1,31 @@
-#include "meta.h"
+/****************************************************************************
+**
+** Copyright (C) 2011 Marcin Jabrzyk <marcin.jabrzyk@gmail.com>
+** All rights reserved.
+**
+** This file is part of MuzeumGUI <marcin.jabrzyk@gmail.com>
+**
+** Ten utwór jest dostêpny na licencji
+** Creative Commons
+** Uznanie autorstwa-U¿ycie niekomercyjne-Na tych samych warunkach
+** 3.0 Unported.
+**
+** http://creativecommons.org/licenses/by-nc-sa/3.0/
+**
+****************************************************************************/
 
+#include "meta.h"
 #include <cstring>
+
 Meta::Meta()
 {
 }
 
+/*
+  Bardzo proste statyczne funkcje obs³uguj¹ce konwersjê z i do odpowienich
+  enum'ów zdefiniowanych w klasie Meta
+
+*/
 std::string Meta::nazwaFormatDaty(
     Meta::FormatDaty formatDaty){
     switch(formatDaty)

@@ -1,10 +1,25 @@
+/****************************************************************************
+**
+** Copyright (C) 2011 Marcin Jabrzyk <marcin.jabrzyk@gmail.com>
+** All rights reserved.
+**
+** This file is part of MuzeumGUI <marcin.jabrzyk@gmail.com>
+**
+** Ten utwór jest dostêpny na licencji
+** Creative Commons
+** Uznanie autorstwa-U¿ycie niekomercyjne-Na tych samych warunkach
+** 3.0 Unported.
+**
+** http://creativecommons.org/licenses/by-nc-sa/3.0/
+**
+****************************************************************************/
+
 #include <QFile>
 #include <QMessageBox>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
 #include <QList>
 #include <QPair>
-#include <QDebug>
 #include <deque>
 
 #include "muzeumkontener.h"
@@ -16,34 +31,42 @@
 #include "src/erzezba.h"
 #include "src/estarodruk.h"
 
+/*
+  Inicjalizacja zmiennej statycznej.
+
+*/
 MKontener MK::m_kontener;
 
+/*
+  Zwraca referencjê do obiektu. Klasa jest singletonem.
 
+*/
 MK& MK::getInstance()
 {
     MK static kontener;
     return kontener;
 }
 
+/*
+  Obiekt jest dodawany na koñcu listy. Zgodnie z rosn¹cymi id.
+
+*/
 void MK::addItem(EksponatMuzealny* e)
 {
     m_kontener.push_back(e);
 }
 
 bool MK::deleteItem(int id){
+    /*
+      Szukamy obiektu o id podanym jak w parametrze i tak przesuwamy iterator,
+      aby wskazywa³ na ten obiekt. Gdy ju¿ go mamy mo¿emy usun¹æ wskazywany obiekt.
+      U¿ycie +1 by³o konieczne z b³êdów podczas usuwania ostatniego elementu.
 
-   // it.operator []( = id;
-//    m_kontener.erase(m_kontener.begin()-1+id);
-    //qDebug() << m_kontener.begin()+id;
-//    if(id == 0){
-//        m_kontener.erase(m_kontener.begin());
-//    ret = true;
-//    } else {
+    */
     bool ret = false;
     MKontener::iterator it;
     for( it=m_kontener.begin(); it!=m_kontener.end()+1; it++ )
     {
-//        qDebug() <<(*it)->getId();
         if ((*it)->getId() == id){
             m_kontener.erase(it);
             ret = true;
@@ -51,29 +74,40 @@ bool MK::deleteItem(int id){
         }
     }
     return ret;
-//    }
 }
 
+/*
+  Czyszczenie ca³ej listy.
+
+*/
 void MK::MK::deleteAll()
 {
     m_kontener.clear();
 }
 
+/*
+  Przez zastosowanie deque implementacja
+  tej metody sta³a siê trywailna.
+
+*/
 EksponatMuzealny* MK::operator[](int id ){
-    //    MKontener::iterator it;
-    //    for( it=m_kontener.begin(); it!=m_kontener.end(); ++it )
-    //    {
-    //        if ((*it)->getId() == id){
-    //            return (*it);
-    //        }
-    //    }
-    //    return NULL;
     return m_kontener.at(id);
 }
+
+/*
+  Zwraca wskaŸnik do wewnêtrznej listy.
+  U¿ycie mocno nie zalecane.
+  Mo¿e powodowaæ wiele szkód.
+
+*/
 MKontener* MK::getList(){
     return &m_kontener;
 }
 
+/*
+  Zwraca liczbê obiektów wg. typu
+
+*/
 int MK::countByTyp(Meta::Typ typ){
     int licznik = 0;
     MKontener::iterator it;
@@ -85,10 +119,22 @@ int MK::countByTyp(Meta::Typ typ){
     }
     return licznik;
 }
+
+/*
+  Zwraca liczbê wszyskich obiektów
+
+*/
 int MK::count(){
     return m_kontener.size();
 }
 
+/*
+  Zapisuje ca³y kontener do pliku XML
+  Ka¿da para atrybut wartoœæ ma tak¹ sam¹ reprezentacjê w pliku XML.
+  Obiekty s¹ rozró¿niane za pomoc¹ tag'u rozpoczynaj¹cego który okreœla typ.
+  W przypadku komplikacji wyœwietlany jest MessageBox
+
+*/
 void MK::saveToFile(std::string filename){
     QFile file(filename.c_str());
 
@@ -122,6 +168,14 @@ void MK::saveToFile(std::string filename){
         xmlWriter->writeEndDocument();
     }
 }
+
+/*
+  Funkcja odczytuje dane z pliku.
+  Rozpoznaje format generowany przez program.
+  Zmiana kolejnoœci atrybutów nie powinno stanowiæ problemu.
+  Wa¿na jest odpowiednia iloœæ argumentów.
+
+*/
 void MK::readFromFile(std::string filename){
     QFile file(filename.c_str());
     QXmlStreamAttributes attrs;
@@ -181,10 +235,18 @@ void MK::readFromFile(std::string filename){
             }
 
         }
-        //xml.clear();
     }
 }
 
+/*
+  Funkcja wykonywana podczas odczytywania.
+  Zajmuje siê zliczaniuem argumentów.
+  Odczytwywaniem ich i ich wartoœci.
+  W pozytwny odczyt koñczy siê dodaniem obiektu do kontenera.
+  B³êdy nie s¹ sygnalizowane w szczególny sposób - obiekt
+  nie jest po prostu dopisany do kontenera.
+
+*/
 void MK::paraseAttributesAndAdd(Meta::Typ typ,QXmlStreamAttributes* attr){
     bool poprawnyRekord = true;
     for (int i=0; i < attr->count(); ++i)
