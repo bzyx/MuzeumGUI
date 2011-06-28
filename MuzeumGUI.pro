@@ -12,7 +12,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    src/file.cpp \
     src/muzeumkontener.cpp \
     src/eksponatmuzealny.cpp \
     src/eobraz.cpp \
@@ -29,7 +28,6 @@ SOURCES += main.cpp\
     materialdialog.cpp
 
 HEADERS  += mainwindow.h \
-    src/file.h \
     src/muzeumkontener.h \
     src/eksponatmuzealny.h \
     src/eobraz.h \
