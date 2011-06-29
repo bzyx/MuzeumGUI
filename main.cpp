@@ -41,10 +41,10 @@ EksponatMuzealny.
 Program zarz¹dzaj¹cy muzeum wydawa³ siê idealny do zastoswoania biblioteki graficznej w celu
 wykonania przyjaznego i nowoczesnego interfejsu u¿ytkownika.  Tak aby program nie stanowi³ bariery
 dla u¿ytkownika.  Zdecydowa³em siê na u¿ycie biblioteki Nokia Qt z powodu du¿ej funkcjonalnosæi,
-otwartoœci i przyjemnej dla programisty sk³adni.
+otwartoœci i przyjemnej dla programisty sk³adni. \n
 Program zosta³ podzielony na 2 zasadnicze czêœæi:
--klasy zwi¹zane z niskopoziomowym odtwarzaniem rozk³adu hierchi klas, przechowywaniem danych
--klasy zwi¹zane z manipulacj¹ danymi, wyœwietlaniem danych i reszt¹ interfejsu u¿ytkownika
+- klasy zwi¹zane z niskopoziomowym odtwarzaniem rozk³adu hierchi klas, przechowywaniem danych
+- klasy zwi¹zane z manipulacj¹ danymi, wyœwietlaniem danych i reszt¹ interfejsu u¿ytkownika
 Program potrafi zapisywaæ i odczytywaæ dane z odpowiednio stworzonych plików XML.  Oprócz tego
 w katalogu z programem tworzony jest plik . ini zawieraj¹cy ustawienia programu, a tak¿e dodatkow¹
 strutkturê danych.
@@ -62,7 +62,7 @@ oddzielony od interfejsu GUI.  Dodatkow¹ zalet¹ tego rozwi¹zania jest bardzo du¿
 \subsection mozliwosci Funkcjonalnoœci programu:
 - dodawanie/usuwanie/edycja zapisywanie i odczytywanie z pliku danych podzielonych na 6 grup tematycznych \n
 - zapis w formacie XML pozwala na prost¹ wymianê danych z innymi aplikacjami \n
-- rozszerzalna i nieulotna iloœæ materia³ów \n
+- nieulotna, mo¿lwioœæ rozszerzania listy materia³ów \n
 - du¿a szybkoœæ dzia³ania nawet przy ogromnych iloœciach danych \n
 - pe³na walidacja danych wprowadzanych do u¿ytkownika przez u¿ycie mi.  in.  wyra¿eñ regularnych \n
 - podzia³ kodu na czêœæ graficzn¹ i przetwrzaj¹c¹ pozwala na ³atw¹ rozbudowê \n
