@@ -84,6 +84,9 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <property name="spacing">
+       <number>6</number>
+      </property>
       <item>
        <widget class="QToolBox" name="panelDodawania">
         <property name="enabled">
@@ -775,7 +778,7 @@
                <property name="sizeHint" stdset="0">
                 <size>
                  <width>40</width>
-                 <height>20</height>
+                 <height>10</height>
                 </size>
                </property>
               </spacer>
@@ -785,7 +788,7 @@
                <property name="maximumSize">
                 <size>
                  <width>16777215</width>
-                 <height>16777215</height>
+                 <height>10</height>
                 </size>
                </property>
                <property name="text">
@@ -809,9 +812,14 @@
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>90</width>
-                 <height>16777215</height>
+                 <width>130</width>
+                 <height>10</height>
                 </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>6</pointsize>
+                </font>
                </property>
                <property name="text">
                 <string>X z Y</string>
@@ -829,6 +837,12 @@
              </item>
              <item>
               <widget class="QPushButton" name="sz_nas">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>10</height>
+                </size>
+               </property>
                <property name="text">
                 <string>&gt;&gt;</string>
                </property>
@@ -848,7 +862,7 @@
                <property name="sizeHint" stdset="0">
                 <size>
                  <width>40</width>
-                 <height>20</height>
+                 <height>10</height>
                 </size>
                </property>
               </spacer>
